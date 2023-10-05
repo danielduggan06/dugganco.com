@@ -100,7 +100,7 @@
       max-width: 100%;
       border-radius: 15px;
     }
-
+ 
     @media (max-width: 1200px) {
       .container {
         max-width: 100%;
@@ -122,11 +122,17 @@
         columns: 1;
         height: auto;
       }
+      /*-- this fixes the width issue on the spotify embedded iframes */
+      .spotify {
+        width: auto;
+        height: auto;
+      }
     }
   </style>
 
 </head>
 
+<!-- ---------------- NAVBAR ---------------- https://www.youtube.com/watch?v=samof05Dy6A -->
 <body>
   <header id="luxbar" class="luxbar-fixed">
     <input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox" />
@@ -150,6 +156,8 @@
       </ul>
     </div>
   </header>
+
+    <!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
 
   <secion id="home">
     <br><br>
@@ -199,7 +207,7 @@
     </section>
 
 
-    <!-- ----------------------FOOD SECTION---------------------- -->
+    <!-- ----------------------FOOD SECTION---------------------- https://www.youtube.com/watch?v=vIaduyqHPfY -->
     <section class="foodsection" id="food">
       <br>
       <h1 class="sectionheader">Food I've Been Cookin Up</h1>
