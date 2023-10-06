@@ -11,6 +11,8 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.rawgit.com/balzss/luxbar/ae5835e2/build/luxbar.min.css">
   <link rel="icon" href="favicon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script async src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -172,10 +174,14 @@
       </ul>
     </div>
 
-    <script>  /*close navbar after clicking an option */
-      $(".navbar-collapse a").click(function () {
-        $(".navbar-collapse").collapse("hide");
-      });
+    <!-- close navbar after clicking an option https://github.com/balzss/luxbar/issues/26#issuecomment-282002350 -->
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script>
+  $(document).ready(function() {
+    $(".luxbar-item").click(function () {
+      $('#luxbar-checkbox').prop('checked', false);
+    });
+});
     </script>
   </header>
 
@@ -183,7 +189,8 @@
 
   <secion id="home">
     <br><br>
-    <p class="topparagraph">Thank you for visiting my website! This is apart of a goal to further my career in the cloud administration and cybersecurity fields. Currently, I'm an IT systems administrator and/or IT security
+    <p class="topparagraph">Thank you for visiting my website! This is apart of a goal to further my career in the cloud
+      administration and cybersecurity fields. Currently, I'm an IT systems administrator and/or IT security
       operations professional with 6 years experience. If you're an interested employer, please take a look at <a
         href="file:///G:/My%20Drive/Web%20Dev/From%20FCC/Daniel-Duggan-Resume.html">my
         HTML/CSS stylized resume</a>, as well as the <a
@@ -198,10 +205,12 @@
       creation of this website.
       <br><br>
       In addition to the above, I'm currently enrolled in a Master's degree program in Cybersecurity and Information
-      Assurance at WGU with an expected graduation in 2024. In between classes, I am also currently studying for Microsoft's AZ-104 test, which will certify me as a Microsoft Azure
+      Assurance at WGU with an expected graduation in 2024. In between classes, I am also currently studying for
+      Microsoft's AZ-104 test, which will certify me as a Microsoft Azure
       Administrator Associate.
       <br><br>
-      I added some of my interests on here to let you know a little about myself and fill up some whitespace. You can reach me via email at <a href = "mailto: abc@example.com">daniel.duggan06@gmail.com</a>, or find the other contact
+      I added some of my interests on here to let you know a little about myself and fill up some whitespace. You can
+      reach me via email at <a href="mailto: abc@example.com">daniel.duggan06@gmail.com</a>, or find the other contact
       info in my resume. Thank you again!</a>
     </p>
   </secion>
@@ -334,15 +343,15 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     crossorigin="anonymous"></script>
   <script type="text/javascript">
-      (function ($) {
-        $('#i-accept').on('click', function () {
-          if (localStorage.hidecookiebar !== '1') {
-            $('#cookie-notice').hide();
-            localStorage.hidecookiebar = '1';
-          }
-        });
-        if (localStorage.hidecookiebar == '1') {
-          $('#cookie-notice').hide();
+  (function ($) {
+    $('#i-accept').on('click', function () {
+      if (localStorage.hidecookiebar !== '1') {
+        $('#cookie-notice').hide();
+        localStorage.hidecookiebar = '1';
+      }
+    });
+  if (localStorage.hidecookiebar == '1') {
+    $('#cookie-notice').hide();
         };
       })(jQuery);
   </script>
