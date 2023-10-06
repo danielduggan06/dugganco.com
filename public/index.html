@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="UTF-8" />
   <title>Dan Duggan's Website</title>
@@ -20,6 +21,10 @@
   </script>
 
   <style type="text/css">
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* OPEN HEADER SECTION STYLING */
     .name {
       font-weight: bold;
@@ -94,13 +99,22 @@
       width: 100%;
       margin-bottom: 10px;
       break-inside: avoid;
+
     }
 
     .container .box img {
       max-width: 100%;
       border-radius: 15px;
     }
- 
+
+    .bottom-left {
+      /* for captions on top of image */
+      position: absolute;
+      bottom: 8px;
+      left: 16px;
+
+    }
+
     @media (max-width: 1200px) {
       .container {
         max-width: 100%;
@@ -122,10 +136,11 @@
         columns: 1;
         height: auto;
       }
+
       /*-- this fixes the width issue on the spotify embedded iframes */
       .spotify {
         width: auto;
-        height: auto;
+        height: 100;
       }
     }
   </style>
@@ -133,6 +148,7 @@
 </head>
 
 <!-- ---------------- NAVBAR ---------------- https://www.youtube.com/watch?v=samof05Dy6A -->
+
 <body>
   <header id="luxbar" class="luxbar-fixed">
     <input type="checkbox" class="luxbar-checkbox" id="luxbar-checkbox" />
@@ -155,38 +171,38 @@
         </li>
       </ul>
     </div>
+
+    <script>  /*close navbar after clicking an option */
+      $(".navbar-collapse a").click(function () {
+        $(".navbar-collapse").collapse("hide");
+      });
+    </script>
   </header>
 
-    <!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
+  <!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
 
   <secion id="home">
     <br><br>
-    <p class="topparagraph">Thanks for visiting my website! I'm an IT systems administrator and/or IT security
-      operations professional looking to advance my career in the cybersecurity and cloud industries. If you're an
-      interested employer, please take a look at <a
+    <p class="topparagraph">Thank you for visiting my website! This is apart of a goal to further my career in the cloud administration and cybersecurity fields. Currently, I'm an IT systems administrator and/or IT security
+      operations professional with 6 years experience. If you're an interested employer, please take a look at <a
         href="file:///G:/My%20Drive/Web%20Dev/From%20FCC/Daniel-Duggan-Resume.html">my
         HTML/CSS stylized resume</a>, as well as the <a
         href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"> PDF version</a>
-      if needed for printing.
-      I'm completing the
+      if you'd like a more traditional resume.
+      This website is a big step in completing the
       <a href="https://cloudresumechallenge.dev/docs/the-challenge/">Cloud Resume Challenge</a> to help
       get myself closer to my goals, and while I don't have much experience in website design (I'm starting off with a
       2007
       MySpace vibe and slowly making it better), <span style="font-weight: bold">being able to create, host, and
-        continually update website on my own seemed to be a useful skill to have</span> - thus the
+        continually update a website on my own seemed to be a useful skill to have</span> - thus the
       creation of this website.
       <br><br>
-      In addition to the above,, I'm currently enrolled in a Master's degree program in Cybersecurity and Information
-      Assurance at WGU, I recently acquired the CompTIA Security+ certification (<a
-        href="https://www.credly.com/badges/4db29925-0924-4f09-99d3-a94f98158d36/public_url">take a look here</a>), and
-      in
-      between classes, I am also currently studying for Microsoft's AZ-104 test, which will certify me as an Azure
+      In addition to the above, I'm currently enrolled in a Master's degree program in Cybersecurity and Information
+      Assurance at WGU with an expected graduation in 2024. In between classes, I am also currently studying for Microsoft's AZ-104 test, which will certify me as a Microsoft Azure
       Administrator Associate.
       <br><br>
-      I added some of my interests on here to let you know a little about myself (and add some much needed content),
-      just
-      in case you're interested. You can reach me via the contact
-      info in my resume, or fill out the form below and I'll get back to you as soon as I can. Thank you again!</a>
+      I added some of my interests on here to let you know a little about myself and fill up some whitespace. You can reach me via email at <a href = "mailto: abc@example.com">daniel.duggan06@gmail.com</a>, or find the other contact
+      info in my resume. Thank you again!</a>
     </p>
   </secion>
 
@@ -227,31 +243,33 @@
           title="You may not like it, but this is THE SUPERIOR way to eat eggs (poached on an english muffin) - again no link to a recipe" /></a>
       </div>
       <div class='box' id='box_11'><a href="https://www.youtube.com/watch?v=GoFIBYoOdyI" target="_blank"><img
-            src="https://i.imgur.com/jJ7taWS.jpg"
-            title="Wanted a philly cheesesteak, but without all the bread" /></a></div>
+            src="https://i.imgur.com/jJ7taWS.jpg" title="Wanted a philly cheesesteak, but without all the bread" /></a>
+      </div>
       <div class='box' id='box_12'><a href="https://www.youtube.com/watch?v=_Nw3bDUpb7Q" target="_blank"><img
             src="https://i.imgur.com/PH2hStI.jpg"
             title="Chicken Marsala, a classic my mom makes. Mine is definitely not as good as hers" /></a></div>
     </div>
 
-  <main>
-    <!-- ---------------------SPOTIFY SECTION--------------------- -->
-    <section class="spotifysection" id="spotify">
-      <br><br>
-      <h1 class="sectionheader">Music I've Been Listenin To</h1>
-      <br>
-      <iframe class="spotify" src="https://open.spotify.com/embed/playlist/39AMXm0NxnYrqjsichCsiw?utm_source=generator"
-        width="20%" height="600" frameBorder="0" allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <br>
-      <iframe class="spotify" src="https://open.spotify.com/embed/playlist/0sskXa7owFcc2NyLZdCO3R?utm_source=generator"
-        width="20%" height="600" frameBorder="0" allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <br><br>
-    </section>
+    <main>
+      <!-- ---------------------SPOTIFY SECTION--------------------- -->
+      <section class="spotifysection" id="spotify">
+        <br><br>
+        <h1 class="sectionheader">Music I've Been Listenin To</h1>
+        <br>
+        <iframe class="spotify"
+          src="https://open.spotify.com/embed/playlist/39AMXm0NxnYrqjsichCsiw?utm_source=generator" width="20%"
+          height="600" frameBorder="0" allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <br>
+        <iframe class="spotify"
+          src="https://open.spotify.com/embed/playlist/0sskXa7owFcc2NyLZdCO3R?utm_source=generator" width="20%"
+          height="600" frameBorder="0" allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <br><br>
+      </section>
 
 
-    
+
       <!--Template for new divbox:
     
                 <div class='box' id='box_NUMBER'><a href="example.com" target="_blank"><img
@@ -259,9 +277,9 @@
                            title="DESCRIPTIONCAPTION" /></a></div>
     
         End of template-->
-    </section>
+  </section>
 
-    <!-- ---------------------TRIBUTE SECTION--------------------- 
+  <!-- ---------------------TRIBUTE SECTION--------------------- 
     <section class="tributesection" id="tribute">
       <h1 class="sectionheader">Tribute To My Dad</h1>
       <img src="https://via.placeholder.com/800x600/" alt="">
@@ -269,8 +287,8 @@
     </section>
   </main>-->
 
-    <!-- ---------------------FORM SECTION--------------------- -->
-    <!-- 
+  <!-- ---------------------FORM SECTION--------------------- -->
+  <!-- 
   BEGIN FORM
 <section class="formsection" id="form">
       <form action="#">
@@ -300,34 +318,34 @@
 -->
 
 
-    <!-- ---------------------COOKIE NOTICE SECTION--------------------- -->
-    <div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
-      <p>This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept”
-        you
-        acknowledge the use of cookies and to our <a href="#"><u>Privacy Policy</u></a>.</p>
-      <button type="button" id="i-accept" class="btn btn-primary">I Accept</button>
-    </div>
-    <footer>
-      <small>©
-        <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.
-      </small>
-    </footer>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        (function ($) {
-          $('#i-accept').on('click', function () {
-            if (localStorage.hidecookiebar !== '1') {
-              $('#cookie-notice').hide();
-              localStorage.hidecookiebar = '1';
-            }
-          });
-          if (localStorage.hidecookiebar == '1') {
+  <!-- ---------------------COOKIE NOTICE SECTION--------------------- -->
+  <div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
+    <p>This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept”
+      you
+      acknowledge the use of cookies and to our <a href="#"><u>Privacy Policy</u></a>.</p>
+    <button type="button" id="i-accept" class="btn btn-primary">I Accept</button>
+  </div>
+  <footer>
+    <small>©
+      <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.
+    </small>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+      (function ($) {
+        $('#i-accept').on('click', function () {
+          if (localStorage.hidecookiebar !== '1') {
             $('#cookie-notice').hide();
-          };
-        })(jQuery);
-    </script>
+            localStorage.hidecookiebar = '1';
+          }
+        });
+        if (localStorage.hidecookiebar == '1') {
+          $('#cookie-notice').hide();
+        };
+      })(jQuery);
+  </script>
 </body>
 
 </html>
