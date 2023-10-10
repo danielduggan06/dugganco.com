@@ -37,7 +37,7 @@
       font-weight: bold;
       text-align: center;
       font-size: 18pt;
-      scroll-margin-top: 20px
+      scroll-margin-top: 100px
     }
 
     .sectiondescription {
@@ -124,6 +124,8 @@
         width: calc(100%-40px);
         columns: 3;
       }
+
+
     }
 
     @media (max-width: 768px) {
@@ -146,6 +148,7 @@
         height: 100;
       }
     }
+
   </style>
 
 </head>
@@ -188,9 +191,9 @@
 
   <!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
 
-  <secion id="home">
+  <section>
     <br><br>
-    <p class="topparagraph">Thank you for visiting my website! This is apart of a goal to further my career in the cloud
+    <p class="topparagraph" id="home">Thank you for visiting my website! This is apart of a goal to further my career in the cloud
       administration and cybersecurity fields. Currently, I'm an IT systems administrator and/or IT security
       operations professional with 6 years experience. If you're an interested employer, please take a look at <a
         href="file:///G:/My%20Drive/Web%20Dev/From%20FCC/Daniel-Duggan-Resume.html">my
@@ -214,12 +217,12 @@
       reach me via email at <a href="mailto: abc@example.com">daniel.duggan06@gmail.com</a>, or find the other contact
       info in my resume. Thank you again!</a>
     </p>
-  </secion>
+  </section>
 
   <!-- ----------------------FOOD SECTION---------------------- https://www.youtube.com/watch?v=vIaduyqHPfY -->
-  <section class="foodsection" id="food">
+  <section class="foodsection">
     <br>
-    <h1 class="sectionheader">Food I've Been Cookin Up</h1>
+    <h1 class="sectionheader" id="food">Food I've Been Cookin Up</h1>
     <p class="sectiondescription">Click each link for the recipe I followed! Except for the ground turkey taco and
       poached eggs, maybe one day I'll write up my own for those.</p>
     <div class='container'>
@@ -262,9 +265,9 @@
 
     <main>
       <!-- ---------------------SPOTIFY SECTION--------------------- -->
-      <section class="spotifysection" id="spotify">
-        <br><br>
-        <h1 class="sectionheader">Music I've Been Listenin To</h1>
+      <section class="spotifysection">
+        <br>
+        <h1 class="sectionheader" id="spotify">Music I've Been Listenin To</h1>
         <br>
         <iframe class="spotify"
           src="https://open.spotify.com/embed/playlist/39AMXm0NxnYrqjsichCsiw?utm_source=generator" width="20%"
@@ -280,7 +283,7 @@
 
 
 
-      <!--Template for new divbox:
+      <!--Template for new food picture content:
     
                 <div class='box' id='box_NUMBER'><a href="example.com" target="_blank"><img
                            src="IMAGELINK"
