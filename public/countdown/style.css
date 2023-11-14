@@ -32,6 +32,7 @@ body {
         font-size: 4rem;
         line-height: 1;
         margin: 0 2rem;
+        margin-left: 0px;
     }
 }
 
@@ -52,6 +53,7 @@ body {
         font-size: 4rem;
         line-height: 1;
         margin: 0 2rem;
+        margin-left: 0px;
     }
 }
 
@@ -72,7 +74,7 @@ body {
         font-size: 2.2rem;
         line-height: 1;
         margin: 0 2rem;
-        margin-left: 5%;
+        margin-left: 0px;
     }
 }
 
@@ -80,7 +82,7 @@ body {
     h1 {
         font-size: 1.9rem;
         margin-top: 65%;
-        margin-left: 2%;
+        margin-left: 3%;
         margin-right: 2%; 
     }
 
@@ -89,10 +91,11 @@ body {
     }
     
     .big-text {
-        font-size: .8rem;
+        font-size: 1.2rem;
         font-weight: bold;
         line-height: 1;
         margin: 0 2rem;
+        margin-left: 0px;
     }
 }
 
@@ -101,5 +104,5 @@ body {
 }
 
 .countdown-el span {
-     font-size: 1.5rem;
+     font-size: 1.3rem;
 }
