@@ -5,7 +5,7 @@ box-sizing: border-box;
 }
 
 body {
-    background-image: url("./white-thanksgiving-background.jpg");
+    background-image: url("./christmas-background.jpg");
     background-size: cover;
     background-position: center center;
     display: flex;
