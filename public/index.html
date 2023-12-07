@@ -21,18 +21,36 @@
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- <script async src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'></script> -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263"
-     crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-XXXXXXXXXX');
+
+
+    /* close navbar when clicked off */
+    $(function () {
+      $(document).click(function (event) {
+        $('.navbar-collapse').collapse('hide');
+      });
+      /*end close navbar when clicked off */
+
+
+    });
+
   </script>
 
   <style type="text/css">
@@ -101,9 +119,9 @@
 
     /*-- this fixes the width issue on the spotify embedded iframes */
     .spotify {
-        width: auto;
-        height: 100;
-      }
+      width: auto;
+      height: 100;
+    }
 
     /* OPEN FOOD SECTION STYLING */
 
@@ -162,17 +180,17 @@
       }
     }
 
-@media (min-width: 480px) {
-  img:hover {
-      border-radius: 15px;
-      padding-bottom: 3px;
-      padding-left: 1.4%;
-      color: #2F5496;
-      background-image: linear-gradient(to bottom left, rgb(171, 171, 171), black);
-      transition: .8s;
-      transform: scale(1.2);
+    @media (min-width: 480px) {
+      img:hover {
+        border-radius: 15px;
+        padding-bottom: 3px;
+        padding-left: 1.4%;
+        color: #2F5496;
+        background-image: linear-gradient(to bottom left, rgb(171, 171, 171), black);
+        transition: .8s;
+        transform: scale(1.2);
+      }
     }
-}
 
     @media (max-width: 480px) {
       .container {
@@ -186,7 +204,7 @@
 
 </head>
 
-   <!--  close navbar after clicking an option https://github.com/balzss/luxbar/issues/26
+<!--  close navbar after clicking an option https://github.com/balzss/luxbar/issues/26
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script>
@@ -198,37 +216,43 @@
     </script>
   </header> -->
 
-  <!-- Navbar documentation: https://getbootstrap.com/docs/4.0/components/navbar/-->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Dan Duggan</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#food">Food</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#spotify">Music</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Resume(s)
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"
+<!-- Navbar documentation: https://getbootstrap.com/docs/4.0/components/navbar/-->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Dan Duggan</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#food">Food</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#spotify">Music</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/quiz/quizindex.html">Quiz</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Resume(s)
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item"
+            href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"
             target="_blank">PDF Resume</a>
-            <a class="dropdown-item" href="Daniel-Duggan-Resume.html" target="_blank">HTML Resume</a>
-            <!--<div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="Daniel-Duggan-Resume.html" target="_blank">HTML Resume</a>
+          <!--<div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>-->
-          </div>
-        </li>
-        <!--<li class="nav-item">
+        </div>
+      </li>
+      <!--<li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
       </ul>
@@ -236,119 +260,118 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>-->
-    </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
+<!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
 
-  <section>
+<section>
+  <br><br>
+  <p class="countdowninjector"><a href="https://dugganco.com/countdown/index.html">&#127876&#127876 Christmas countdown!
+      &#127876&#127876</a></p>
+  <p class="topparagraph" id="#home">
+    Thank you for visiting my website! This is apart of a goal to further my career
+    in the cloud
+    administration and cybersecurity fields. Currently, I'm an IT systems administrator and/or IT security
+    operations professional with 6 years experience. If you're an interested employer, please take a look at <a
+      href="Daniel-Duggan-Resume.html">my
+      HTML/CSS stylized resume</a>, as well as the <a
+      href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"> PDF version</a>
+    if you'd like a more traditional resume.
+    This website is a big step in completing the
+    <a href="https://cloudresumechallenge.dev/docs/the-challenge/">Cloud Resume Challenge</a> to help
+    get myself closer to my goals, and while I don't have much experience in website design (I'm starting off with a
+    2007
+    MySpace vibe and slowly making it better), <span style="font-weight: bold">being able to create, host, and
+      continually update a website on my own seemed to be a useful skill to have</span> - thus the
+    creation of this website.
     <br><br>
-    <p class="countdowninjector"><a href="https://dugganco.com/countdown/index.html">&#127876&#127876 Christmas countdown! &#127876&#127876</a></p>
-    <p class="topparagraph" id="#home">
-      Thank you for visiting my website! This is apart of a goal to further my career
-      in the cloud
-      administration and cybersecurity fields. Currently, I'm an IT systems administrator and/or IT security
-      operations professional with 6 years experience. If you're an interested employer, please take a look at <a
-        href="Daniel-Duggan-Resume.html">my
-        HTML/CSS stylized resume</a>, as well as the <a
-        href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"> PDF version</a>
-      if you'd like a more traditional resume.
-      This website is a big step in completing the
-      <a href="https://cloudresumechallenge.dev/docs/the-challenge/">Cloud Resume Challenge</a> to help
-      get myself closer to my goals, and while I don't have much experience in website design (I'm starting off with a
-      2007
-      MySpace vibe and slowly making it better), <span style="font-weight: bold">being able to create, host, and
-        continually update a website on my own seemed to be a useful skill to have</span> - thus the
-      creation of this website.
-      <br><br>
-      In addition to the above, I'm currently enrolled in a Master's degree program in Cybersecurity and Information
-      Assurance at WGU with an expected graduation in 2024. In between classes, I am also currently studying for
-      Microsoft's AZ-104 test, which will certify me as a Microsoft Azure
-      Administrator Associate.
-      <br><br>
-      I added some of my interests on here to let you know a little about myself and fill up some whitespace. You can
-      reach me via email at <a href="mailto: abc@example.com">daniel.duggan06@gmail.com</a>, or find the other contact
-      info in my resume. Thank you again!</a>
-    </p>
-  </section>
+    In addition to the above, I'm currently enrolled in a Master's degree program in Cybersecurity and Information
+    Assurance at WGU with an expected graduation in 2024. In between classes, I am also currently studying for
+    Microsoft's AZ-104 test, which will certify me as a Microsoft Azure
+    Administrator Associate.
+    <br><br>
+    I added some of my interests on here to let you know a little about myself and fill up some whitespace. You can
+    reach me via email at <a href="mailto: abc@example.com">daniel.duggan06@gmail.com</a>, or find the other contact
+    info in my resume. Thank you again!</a>
+  </p>
+</section>
 
-  <!-- ----------------------FOOD SECTION---------------------- https://www.youtube.com/watch?v=vIaduyqHPfY -->
-  <section class="foodsection">
-    <br>
-    <h1 class="sectionheader" id="food">Food I've Been Cookin Up</h1>
-    <p class="sectiondescription">Click each link for the recipe I followed! Except for the ground turkey taco and
-      poached eggs, maybe one day I'll write up my own for those.</p>
-    <div class='container'>
-      <div class="box" id='box_1'><a href="https://www.youtube.com/watch?v=tspdJ6hxqnc" target="_blank"><img
-            src="https://i.imgur.com/nnL2mPH.jpg" title="Cheesecake" /></a>That's a Cheesecake baby, hell yeah
-      </div>
-      <div class='box' id='box_2'><a href="https://www.youtube.com/watch?v=ZdxSPFt4oxk" target="_blank"><img
-            src="https://i.imgur.com/nup64lW.jpg" title="Chicken Adobo" /></a>Chicken adobo, and also my attempt at
-        being accepted by my girlfriend's family</div>
-      <div class='box' id='box_3'><a href="https://www.youtube.com/watch?v=zEJC1HvWuhE" target="_blank"><img
-            src="https://i.imgur.com/yU9EGoQ.jpg" title="Chicken and Broccoli" /></a>Couldn't find any good Chinese
-        takeout when I lived in Texas, so I made my own</div>
-      <div class='box' id='box_4'><a href="https://www.tiktok.com/t/ZT8MWJH5o/" target="_blank"><img
-            src="https://i.imgur.com/tuwL3Nb.jpg" title="French Onion Soup" /></a>French Onion Soup, for when it's cold
-        out</div>
-      <div class='box' id='box_5'><a
-          href="https://www.ethanchlebowski.com/cooking-techniques-recipes/my-favorite-pizza-style-detroit?rq=pizza"
-          target="_blank"><img src="https://i.imgur.com/FDQvwj8.jpg" title="Pizza" /></a>Detroit-style pizza, a classic
-        of mine now</div>
-      <div class='box' id='box_6'><a href="https://www.youtube.com/watch?v=P5cnh1xIxHo&pp=ygULcGVwb3NvIHN0ZXc%3D"
-          target="_blank"><img src="https://i.imgur.com/qXY3jhv.jpg" title="Peposo Stew" /></a>This is called 'peposo
-        stew', it's an Italian-American peppery beef stew</div>
-      <div class='box' id='box_7'><a href="https://www.youtube.com/watch?v=p450gWjSKTc" target="_blank"><img
-            src="https://i.imgur.com/guGj62L.jpg" title="Irish Soda Bread" /></a>Irish soda bread. Missed my mom's last
-        St Patrick's Day, so I made my own</div>
-      <div class='box' id='box_8'><img src="https://i.imgur.com/m0tspnj.jpg"
-          title="Low-Calorie Ground Turkey Taco" /></a>A low-calorie ground turkey taco. No link here, I came up with
-        this one on my own</div>
-      <div class='box' id='box_9'><a href="https://www.youtube.com/watch?v=d0OJSFXgNps" target="_blank"><img
-            src="https://i.imgur.com/TtFvZyI.jpg" title="Wonton Soup" /></a>Wonton soup. Check out the Chicken and
-        Broccoli somewhere in this collage, too</div>
-      <div class='box' id='box_10'><img src="https://i.imgur.com/iadD15X.jpg" title="Poached Eggs" /></a>You may not
-        like it, but this is THE SUPERIOR way to eat eggs (poached on an english muffin) - again no link to a recipe
-      </div>
-      <div class='box' id='box_11'><a href="https://www.youtube.com/watch?v=GoFIBYoOdyI" target="_blank"><img
-            src="https://i.imgur.com/jJ7taWS.jpg" title="Philly Cheesesteak Taco" /></a>Wanted a philly cheesesteak, but
-        without all the bread
-      </div>
-      <div class='box' id='box_12'><a href="https://www.youtube.com/watch?v=_Nw3bDUpb7Q" target="_blank"><img
-            src="https://i.imgur.com/PH2hStI.jpg" title="Chicken Marsala" /></a>Chicken Marsala, a classic my mom makes.
-        Mine is definitely not as good as </div>
+<!-- ----------------------FOOD SECTION---------------------- https://www.youtube.com/watch?v=vIaduyqHPfY -->
+<section class="foodsection">
+  <br>
+  <h1 class="sectionheader" id="food">Food I've Been Cookin Up</h1>
+  <p class="sectiondescription">Click each link for the recipe I followed! Except for the ground turkey taco and
+    poached eggs, maybe one day I'll write up my own for those.</p>
+  <div class='container'>
+    <div class="box" id='box_1'><a href="https://www.youtube.com/watch?v=tspdJ6hxqnc" target="_blank"><img
+          src="https://i.imgur.com/nnL2mPH.jpg" title="Cheesecake" /></a>That's a Cheesecake baby, hell yeah
     </div>
+    <div class='box' id='box_2'><a href="https://www.youtube.com/watch?v=ZdxSPFt4oxk" target="_blank"><img
+          src="https://i.imgur.com/nup64lW.jpg" title="Chicken Adobo" /></a>Chicken adobo, and also my attempt at
+      being accepted by my girlfriend's family</div>
+    <div class='box' id='box_3'><a href="https://www.youtube.com/watch?v=zEJC1HvWuhE" target="_blank"><img
+          src="https://i.imgur.com/yU9EGoQ.jpg" title="Chicken and Broccoli" /></a>Couldn't find any good Chinese
+      takeout when I lived in Texas, so I made my own</div>
+    <div class='box' id='box_4'><a href="https://www.tiktok.com/t/ZT8MWJH5o/" target="_blank"><img
+          src="https://i.imgur.com/tuwL3Nb.jpg" title="French Onion Soup" /></a>French Onion Soup, for when it's cold
+      out</div>
+    <div class='box' id='box_5'><a
+        href="https://www.ethanchlebowski.com/cooking-techniques-recipes/my-favorite-pizza-style-detroit?rq=pizza"
+        target="_blank"><img src="https://i.imgur.com/FDQvwj8.jpg" title="Pizza" /></a>Detroit-style pizza, a classic
+      of mine now</div>
+    <div class='box' id='box_6'><a href="https://www.youtube.com/watch?v=P5cnh1xIxHo&pp=ygULcGVwb3NvIHN0ZXc%3D"
+        target="_blank"><img src="https://i.imgur.com/qXY3jhv.jpg" title="Peposo Stew" /></a>This is called 'peposo
+      stew', it's an Italian-American peppery beef stew</div>
+    <div class='box' id='box_7'><a href="https://www.youtube.com/watch?v=p450gWjSKTc" target="_blank"><img
+          src="https://i.imgur.com/guGj62L.jpg" title="Irish Soda Bread" /></a>Irish soda bread. Missed my mom's last
+      St Patrick's Day, so I made my own</div>
+    <div class='box' id='box_8'><img src="https://i.imgur.com/m0tspnj.jpg"
+        title="Low-Calorie Ground Turkey Taco" /></a>A low-calorie ground turkey taco. No link here, I came up with
+      this one on my own</div>
+    <div class='box' id='box_9'><a href="https://www.youtube.com/watch?v=d0OJSFXgNps" target="_blank"><img
+          src="https://i.imgur.com/TtFvZyI.jpg" title="Wonton Soup" /></a>Wonton soup. Check out the Chicken and
+      Broccoli somewhere in this collage, too</div>
+    <div class='box' id='box_10'><img src="https://i.imgur.com/iadD15X.jpg" title="Poached Eggs" /></a>You may not
+      like it, but this is THE SUPERIOR way to eat eggs (poached on an english muffin) - again no link to a recipe
+    </div>
+    <div class='box' id='box_11'><a href="https://www.youtube.com/watch?v=GoFIBYoOdyI" target="_blank"><img
+          src="https://i.imgur.com/jJ7taWS.jpg" title="Philly Cheesesteak Taco" /></a>Wanted a philly cheesesteak, but
+      without all the bread
+    </div>
+    <div class='box' id='box_12'><a href="https://www.youtube.com/watch?v=_Nw3bDUpb7Q" target="_blank"><img
+          src="https://i.imgur.com/PH2hStI.jpg" title="Chicken Marsala" /></a>Chicken Marsala, a classic my mom makes.
+      Mine is definitely not as good as </div>
+  </div>
 
-    <main>
-      <!-- ---------------------SPOTIFY SECTION--------------------- -->
-      <section class="spotifysection">
-        <br>
-        <h1 class="sectionheader" id="spotify">Music I've Been Listenin To</h1>
-        <br>
-        <iframe class="spotify"
-          src="https://open.spotify.com/embed/playlist/39AMXm0NxnYrqjsichCsiw?utm_source=generator" width="20%"
-          height="600" frameBorder="0" allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <br>
-        <iframe class="spotify"
-          src="https://open.spotify.com/embed/playlist/0sskXa7owFcc2NyLZdCO3R?utm_source=generator" width="20%"
-          height="600" frameBorder="0" allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <br><br>
-      </section>
+  <main>
+    <!-- ---------------------SPOTIFY SECTION--------------------- -->
+    <section class="spotifysection">
+      <br>
+      <h1 class="sectionheader" id="spotify">Music I've Been Listenin To</h1>
+      <br>
+      <iframe class="spotify" src="https://open.spotify.com/embed/playlist/39AMXm0NxnYrqjsichCsiw?utm_source=generator"
+        width="20%" height="600" frameBorder="0" allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <br>
+      <iframe class="spotify" src="https://open.spotify.com/embed/playlist/0sskXa7owFcc2NyLZdCO3R?utm_source=generator"
+        width="20%" height="600" frameBorder="0" allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      <br><br>
+    </section>
 
 
 
-      <!--Template for new food picture content:
+    <!--Template for new food picture content:
     
                 <div class='box' id='box_NUMBER'><a href="example.com" target="_blank"><img
                            src="IMAGELINK"
                            title="DESCRIPTIONCAPTION" /></a></div>
     
         End of template-->
-  </section>
+</section>
 
-  <!-- ---------------------TRIBUTE SECTION--------------------- 
+<!-- ---------------------TRIBUTE SECTION--------------------- 
     <section class="tributesection" id="tribute">
       <h1 class="sectionheader">Tribute To My Dad</h1>
       <img src="https://via.placeholder.com/800x600/" alt="">
@@ -356,8 +379,8 @@
     </section>
   </main>-->
 
-  <!-- ---------------------FORM SECTION--------------------- -->
-  <!-- 
+<!-- ---------------------FORM SECTION--------------------- -->
+<!-- 
   BEGIN FORM
 <section class="formsection" id="form">
       <form action="#">
@@ -387,34 +410,34 @@
 -->
 
 
-  <!-- ---------------------COOKIE NOTICE SECTION--------------------- -->
-  <div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
-    <p>This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept”
-      you
-      acknowledge the use of cookies and to our <a href="#"><u>Privacy Policy</u></a>.</p>
-    <button type="button" id="i-accept" class="btn btn-primary">I Accept</button>
-  </div>
-  <footer>
-    <small>©
-      <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.
-    </small>
-  </footer>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript">
-      (function ($) {
-        $('#i-accept').on('click', function () {
-          if (localStorage.hidecookiebar !== '1') {
-            $('#cookie-notice').hide();
-            localStorage.hidecookiebar = '1';
-          }
-        });
-        if (localStorage.hidecookiebar == '1') {
+<!-- ---------------------COOKIE NOTICE SECTION--------------------- -->
+<div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
+  <p>This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept”
+    you
+    acknowledge the use of cookies and to our <a href="#"><u>Privacy Policy</u></a>.</p>
+  <button type="button" id="i-accept" class="btn btn-primary">I Accept</button>
+</div>
+<footer>
+  <small>©
+    <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.
+  </small>
+</footer>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (function ($) {
+      $('#i-accept').on('click', function () {
+        if (localStorage.hidecookiebar !== '1') {
           $('#cookie-notice').hide();
-        };
-      })(jQuery);
-  </script>
+          localStorage.hidecookiebar = '1';
+        }
+      });
+      if (localStorage.hidecookiebar == '1') {
+        $('#cookie-notice').hide();
+      };
+    })(jQuery);
+</script>
 </body>
 
 </html>
