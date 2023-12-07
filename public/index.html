@@ -99,6 +99,12 @@
       justify-content: center;
     }
 
+    /*-- this fixes the width issue on the spotify embedded iframes */
+    .spotify {
+        width: auto;
+        height: 100;
+      }
+
     /* OPEN FOOD SECTION STYLING */
 
     .foodsection {
@@ -137,8 +143,8 @@
       position: absolute;
       bottom: 8px;
       left: 16px;
-
     }
+
 
     @media (max-width: 1200px) {
       .container {
@@ -146,7 +152,6 @@
         width: calc(100%-40px);
         columns: 3;
       }
-
 
     }
 
@@ -157,6 +162,18 @@
       }
     }
 
+@media (min-width: 480px) {
+  img:hover {
+      border-radius: 15px;
+      padding-bottom: 3px;
+      padding-left: 1.4%;
+      color: #2F5496;
+      background-image: linear-gradient(to bottom left, rgb(171, 171, 171), black);
+      transition: .8s;
+      transform: scale(1.2);
+    }
+}
+
     @media (max-width: 480px) {
       .container {
         max-width: 100%;
@@ -164,11 +181,6 @@
         height: auto;
       }
 
-      /*-- this fixes the width issue on the spotify embedded iframes */
-      .spotify {
-        width: auto;
-        height: 100;
-      }
     }
   </style>
 
