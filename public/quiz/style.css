@@ -42,7 +42,7 @@ ul li {
     
 }
 
-button {
+.submitbtn {
     background-color: #8e44ad;
     border: none;
     color: white;
@@ -54,7 +54,7 @@ button {
     padding: 1.3rem;
 }
 
-button:hover {
+.submitbtn:hover {
     background-color: #732d91;
 }
 
