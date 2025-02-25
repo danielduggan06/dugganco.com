@@ -161,14 +161,16 @@
     const feeds = [
       'https://feeds.feedburner.com/TheHackersNews',
       'https://www.bleepingcomputer.com/feed/',
-      'https://krebsonsecurity.com/feed/'
+      'https://krebsonsecurity.com/feed/',
+      'https://www.darkreading.com/rss.xml'
     ];
 
     // Map feed source names to their logo URLs. Replace these URLs with the actual logos.
     const logos = {
       "The Hacker News": "https://pbs.twimg.com/profile_images/1597647879811657728/FLgHrLHy_400x400.jpg",
       "BleepingComputer": "https://pbs.twimg.com/profile_images/1699832227062792192/hqaQ8bMZ_400x400.jpg",
-      "Krebs on Security": "https://pbs.twimg.com/profile_images/1518740904311508998/zq2bxuIw_400x400.jpg"
+      "Krebs on Security": "https://pbs.twimg.com/profile_images/1518740904311508998/zq2bxuIw_400x400.jpg",
+      "darkreading": "https://pbs.twimg.com/profile_images/1688279734193672192/ZsaZ2hEi_400x400.jpg",
     };
 
     const CACHE_KEY = 'cachedFeedData';
@@ -181,6 +183,14 @@
         dateString += 'Z';
       }
       return new Date(dateString);
+    }
+
+    // Helper function to normalize the source name for display.
+    function normalizeSourceName(source) {
+      if (/dark\s*reading/i.test(source)) {
+        return "Dark Reading";
+      }
+      return source;
     }
 
     async function fetchFeed(feedUrl) {
