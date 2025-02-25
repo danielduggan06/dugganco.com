@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Aggregated RSS Feed - Tile Format</title>
+  <title>Security News - dugganco</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -69,6 +69,15 @@
     const CACHE_TIMESTAMP_KEY = 'cachedFeedTimestamp';
     const CACHE_EXPIRY = 30 * 60 * 1000; // 30 minutes
 
+    // Helper function to parse the feed date as UTC if no timezone is provided.
+    function parseFeedDate(dateString) {
+      // If the date string doesn't end with 'Z' or a timezone offset, assume UTC.
+      if (!dateString.match(/(Z|[+-]\d{2}:?\d{2})$/)) {
+        dateString += 'Z';
+      }
+      return new Date(dateString);
+    }
+
     async function fetchFeed(feedUrl) {
       const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
       const response = await fetch(apiUrl);
@@ -80,6 +89,7 @@
       const cachedData = localStorage.getItem(CACHE_KEY);
       const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
 
+      // Use cached data if it exists and is still fresh
       if (cachedData && cachedTimestamp && (now - cachedTimestamp < CACHE_EXPIRY)) {
         console.log("Using cached feed data");
         displayFeedItems(JSON.parse(cachedData));
@@ -121,10 +131,20 @@
       
       let html = '';
       items.forEach(item => {
+        // Use the helper function to parse the publish date as UTC
+        const dateObj = parseFeedDate(item.pubDate);
+        // Format date and time in the viewer’s local time
+        const formattedDate = dateObj.toLocaleDateString(undefined, { 
+          year: 'numeric', month: 'short', day: 'numeric' 
+        });
+        const formattedTime = dateObj.toLocaleTimeString(undefined, { 
+          hour: '2-digit', minute: '2-digit'
+        });
+        
         html += `
           <div class="feed-item">
             <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-            <p class="meta"><em>${item.source}</em> - ${new Date(item.pubDate).toLocaleString()}</p>
+            <p class="meta"><em>${item.source}</em> - ${formattedDate} ${formattedTime}</p>
             <p>${item.description}</p>
           </div>
         `;
