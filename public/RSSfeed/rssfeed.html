@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Security News - dugganco</title>
+  <title>Aggregated RSS Feed - Tile Format with Logos</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -45,6 +45,15 @@
       font-size: 0.9em;
       color: #777;
       margin-bottom: 0.5em;
+      display: flex;
+      align-items: center;
+    }
+    /* Style for logos */
+    .feed-item .meta img.logo {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      margin-right: 8px;
     }
     .feed-item p {
       font-size: 1em;
@@ -59,19 +68,26 @@
   </div>
   
   <script>
+    // List of RSS feeds to aggregate
     const feeds = [
       'https://feeds.feedburner.com/TheHackersNews',
       'https://www.bleepingcomputer.com/feed/',
       'https://krebsonsecurity.com/feed/'
     ];
-    
+
+    // Map feed source names to their logo URLs. Replace these URLs with the actual logos.
+    const logos = {
+      "The Hacker News": "https://pbs.twimg.com/profile_images/1597647879811657728/FLgHrLHy_400x400.jpg",
+      "BleepingComputer": "https://pbs.twimg.com/profile_images/1699832227062792192/hqaQ8bMZ_400x400.jpg",
+      "Krebs on Security": "https://pbs.twimg.com/profile_images/1518740904311508998/zq2bxuIw_400x400.jpg"
+    };
+
     const CACHE_KEY = 'cachedFeedData';
     const CACHE_TIMESTAMP_KEY = 'cachedFeedTimestamp';
     const CACHE_EXPIRY = 30 * 60 * 1000; // 30 minutes
 
-    // Helper function to parse the feed date as UTC if no timezone is provided.
+    // Helper to parse the date string, appending "Z" if missing so it's treated as UTC.
     function parseFeedDate(dateString) {
-      // If the date string doesn't end with 'Z' or a timezone offset, assume UTC.
       if (!dateString.match(/(Z|[+-]\d{2}:?\d{2})$/)) {
         dateString += 'Z';
       }
@@ -89,7 +105,7 @@
       const cachedData = localStorage.getItem(CACHE_KEY);
       const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
 
-      // Use cached data if it exists and is still fresh
+      // Use cached data if it's still fresh.
       if (cachedData && cachedTimestamp && (now - cachedTimestamp < CACHE_EXPIRY)) {
         console.log("Using cached feed data");
         displayFeedItems(JSON.parse(cachedData));
@@ -115,7 +131,7 @@
       // Sort items by publication date (newest first)
       allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
-      // Cache the data and timestamp
+      // Cache the data and current timestamp.
       localStorage.setItem(CACHE_KEY, JSON.stringify(allItems));
       localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
 
@@ -131,20 +147,23 @@
       
       let html = '';
       items.forEach(item => {
-        // Use the helper function to parse the publish date as UTC
         const dateObj = parseFeedDate(item.pubDate);
-        // Format date and time in the viewer’s local time
-        const formattedDate = dateObj.toLocaleDateString(undefined, { 
-          year: 'numeric', month: 'short', day: 'numeric' 
+        const formattedDate = dateObj.toLocaleDateString(undefined, {
+          year: 'numeric', month: 'short', day: 'numeric'
         });
-        const formattedTime = dateObj.toLocaleTimeString(undefined, { 
+        const formattedTime = dateObj.toLocaleTimeString(undefined, {
           hour: '2-digit', minute: '2-digit'
         });
-        
+        // Retrieve the logo URL from the mapping. If no logo exists, nothing is displayed.
+        const logoUrl = logos[item.source] || '';
+
         html += `
           <div class="feed-item">
             <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-            <p class="meta"><em>${item.source}</em> - ${formattedDate} ${formattedTime}</p>
+            <p class="meta">
+              ${logoUrl ? `<img src="${logoUrl}" alt="${item.source} logo" class="logo">` : ''}
+              <span><em>${item.source}</em> - ${formattedDate} ${formattedTime}</span>
+            </p>
             <p>${item.description}</p>
           </div>
         `;
