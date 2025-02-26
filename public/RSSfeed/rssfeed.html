@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Security Newsfeed - ddugganco.com</title>
@@ -51,14 +52,73 @@
 
   </script>
   <style>
+    /* Top Banner Styling */
+    header {
+      width: 100%;
+      background-color: #333;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    header img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Fixed Side Panel Styling */
+    #side-panel {
+      position: fixed;
+      top: 100px;
+      /* Adjust based on header height */
+      left: 20px;
+      width: 180px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #side-panel h2 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    #side-panel ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #side-panel ul li {
+      margin-bottom: 8px;
+    }
+
+    #side-panel ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    #side-panel ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* General Body and Content Styling */
     body {
       font-family: Arial, sans-serif;
-      margin: 20px;
+      margin: 0;
       background-color: #f5f5f5;
     }
+
+    .content {
+      margin: 20px 20px 20px 220px;
+      /* Left margin adjusted to avoid the side panel */
+    }
+
     h1 {
       text-align: center;
+      margin-top: 20px;
     }
+
     /* Grid container for the feed items */
     .grid-container {
       display: grid;
@@ -67,27 +127,32 @@
       margin: 20px auto;
       max-width: 1200px;
     }
+
     /* Each feed item tile */
     .feed-item {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 5px;
       padding: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
+
     .feed-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
+
     .feed-item h3 {
       font-size: 1.2em;
       margin-bottom: 0.5em;
     }
+
     .feed-item h3 a {
       text-decoration: none;
       color: #333;
     }
+
     .feed-item .meta {
       font-size: 0.9em;
       color: #777;
@@ -95,13 +160,14 @@
       display: flex;
       align-items: center;
     }
-    /* Style for logos */
+
     .feed-item .meta img.logo {
       width: 30px;
       height: 30px;
       object-fit: contain;
       margin-right: 8px;
     }
+
     .feed-item p {
       font-size: 1em;
       color: #444;
@@ -155,14 +221,38 @@
   <div id="feed-container" class="grid-container">
     Loading feeds...
   </div>
-  
+
+  <!-- SIDE PANEL -->
+  <aside id="side-panel">
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="https://thehackernews.com" target="_blank">The Hacker News</a></li>
+      <li><a href="https://www.bleepingcomputer.com" target="_blank">BleepingComputer</a></li>
+      <li><a href="https://krebsonsecurity.com" target="_blank">Krebs on Security</a></li>
+      <li><a href="https://www.darkreading.com" target="_blank">Dark Reading</a></li>
+      <li><a href="https://news.ycombinator.com" target="_blank">HN (YCombinator)</a></li>
+      <li><a href="https://www.infosecurity-magazine.com" target="_blank">InfoSecurity Mag</a></li>
+      <li><a href="https://news.sophos.com/en-us/" target="_blank">Sophos Security</a></li>
+      <li><a href="https://www.schneier.com" target="_blank">Schneier on Security</a></li>
+      <li><a href="https://www.cisa.gov/news" target="_blank">CISA News</a></li>
+      <li><a href="https://www.cisa.gov/blog" target="_blank">CISA Blog</a></li>
+      <li><a href="https://www.reddit.com/r/cybersecurity/top/" target="_blank">r/cybersecurity</a></li>
+    </ul>
+  </aside>
+  <!-- END SIDE PANEL -->
+
   <script>
     // List of RSS feeds to aggregate
     const feeds = [
       'https://feeds.feedburner.com/TheHackersNews',
       'https://www.bleepingcomputer.com/feed/',
       'https://krebsonsecurity.com/feed/',
-      'https://www.darkreading.com/rss.xml'
+      'https://www.darkreading.com/rss.xml',
+      'https://news.ycombinator.com/rss',
+      'https://www.infosecurity-magazine.com/rss/news/',
+      'https://news.sophos.com/en-us/',
+      'https://www.schneier.com/blog/index.rdf',
+      'https://www.reddit.com/r/cybersecurity/top/.rss'
     ];
 
     // Map feed source names to their logo URLs. Replace these URLs with the actual logos.
@@ -171,6 +261,12 @@
       "BleepingComputer": "https://pbs.twimg.com/profile_images/1699832227062792192/hqaQ8bMZ_400x400.jpg",
       "Krebs on Security": "https://pbs.twimg.com/profile_images/1518740904311508998/zq2bxuIw_400x400.jpg",
       "darkreading": "https://pbs.twimg.com/profile_images/1688279734193672192/ZsaZ2hEi_400x400.jpg",
+      "DarkNet": "https://pbs.twimg.com/profile_images/474879706584449025/pioYVoNA_400x400.jpeg",
+      "Hacker News": "https://pbs.twimg.com/profile_images/1623777064821358592/9CApQWXe_400x400.png",
+      "": "https://pbs.twimg.com/profile_images/1630197502786912256/TTq7rypO_400x400.jpg",
+      "Sophos": "https://pbs.twimg.com/profile_images/1512056237537607694/gJYmF_1N_400x400.jpg",
+      "Schneier on Security": "https://pbs.twimg.com/profile_images/69337528/bruce-blog_400x400.jpg",
+      "r/cybersecurity": "https://pbs.twimg.com/profile_images/1729909787029078016/dBjB3Fnr_400x400.jpg"
     };
 
     const CACHE_KEY = 'cachedFeedData';
@@ -192,6 +288,65 @@
       }
       return source;
     }
+
+    async function loadFeeds() {
+      const now = Date.now();
+      const cachedData = localStorage.getItem(CACHE_KEY);
+      const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
+
+      // Use cached data if it's still fresh
+      if (cachedData && cachedTimestamp && (now - cachedTimestamp < CACHE_EXPIRY)) {
+        console.log("Using cached feed data");
+        displayFeedItems(JSON.parse(cachedData));
+        return;
+      }
+
+      let allItems = [];
+      for (let url of feeds) {
+        try {
+          const feedData = await fetchFeed(url);
+          if (feedData && feedData.items) {
+            // Force specific source names based on the feed URL if needed
+            let sourceTitle = feedData.feed.title;
+
+            // If the feed from infosecurity-magazine.com doesn't have a title, assign a default.
+            if ((!sourceTitle || sourceTitle.trim() === "") && url.includes("infosecurity-magazine.com")) {
+              sourceTitle = "InfoSecurity Mag";
+            }
+
+            // Force specific titles for other feeds if necessary.
+            if (url.indexOf("schneier.com") !== -1) {
+              sourceTitle = "Schneier on Security";
+            } else if (url.indexOf("news.sophos.com") !== -1) {
+              sourceTitle = "Sophos News";
+            } else if (url.indexOf("darknet.org.uk") !== -1) {
+              sourceTitle = "Darknet UK";
+            } else if (url.indexOf("feeds.feedburner.com/darknethackers") !== -1) {
+              sourceTitle = "DarkNet Hackers";
+            } else if (url.indexOf("darkreading.com") !== -1) {
+              sourceTitle = "Dark Reading";
+            }
+
+            feedData.items.forEach(item => {
+              item.source = sourceTitle;
+            });
+            allItems = allItems.concat(feedData.items);
+          }
+        } catch (error) {
+          console.error('Error fetching feed:', url, error);
+        }
+      }
+
+      // Sort items by publication date (newest first)
+      allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+      // Cache the data and timestamp
+      localStorage.setItem(CACHE_KEY, JSON.stringify(allItems));
+      localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
+
+      displayFeedItems(allItems);
+    }
+
 
     async function fetchFeed(feedUrl) {
       const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
@@ -226,7 +381,7 @@
           console.error('Error fetching feed:', url, error);
         }
       }
-      
+
       // Sort items by publication date (newest first)
       allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
@@ -243,7 +398,7 @@
         container.innerHTML = '<p>No items to display.</p>';
         return;
       }
-      
+
       let html = '';
       items.forEach(item => {
         const dateObj = parseFeedDate(item.pubDate);
@@ -273,4 +428,5 @@
     document.addEventListener('DOMContentLoaded', loadFeeds);
   </script>
 </body>
+
 </html>
