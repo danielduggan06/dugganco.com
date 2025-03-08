@@ -54,25 +54,22 @@
       text-align: center;
       padding: 10px 0;
     }
-
     header img {
       max-width: 100%;
       height: auto;
     }
 
-    /* Toggle Button for Mobile (hidden by the larger media query below) */
-    #toggle-panel {
+    /* Sources Toggle Button (renamed) */
+    #sources-toggle {
       background-color: #555;
       border: none;
       color: #fff;
       padding: 8px 12px;
       cursor: pointer;
-      display: block;
-      margin: 10px auto;
-      width: auto;
+      /* Initially hidden on desktop via media query */
     }
 
-    /* Fixed Side Panel Styling */
+    /* Fixed Side Panel for Desktop */
     #side-panel {
       position: fixed;
       top: 100px;
@@ -83,27 +80,22 @@
       padding: 15px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-
     #side-panel h2 {
       font-size: 1.2em;
       margin-bottom: 10px;
     }
-
     #side-panel ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-
     #side-panel ul li {
       margin-bottom: 8px;
     }
-
     #side-panel ul li a {
       text-decoration: none;
       color: #333;
     }
-
     #side-panel ul li a:hover {
       text-decoration: underline;
     }
@@ -114,16 +106,13 @@
       margin: 0;
       background-color: #f5f5f5;
     }
-
     .content {
       margin: 20px 20px 20px 220px;
     }
-
     h1 {
       text-align: center;
       margin-top: 20px;
     }
-
     /* Grid container for feed items */
     .grid-container {
       display: grid;
@@ -132,32 +121,27 @@
       margin: 20px auto;
       max-width: 1200px;
     }
-
     /* Feed item styling */
     .feed-item {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 5px;
       padding: 15px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-
     .feed-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
-
     .feed-item h3 {
       font-size: 1.2em;
       margin-bottom: 0.5em;
     }
-
     .feed-item h3 a {
       text-decoration: none;
       color: #333;
     }
-
     .feed-item .meta {
       font-size: 0.9em;
       color: #777;
@@ -165,36 +149,45 @@
       display: flex;
       align-items: center;
     }
-
     .feed-item .meta img.logo {
       width: 30px;
       height: 30px;
       object-fit: contain;
       margin-right: 8px;
     }
-
     .feed-item img {
       max-width: 100%;
       height: auto;
       display: block;
     }
-
     .feed-item p {
       font-size: 1em;
       color: #444;
     }
 
-    /*
-     Hide side panel and toggle button when window width < 1620px
-     so it doesn't obstruct the view on mid-sized screens
-    */
+    /* Media Query for Screens < 1620px */
     @media (max-width: 1620px) {
-      #side-panel,
-      #toggle-panel {
-        display: none !important;
+      /* Hide the fixed side panel on screens < 1620px */
+      #side-panel {
+        display: none;
       }
+      /* Display the sources toggle button on screens < 1620px */
+      #sources-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1100;
+      }
+      /* Adjust content margin on smaller screens */
       .content {
         margin-left: 20px;
+      }
+    }
+    /* Hide the sources toggle on screens >= 1620px */
+    @media (min-width: 1620px) {
+      #sources-toggle {
+        display: none;
       }
     }
   </style>
@@ -245,15 +238,15 @@
   <br><br>
   <h1>Latest Security News</h1>
 
-  <!-- Toggle button for wide screens (hidden under 1620px) -->
-  <button id="toggle-panel">&#9776; Sources</button>
+  <!-- Toggle button for mobile view (sources toggle) -->
+  <button id="sources-toggle">&#9776; Sources</button>
 
   <!-- Feed Container -->
   <div id="feed-container" class="grid-container">
     Loading feeds...
   </div>
 
-  <!-- SIDE PANEL -->
+  <!-- SIDE PANEL (fixed on desktop; hidden on screens < 1620px) -->
   <aside id="side-panel">
     <h2>Sources</h2>
     <ul>
@@ -267,8 +260,7 @@
       <li><a href="https://www.schneier.com" target="_blank">Schneier on Security</a></li>
       <li><a href="https://www.cisa.gov/news" target="_blank">CISA News</a></li>
       <li><a href="https://www.cisa.gov/blog" target="_blank">CISA Blog</a></li>
-
-      <!-- Additional Sources (From Screenshot) -->
+      <!-- Additional Sources -->
       <li><a href="https://www.securityweek.com" target="_blank">SecurityWeek</a></li>
       <li><a href="https://blog.google/threat-analysis-group" target="_blank">Google Online Security Blog</a></li>
       <li><a href="https://www.scmagazine.com" target="_blank">SC Media</a></li>
@@ -281,8 +273,19 @@
   <!-- END SIDE PANEL -->
 
   <script>
-    document.addEventListener('DOMContentLoaded', loadFeeds);
+    // Toggle the sources side panel on screens less than 1620px when the sources toggle button is clicked
+    $(document).ready(function () {
+      $('#sources-toggle').click(function () {
+        $('#side-panel').slideToggle();
+        if ($('#side-panel').is(':visible')) {
+          $('#sources-toggle').html('&#x2715;'); // Close icon (×)
+        } else {
+          $('#sources-toggle').html('&#9776; Sources'); // Hamburger icon with text
+        }
+      });
+    });
 
+    // Feed Aggregation Code
     async function fetchFeed(feedUrl) {
       const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
       const response = await fetch(apiUrl);
@@ -310,7 +313,7 @@
       }
       
       const feeds = [
-        // Removed YCombinator & Reddit
+        // Removed YCombinator & Reddit feeds
         'https://feeds.feedburner.com/TheHackersNews',
         'https://www.bleepingcomputer.com/feed/',
         'https://krebsonsecurity.com/feed/',
@@ -320,7 +323,6 @@
         'https://www.schneier.com/blog/index.rdf',
         'https://www.cisa.gov/news.xml',
         'https://www.cisa.gov/blog.xml',
-
         // Additional Feeds
         'https://feeds.feedburner.com/Securityweek',
         'https://feeds.feedburner.com/GoogleOnlineSecurityBlog',
@@ -337,11 +339,9 @@
           const feedData = await fetchFeed(url);
           if (feedData && feedData.items) {
             let sourceTitle = feedData.feed.title;
-            // If infosecurity-magazine.com feed has no title, assign a default
             if ((!sourceTitle || sourceTitle.trim() === "") && url.includes("infosecurity-magazine.com")) {
               sourceTitle = "InfoSecurity Mag";
             }
-            // Force specific names if needed
             if (url.indexOf("schneier.com") !== -1) {
               sourceTitle = "Schneier on Security";
             } else if (url.indexOf("news.sophos.com") !== -1) {
@@ -352,6 +352,8 @@
               sourceTitle = "DarkNet Hackers";
             } else if (url.indexOf("darkreading.com") !== -1) {
               sourceTitle = "Dark Reading";
+            } else if (url.toLowerCase().includes("googleonlinesecurityblog")) {
+              sourceTitle = "Google Security Blog";
             }
             feedData.items.forEach(item => {
               item.source = sourceTitle;
@@ -365,7 +367,6 @@
       
       // Sort items by newest first
       allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-      // Cache
       localStorage.setItem(CACHE_KEY, JSON.stringify(allItems));
       localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
       displayFeedItems(allItems);
@@ -382,26 +383,25 @@
         "The Hacker News": "https://pbs.twimg.com/profile_images/1597647879811657728/FLgHrLHy_400x400.jpg",
         "BleepingComputer": "https://pbs.twimg.com/profile_images/1699832227062792192/hqaQ8bMZ_400x400.jpg",
         "Krebs on Security": "https://pbs.twimg.com/profile_images/1518740904311508998/zq2bxuIw_400x400.jpg",
-        "darkreading": "https://pbs.twimg.com/profile_images/1688279734193672192/ZsaZ2hEi_400x400.jpg",
+        "Dark Reading": "https://pbs.twimg.com/profile_images/1688279734193672192/ZsaZ2hEi_400x400.jpg",
         "DarkNet": "https://pbs.twimg.com/profile_images/474879706584449025/pioYVoNA_400x400.jpeg",
         "Hacker News": "https://pbs.twimg.com/profile_images/1623777064821358592/9CApQWXe_400x400.png",
-        "": "https://pbs.twimg.com/profile_images/1630197502786912256/TTq7rypO_400x400.jpg",
+        "InfoSecurity Mag": "https://pbs.twimg.com/profile_images/1630197502786912256/TTq7rypO_400x400.jpg",
         "Sophos": "https://pbs.twimg.com/profile_images/1512056237537607694/gJYmF_1N_400x400.jpg",
         "Schneier on Security": "https://pbs.twimg.com/profile_images/69337528/bruce-blog_400x400.jpg",
-        "top scoring links : cybersecurity": "https://pbs.twimg.com/profile_images/1729909787029078016/dBjB3Fnr_400x400.jpg"
+        "Security Boulevard": "https://pbs.twimg.com/profile_images/1445738404205924367/LI0O-ZHg_400x400.jpg",
+        "SecurityWeek": "https://pbs.twimg.com/profile_images/1466073453572890643/gaGjrZRw_400x400.jpg",
+        "Security | TechRepublic": "https://pbs.twimg.com/profile_images/842067018358624256/eHpTR1g8_400x400.jpg",
+        "Google Online Security Blog": "https://pbs.twimg.com/profile_images/1754606338460487681/bWupXdxo_400x400.jpg",
+        "CISA Blog": "https://pbs.twimg.com/profile_images/1545140176766353408/G4iTa8Bb_400x400.jpg",
+        "CISA News": "https://pbs.twimg.com/profile_images/1545140176766353408/G4iTa8Bb_400x400.jpg",
       };
 
       let html = '';
       items.forEach(item => {
-        // Convert publication date to local time
         const dateObj = parseFeedDate(item.pubDate);
-        const formattedDate = dateObj.toLocaleDateString(undefined, {
-          year: 'numeric', month: 'short', day: 'numeric'
-        });
-        const formattedTime = dateObj.toLocaleTimeString(undefined, {
-          hour: '2-digit', minute: '2-digit'
-        });
-        // Grab the logo if it exists
+        const formattedDate = dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        const formattedTime = dateObj.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
         const logoUrl = logos[item.source] || '';
         
         html += `
@@ -417,6 +417,8 @@
       });
       container.innerHTML = html;
     }
+
+    document.addEventListener('DOMContentLoaded', loadFeeds);
   </script>
 </body>
 
