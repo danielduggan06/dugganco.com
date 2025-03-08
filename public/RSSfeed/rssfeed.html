@@ -24,9 +24,11 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg6W2N/68/4Rcy+2pYBbyox1D6Z+eI1lC26bLrY8yk=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263"
     crossorigin="anonymous"></script>
@@ -58,7 +60,7 @@
       height: auto;
     }
 
-    /* Toggle Button for Mobile */
+    /* Toggle Button for Mobile (hidden by the larger media query below) */
     #toggle-panel {
       background-color: #555;
       border: none;
@@ -70,7 +72,7 @@
       width: auto;
     }
 
-    /* Fixed Side Panel Styling for Desktop */
+    /* Fixed Side Panel Styling */
     #side-panel {
       position: fixed;
       top: 100px;
@@ -137,13 +139,13 @@
       border: 1px solid #ddd;
       border-radius: 5px;
       padding: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .feed-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
     .feed-item h3 {
@@ -182,8 +184,11 @@
       color: #444;
     }
 
-    /* Mobile view: Hide side panel and toggle button */
-    @media (max-width: 768px) {
+    /*
+     Hide side panel and toggle button when window width < 1620px
+     so it doesn't obstruct the view on mid-sized screens
+    */
+    @media (max-width: 1620px) {
       #side-panel,
       #toggle-panel {
         display: none !important;
@@ -226,7 +231,8 @@
             Resume(s)
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"
+            <a class="dropdown-item"
+              href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"
               target="_blank">PDF Resume</a>
             <a class="dropdown-item" href="https://dugganco.com/Daniel-Duggan-Resume.html" target="_blank">HTML Resume</a>
           </div>
@@ -239,7 +245,7 @@
   <br><br>
   <h1>Latest Security News</h1>
 
-  <!-- Toggle button for mobile view (hidden by mobile media query) -->
+  <!-- Toggle button for wide screens (hidden under 1620px) -->
   <button id="toggle-panel">&#9776; Sources</button>
 
   <!-- Feed Container -->
@@ -251,23 +257,30 @@
   <aside id="side-panel">
     <h2>Sources</h2>
     <ul>
+      <!-- Original Sources -->
       <li><a href="https://thehackernews.com" target="_blank">The Hacker News</a></li>
       <li><a href="https://www.bleepingcomputer.com" target="_blank">BleepingComputer</a></li>
       <li><a href="https://krebsonsecurity.com" target="_blank">Krebs on Security</a></li>
       <li><a href="https://www.darkreading.com" target="_blank">Dark Reading</a></li>
-      <li><a href="https://news.ycombinator.com/rss" target="_blank">HN (YCombinator)</a></li>
       <li><a href="https://www.infosecurity-magazine.com" target="_blank">InfoSecurity Mag</a></li>
       <li><a href="https://news.sophos.com/en-us/" target="_blank">Sophos Security</a></li>
       <li><a href="https://www.schneier.com" target="_blank">Schneier on Security</a></li>
       <li><a href="https://www.cisa.gov/news" target="_blank">CISA News</a></li>
       <li><a href="https://www.cisa.gov/blog" target="_blank">CISA Blog</a></li>
-      <li><a href="https://www.reddit.com/r/cybersecurity/top/" target="_blank">r/cybersecurity</a></li>
+
+      <!-- Additional Sources (From Screenshot) -->
+      <li><a href="https://www.securityweek.com" target="_blank">SecurityWeek</a></li>
+      <li><a href="https://blog.google/threat-analysis-group" target="_blank">Google Online Security Blog</a></li>
+      <li><a href="https://www.scmagazine.com" target="_blank">SC Media</a></li>
+      <li><a href="https://www.techrepublic.com/topic/security" target="_blank">TechRepublic Security</a></li>
+      <li><a href="https://securityboulevard.com" target="_blank">Security Boulevard</a></li>
+      <li><a href="https://cyware.com/cyber-security-feed" target="_blank">Cyware (Malware &amp; Vulnerabilities)</a></li>
+      <li><a href="https://www.zdnet.com/topic/security" target="_blank">ZDNet Security</a></li>
     </ul>
   </aside>
   <!-- END SIDE PANEL -->
 
   <script>
-    // (Optional: Remove the toggle functionality if you no longer need it)
     document.addEventListener('DOMContentLoaded', loadFeeds);
 
     async function fetchFeed(feedUrl) {
@@ -297,15 +310,25 @@
       }
       
       const feeds = [
+        // Removed YCombinator & Reddit
         'https://feeds.feedburner.com/TheHackersNews',
         'https://www.bleepingcomputer.com/feed/',
         'https://krebsonsecurity.com/feed/',
         'https://www.darkreading.com/rss.xml',
-        'https://news.ycombinator.com/rss',
         'https://www.infosecurity-magazine.com/rss/news/',
         'https://news.sophos.com/en-us/',
         'https://www.schneier.com/blog/index.rdf',
-        'https://www.reddit.com/r/cybersecurity/top/.rss'
+        'https://www.cisa.gov/news.xml',
+        'https://www.cisa.gov/blog.xml',
+
+        // Additional Feeds
+        'https://feeds.feedburner.com/Securityweek',
+        'https://feeds.feedburner.com/GoogleOnlineSecurityBlog',
+        'https://www.scmagazine.com/feed',
+        'https://www.techrepublic.com/topic/security/rss',
+        'https://securityboulevard.com/feed',
+        'https://cyware.com/cyber-security-feed',
+        'https://www.zdnet.com/topic/security/rss'
       ];
       
       let allItems = [];
@@ -314,9 +337,11 @@
           const feedData = await fetchFeed(url);
           if (feedData && feedData.items) {
             let sourceTitle = feedData.feed.title;
+            // If infosecurity-magazine.com feed has no title, assign a default
             if ((!sourceTitle || sourceTitle.trim() === "") && url.includes("infosecurity-magazine.com")) {
               sourceTitle = "InfoSecurity Mag";
             }
+            // Force specific names if needed
             if (url.indexOf("schneier.com") !== -1) {
               sourceTitle = "Schneier on Security";
             } else if (url.indexOf("news.sophos.com") !== -1) {
@@ -338,7 +363,9 @@
         }
       }
       
+      // Sort items by newest first
       allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+      // Cache
       localStorage.setItem(CACHE_KEY, JSON.stringify(allItems));
       localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
       displayFeedItems(allItems);
@@ -366,9 +393,15 @@
 
       let html = '';
       items.forEach(item => {
+        // Convert publication date to local time
         const dateObj = parseFeedDate(item.pubDate);
-        const formattedDate = dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-        const formattedTime = dateObj.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+        const formattedDate = dateObj.toLocaleDateString(undefined, {
+          year: 'numeric', month: 'short', day: 'numeric'
+        });
+        const formattedTime = dateObj.toLocaleTimeString(undefined, {
+          hour: '2-digit', minute: '2-digit'
+        });
+        // Grab the logo if it exists
         const logoUrl = logos[item.source] || '';
         
         html += `
@@ -384,8 +417,6 @@
       });
       container.innerHTML = html;
     }
-
-    document.addEventListener('DOMContentLoaded', loadFeeds);
   </script>
 </body>
 
