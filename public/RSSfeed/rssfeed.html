@@ -59,16 +59,6 @@
       height: auto;
     }
 
-    /* Sources Toggle Button (renamed) */
-    #sources-toggle {
-      background-color: #555;
-      border: none;
-      color: #fff;
-      padding: 8px 12px;
-      cursor: pointer;
-      /* Initially hidden on desktop via media query */
-    }
-
     /* Fixed Side Panel for Desktop */
     #side-panel {
       position: fixed;
@@ -167,27 +157,12 @@
 
     /* Media Query for Screens < 1620px */
     @media (max-width: 1620px) {
-      /* Hide the fixed side panel on screens < 1620px */
+      /* Hide the side panel on smaller screens */
       #side-panel {
         display: none;
       }
-      /* Display the sources toggle button on screens < 1620px */
-      #sources-toggle {
-        display: block;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1100;
-      }
-      /* Adjust content margin on smaller screens */
       .content {
         margin-left: 20px;
-      }
-    }
-    /* Hide the sources toggle on screens >= 1620px */
-    @media (min-width: 1620px) {
-      #sources-toggle {
-        display: none;
       }
     }
   </style>
@@ -198,7 +173,7 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">Dan Duggan</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="z-index: 1200;">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -238,15 +213,12 @@
   <br><br>
   <h1>Latest Security News</h1>
 
-  <!-- Toggle button for mobile view (sources toggle) -->
-  <button id="sources-toggle">&#9776; Sources</button>
-
   <!-- Feed Container -->
   <div id="feed-container" class="grid-container">
     Loading feeds...
   </div>
 
-  <!-- SIDE PANEL (fixed on desktop; hidden on screens < 1620px) -->
+  <!-- SIDE PANEL (visible only on screens ≥ 1620px) -->
   <aside id="side-panel">
     <h2>Sources</h2>
     <ul>
@@ -273,18 +245,6 @@
   <!-- END SIDE PANEL -->
 
   <script>
-    // Toggle the sources side panel on screens less than 1620px when the sources toggle button is clicked
-    $(document).ready(function () {
-      $('#sources-toggle').click(function () {
-        $('#side-panel').slideToggle();
-        if ($('#side-panel').is(':visible')) {
-          $('#sources-toggle').html('&#x2715;'); // Close icon (×)
-        } else {
-          $('#sources-toggle').html('&#9776; Sources'); // Hamburger icon with text
-        }
-      });
-    });
-
     // Feed Aggregation Code
     async function fetchFeed(feedUrl) {
       const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
@@ -392,9 +352,9 @@
         "Security Boulevard": "https://pbs.twimg.com/profile_images/1445738404205924367/LI0O-ZHg_400x400.jpg",
         "SecurityWeek": "https://pbs.twimg.com/profile_images/1466073453572890643/gaGjrZRw_400x400.jpg",
         "Security | TechRepublic": "https://pbs.twimg.com/profile_images/842067018358624256/eHpTR1g8_400x400.jpg",
-        "Google Online Security Blog": "https://pbs.twimg.com/profile_images/1754606338460487681/bWupXdxo_400x400.jpg",
+        "Google Security Blog": "https://pbs.twimg.com/profile_images/1754606338460487681/bWupXdxo_400x400.jpg",
         "CISA Blog": "https://pbs.twimg.com/profile_images/1545140176766353408/G4iTa8Bb_400x400.jpg",
-        "CISA News": "https://pbs.twimg.com/profile_images/1545140176766353408/G4iTa8Bb_400x400.jpg",
+        "CISA News": "https://pbs.twimg.com/profile_images/1545140176766353408/G4iTa8Bb_400x400.jpg"
       };
 
       let html = '';
