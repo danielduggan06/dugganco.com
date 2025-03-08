@@ -12,44 +12,37 @@
     content="A personal website to share my resume, as well as demonstrate an ability to self-host a website through the Azure platform.">
   <meta name="author" content="Dan Duggan">
 
+  <!-- Bootstrap and Luxbar CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.rawgit.com/balzss/luxbar/ae5835e2/build/luxbar.min.css">
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!-- <script async src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'></script> -->
+  
+  <!-- Use full version of jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg6W2N/68/4Rcy+2pYBbyox1D6Z+eI1lC26bLrY8yk=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263"
     crossorigin="anonymous"></script>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
+  
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-XXXXXXXXXX');
 
-
-    /* close navbar when clicked off */
+    /* Close navbar when clicking off */
     $(function () {
       $(document).click(function (event) {
         $('.navbar-collapse').collapse('hide');
       });
-      /*end close navbar when clicked off */
-
-
     });
-
   </script>
   <style>
     /* Top Banner Styling */
@@ -65,11 +58,22 @@
       height: auto;
     }
 
-    /* Fixed Side Panel Styling */
+    /* Toggle Button for Mobile */
+    #toggle-panel {
+      background-color: #555;
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      cursor: pointer;
+      display: block;
+      margin: 10px auto;
+      width: auto;
+    }
+
+    /* Fixed Side Panel Styling for Desktop */
     #side-panel {
       position: fixed;
       top: 100px;
-      /* Adjust based on header height */
       left: 20px;
       width: 180px;
       background-color: #fff;
@@ -111,7 +115,6 @@
 
     .content {
       margin: 20px 20px 20px 220px;
-      /* Left margin adjusted to avoid the side panel */
     }
 
     h1 {
@@ -119,7 +122,7 @@
       margin-top: 20px;
     }
 
-    /* Grid container for the feed items */
+    /* Grid container for feed items */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -128,19 +131,19 @@
       max-width: 1200px;
     }
 
-    /* Each feed item tile */
+    /* Feed item styling */
     .feed-item {
       background: #fff;
       border: 1px solid #ddd;
       border-radius: 5px;
       padding: 15px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .feed-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
     .feed-item h3 {
@@ -178,52 +181,68 @@
       font-size: 1em;
       color: #444;
     }
+
+    /* Mobile view: Hide side panel and toggle button */
+    @media (max-width: 768px) {
+      #side-panel,
+      #toggle-panel {
+        display: none !important;
+      }
+      .content {
+        margin-left: 20px;
+      }
+    }
   </style>
 </head>
 
-<!-- Navbar documentation: https://getbootstrap.com/docs/4.0/components/navbar/-->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Dan Duggan</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="https://dugganco.com/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://dugganco.com/#food">Food</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://dugganco.com/#spotify">Music</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="https://dugganco.com/quiz/quizindex.html">Quiz</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/RSSfeed/rssfeed.html">Security News</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Resume(s)
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item"
-            href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"
-            target="_blank">PDF Resume</a>
-          <a class="dropdown-item" href="https://dugganco.com/Daniel-Duggan-Resume.html" target="_blank">HTML Resume</a>
-        </div>
-      </li>
-  </div>
-</nav>
-
 <body>
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Dan Duggan</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="https://dugganco.com/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://dugganco.com/#food">Food</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://dugganco.com/#spotify">Music</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://dugganco.com/quiz/quizindex.html">Quiz</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/RSSfeed/rssfeed.html">Security News</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Resume(s)
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"
+              target="_blank">PDF Resume</a>
+            <a class="dropdown-item" href="https://dugganco.com/Daniel-Duggan-Resume.html" target="_blank">HTML Resume</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+
   <br><br>
   <h1>Latest Security News</h1>
+
+  <!-- Toggle button for mobile view (hidden by mobile media query) -->
+  <button id="toggle-panel">&#9776; Sources</button>
+
+  <!-- Feed Container -->
   <div id="feed-container" class="grid-container">
     Loading feeds...
   </div>
@@ -236,7 +255,7 @@
       <li><a href="https://www.bleepingcomputer.com" target="_blank">BleepingComputer</a></li>
       <li><a href="https://krebsonsecurity.com" target="_blank">Krebs on Security</a></li>
       <li><a href="https://www.darkreading.com" target="_blank">Dark Reading</a></li>
-      <li><a href="https://news.ycombinator.com" target="_blank">HN (YCombinator)</a></li>
+      <li><a href="https://news.ycombinator.com/rss" target="_blank">HN (YCombinator)</a></li>
       <li><a href="https://www.infosecurity-magazine.com" target="_blank">InfoSecurity Mag</a></li>
       <li><a href="https://news.sophos.com/en-us/" target="_blank">Sophos Security</a></li>
       <li><a href="https://www.schneier.com" target="_blank">Schneier on Security</a></li>
@@ -248,38 +267,15 @@
   <!-- END SIDE PANEL -->
 
   <script>
-    // List of RSS feeds to aggregate
-    const feeds = [
-      'https://feeds.feedburner.com/TheHackersNews',
-      'https://www.bleepingcomputer.com/feed/',
-      'https://krebsonsecurity.com/feed/',
-      'https://www.darkreading.com/rss.xml',
-      'https://news.ycombinator.com/rss',
-      'https://www.infosecurity-magazine.com/rss/news/',
-      'https://news.sophos.com/en-us/',
-      'https://www.schneier.com/blog/index.rdf',
-      'https://www.reddit.com/r/cybersecurity/top/.rss'
-    ];
+    // (Optional: Remove the toggle functionality if you no longer need it)
+    document.addEventListener('DOMContentLoaded', loadFeeds);
 
-    // Map feed source names to their logo URLs. Replace these URLs with the actual logos.
-    const logos = {
-      "The Hacker News": "https://pbs.twimg.com/profile_images/1597647879811657728/FLgHrLHy_400x400.jpg",
-      "BleepingComputer": "https://pbs.twimg.com/profile_images/1699832227062792192/hqaQ8bMZ_400x400.jpg",
-      "Krebs on Security": "https://pbs.twimg.com/profile_images/1518740904311508998/zq2bxuIw_400x400.jpg",
-      "darkreading": "https://pbs.twimg.com/profile_images/1688279734193672192/ZsaZ2hEi_400x400.jpg",
-      "DarkNet": "https://pbs.twimg.com/profile_images/474879706584449025/pioYVoNA_400x400.jpeg",
-      "Hacker News": "https://pbs.twimg.com/profile_images/1623777064821358592/9CApQWXe_400x400.png",
-      "": "https://pbs.twimg.com/profile_images/1630197502786912256/TTq7rypO_400x400.jpg",
-      "Sophos": "https://pbs.twimg.com/profile_images/1512056237537607694/gJYmF_1N_400x400.jpg",
-      "Schneier on Security": "https://pbs.twimg.com/profile_images/69337528/bruce-blog_400x400.jpg",
-      "top scoring links : cybersecurity": "https://pbs.twimg.com/profile_images/1729909787029078016/dBjB3Fnr_400x400.jpg"
-    };
+    async function fetchFeed(feedUrl) {
+      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+      const response = await fetch(apiUrl);
+      return response.json();
+    }
 
-    const CACHE_KEY = 'cachedFeedData';
-    const CACHE_TIMESTAMP_KEY = 'cachedFeedTimestamp';
-    const CACHE_EXPIRY = 30 * 60 * 1000; // 30 minutes
-
-    // Helper to parse the date string, appending "Z" if missing so it's treated as UTC.
     function parseFeedDate(dateString) {
       if (!dateString.match(/(Z|[+-]\d{2}:?\d{2})$/)) {
         dateString += 'Z';
@@ -287,40 +283,40 @@
       return new Date(dateString);
     }
 
-    // Helper function to normalize the source name for display.
-    function normalizeSourceName(source) {
-      if (/dark\s*reading/i.test(source)) {
-        return "Dark Reading";
-      }
-      return source;
-    }
-
     async function loadFeeds() {
+      const CACHE_KEY = 'cachedFeedData';
+      const CACHE_TIMESTAMP_KEY = 'cachedFeedTimestamp';
+      const CACHE_EXPIRY = 30 * 60 * 1000; // 30 minutes
       const now = Date.now();
       const cachedData = localStorage.getItem(CACHE_KEY);
       const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
-
-      // Use cached data if it's still fresh
+      
       if (cachedData && cachedTimestamp && (now - cachedTimestamp < CACHE_EXPIRY)) {
-        console.log("Using cached feed data");
         displayFeedItems(JSON.parse(cachedData));
         return;
       }
-
+      
+      const feeds = [
+        'https://feeds.feedburner.com/TheHackersNews',
+        'https://www.bleepingcomputer.com/feed/',
+        'https://krebsonsecurity.com/feed/',
+        'https://www.darkreading.com/rss.xml',
+        'https://news.ycombinator.com/rss',
+        'https://www.infosecurity-magazine.com/rss/news/',
+        'https://news.sophos.com/en-us/',
+        'https://www.schneier.com/blog/index.rdf',
+        'https://www.reddit.com/r/cybersecurity/top/.rss'
+      ];
+      
       let allItems = [];
       for (let url of feeds) {
         try {
           const feedData = await fetchFeed(url);
           if (feedData && feedData.items) {
-            // Force specific source names based on the feed URL if needed
             let sourceTitle = feedData.feed.title;
-
-            // If the feed from infosecurity-magazine.com doesn't have a title, assign a default.
             if ((!sourceTitle || sourceTitle.trim() === "") && url.includes("infosecurity-magazine.com")) {
               sourceTitle = "InfoSecurity Mag";
             }
-
-            // Force specific titles for other feeds if necessary.
             if (url.indexOf("schneier.com") !== -1) {
               sourceTitle = "Schneier on Security";
             } else if (url.indexOf("news.sophos.com") !== -1) {
@@ -332,7 +328,6 @@
             } else if (url.indexOf("darkreading.com") !== -1) {
               sourceTitle = "Dark Reading";
             }
-
             feedData.items.forEach(item => {
               item.source = sourceTitle;
             });
@@ -342,59 +337,10 @@
           console.error('Error fetching feed:', url, error);
         }
       }
-
-      // Sort items by publication date (newest first)
+      
       allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-
-      // Cache the data and timestamp
       localStorage.setItem(CACHE_KEY, JSON.stringify(allItems));
       localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
-
-      displayFeedItems(allItems);
-    }
-
-
-    async function fetchFeed(feedUrl) {
-      const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
-      const response = await fetch(apiUrl);
-      return response.json();
-    }
-
-    async function loadFeeds() {
-      const now = Date.now();
-      const cachedData = localStorage.getItem(CACHE_KEY);
-      const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
-
-      // Use cached data if it's still fresh.
-      if (cachedData && cachedTimestamp && (now - cachedTimestamp < CACHE_EXPIRY)) {
-        console.log("Using cached feed data");
-        displayFeedItems(JSON.parse(cachedData));
-        return;
-      }
-
-      let allItems = [];
-      for (let url of feeds) {
-        try {
-          const feedData = await fetchFeed(url);
-          if (feedData && feedData.items) {
-            const sourceTitle = feedData.feed.title;
-            feedData.items.forEach(item => {
-              item.source = sourceTitle;
-            });
-            allItems = allItems.concat(feedData.items);
-          }
-        } catch (error) {
-          console.error('Error fetching feed:', url, error);
-        }
-      }
-
-      // Sort items by publication date (newest first)
-      allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
-
-      // Cache the data and current timestamp.
-      localStorage.setItem(CACHE_KEY, JSON.stringify(allItems));
-      localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
-
       displayFeedItems(allItems);
     }
 
@@ -404,19 +350,27 @@
         container.innerHTML = '<p>No items to display.</p>';
         return;
       }
+      
+      const logos = {
+        "The Hacker News": "https://pbs.twimg.com/profile_images/1597647879811657728/FLgHrLHy_400x400.jpg",
+        "BleepingComputer": "https://pbs.twimg.com/profile_images/1699832227062792192/hqaQ8bMZ_400x400.jpg",
+        "Krebs on Security": "https://pbs.twimg.com/profile_images/1518740904311508998/zq2bxuIw_400x400.jpg",
+        "darkreading": "https://pbs.twimg.com/profile_images/1688279734193672192/ZsaZ2hEi_400x400.jpg",
+        "DarkNet": "https://pbs.twimg.com/profile_images/474879706584449025/pioYVoNA_400x400.jpeg",
+        "Hacker News": "https://pbs.twimg.com/profile_images/1623777064821358592/9CApQWXe_400x400.png",
+        "": "https://pbs.twimg.com/profile_images/1630197502786912256/TTq7rypO_400x400.jpg",
+        "Sophos": "https://pbs.twimg.com/profile_images/1512056237537607694/gJYmF_1N_400x400.jpg",
+        "Schneier on Security": "https://pbs.twimg.com/profile_images/69337528/bruce-blog_400x400.jpg",
+        "top scoring links : cybersecurity": "https://pbs.twimg.com/profile_images/1729909787029078016/dBjB3Fnr_400x400.jpg"
+      };
 
       let html = '';
       items.forEach(item => {
         const dateObj = parseFeedDate(item.pubDate);
-        const formattedDate = dateObj.toLocaleDateString(undefined, {
-          year: 'numeric', month: 'short', day: 'numeric'
-        });
-        const formattedTime = dateObj.toLocaleTimeString(undefined, {
-          hour: '2-digit', minute: '2-digit'
-        });
-        // Retrieve the logo URL from the mapping. If no logo exists, nothing is displayed.
+        const formattedDate = dateObj.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+        const formattedTime = dateObj.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
         const logoUrl = logos[item.source] || '';
-
+        
         html += `
           <div class="feed-item">
             <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
