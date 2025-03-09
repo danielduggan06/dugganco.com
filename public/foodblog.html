@@ -39,18 +39,6 @@
     gtag('js', new Date());
 
     gtag('config', 'G-XXXXXXXXXX');
-
-
-    /* close navbar when clicked off */
-    $(function () {
-      $(document).click(function (event) {
-        $('.navbar-collapse').collapse('hide');
-      });
-      /*end close navbar when clicked off */
-
-
-    });
-
   </script>
 
   <style type="text/css">
@@ -83,45 +71,6 @@
       margin-right: 10%;
       text-align: justify;
     }
-
-    .countdowninjector {
-      font-size: 2rem;
-      margin-top: 5%;
-      margin-left: 10%;
-      margin-right: 10%;
-      text-align: center;
-    }
-
-    /* OPEN MUSIC SECTION STYLING */
-    .spotifysection {
-      box-sizing: border-box;
-      border-radius: 20px;
-      color: rgb(232, 230, 227);
-      /*
-      background-image: linear-gradient(to bottom right, rgb(80, 104, 72), black);
-      */
-      background-color: black;
-      margin-left: 1%;
-      margin-right: 1%;
-      margin-top: 5px;
-    }
-
-    .spotify {
-      border-radius: 12px;
-      margin-left: auto;
-      margin-right: auto;
-      width: 30em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /*-- this fixes the width issue on the spotify embedded iframes */
-    .spotify {
-      width: auto;
-      height: 100;
-    }
-
     /* OPEN FOOD SECTION STYLING */
 
     .foodsection {
@@ -209,61 +158,11 @@
 
 </head>
 
-<!-- Navbar documentation: https://getbootstrap.com/docs/4.0/components/navbar/-->
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Dan Duggan</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#food">Food</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#spotify">Music</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/quiz/quizindex.html">Quiz</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/RSSfeed/rssfeed.html">Security News</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Resume(s)
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item"
-            href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf"
-            target="_blank">PDF Resume</a>
-          <a class="dropdown-item" href="Daniel-Duggan-Resume.html" target="_blank">HTML Resume</a>
-        </div>
-      </li>
-  </div>
-</nav>
-
 <!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
 
-<section>
-  <br><br>
-  <p class="topparagraph" id="#home">
-    Thank you for visiting my website! I'm a newly-minted cybersecurity professional with 8 years prior experience in a
-    number of IT roles. If you're an interested employer, please take a look at <a href="Daniel-Duggan-Resume.html" target="_blank">my
-      HTML/CSS stylized resume</a>, as well as the <a
-      href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf" target="_blank"> PDF version</a>
-    if you'd like a more traditional resume.
-
-    <br><br>
-    This website is mainly a small project for myself to learn Azure website hosting and some web development. I added
-    some of my interests on here to let you know a little about myself and fill up some whitespace. You can
-    reach me via email at <a href="mailto: abc@example.com">daniel.duggan06@gmail.com</a>. Thank you again!</a>
+<br><br>
+    This food blog started mainly as a small project for myself to learn Azure website hosting and some web development. I added
+    some of my interests on here to let you know a little about myself and fill up some whitespace.
   </p>
 </section>
 
@@ -336,33 +235,6 @@
         Mine is definitely not as good as hers</div>
     </div>
   </div>
-
-  <main>
-    <!-- ---------------------SPOTIFY SECTION--------------------- -->
-    <section class="spotifysection">
-      <br>
-      <h1 class="sectionheader" id="spotify">Music I've Been Listenin To</h1>
-      <br>
-      <iframe class="spotify" src="https://open.spotify.com/embed/playlist/39AMXm0NxnYrqjsichCsiw?utm_source=generator"
-        width="20%" height="600" frameBorder="0" allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <br>
-      <iframe class="spotify" src="https://open.spotify.com/embed/playlist/0sskXa7owFcc2NyLZdCO3R?utm_source=generator"
-        width="20%" height="600" frameBorder="0" allowfullscreen=""
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      <br><br>
-    </section>
-
-
-
-    <!--Template for new food picture content:
-    
-                <div class='box' id='box_NUMBER'><a href="example.com" target="_blank"><img
-                           src="IMAGELINK"
-                           title="DESCRIPTIONCAPTION" /></a></div>
-    
-        End of template-->
-</section>
 
 <!-- ---------------------COOKIE NOTICE SECTION--------------------- -->
 <div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
