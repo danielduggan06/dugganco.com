@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Dan Duggan's Website</title>
+  <title>Dan Duggan's Foog Blog</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="title" property="og:title" content="Dan Duggan's Website">
   <meta property="og:type" content="Personal Blog">
@@ -19,6 +19,7 @@
   <link rel="icon" href="favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" />
   <!-- <script async src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'></script> -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263"
     crossorigin="anonymous"></script>
@@ -46,6 +47,129 @@
       scroll-behavior: smooth;
     }
 
+    /* NAVBAR STYLING */
+
+    /* Desktop dropdown for nav items */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      /* Increase width for better hover coverage */
+      padding: 1.5rem;
+      /* Slightly increase padding for usability */
+
+      background: #fff;
+      border: 1px solid #EFF1F3;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      z-index: 100;
+    }
+
+    li.nav-item:hover .dropdown {
+      display: block;
+    }
+
+    .dropdown-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, auto);
+      gap: 0.75rem;
+    }
+
+    .dropdown-item {
+      background: #F9F9F9;
+      padding: 0.75rem;
+      text-align: center;
+      border: 1px solid #EFF1F3;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dropdown-item:hover {
+      background: #E6F0FF;
+    }
+
+    /* ---------------------- */
+    /* Mobile Navbar Styles */
+    /* ---------------------- */
+    /* Default: hide hamburger button */
+    .hamburger {
+      display: none;
+    }
+
+    /* For viewports less than 1100px, show hamburger and hide desktop nav links */
+    @media (max-width: 1100px) {
+      .nav-links-container {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        color: #333;
+        z-index: 300;
+      }
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 60px);
+      background: #fff;
+      overflow-y: auto;
+      padding: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      z-index: 200;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .mobile-section {
+      margin-bottom: 2rem;
+    }
+
+    .mobile-section-title {
+      font-weight: 600;
+      margin: 1rem 0 0.5rem;
+      color: #0070F3;
+    }
+
+    .mobile-menu .dropdown-item {
+      padding: 0.5rem;
+      font-size: clamp(0.75rem, 2.5vw, 1rem);
+      white-space: normal;
+      word-break: break-word;
+      hyphens: auto;
+      text-align: center;
+
+      /* Add these lines to vertically center text */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+
+    .mobile-menu .dropdown-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
     /* OPEN HEADER SECTION STYLING */
     .name {
       font-weight: bold;
@@ -71,6 +195,7 @@
       margin-right: 10%;
       text-align: justify;
     }
+
     /* OPEN FOOD SECTION STYLING */
 
     .foodsection {
@@ -159,11 +284,117 @@
 </head>
 
 <!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
+<body>
+  <!-- Navbar -->
+  <nav class="custom-navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <a href="#">Dan Duggan</a>
+      </div>
+      <div class="nav-links-container">
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="#">Menu</a>
+            <div class="dropdown">
+              <div class="dropdown-grid">
+                <a href="https://dugganco.com">
+                  <div class="dropdown-item">Home</div>
+                </a>
+                <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
+                  <div class="dropdown-item">HTML Resume</div>
+                </a>
+                <a href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
+                  <div class="dropdown-item">PDF Resume</div>
+                </a>
+                <a href="https://dugganco.com">
+                  <div class="dropdown-item">Cyber News</div>
+                </a>
+                <a href="https://dugganco.com/foodblog.html">
+                  <div class="dropdown-item">Dan's Food Blog</div>
+                </a>
+                <a href="">
+                  <div class="dropdown-item">(Coming Soon!)</div>
+                </a>
+              </div>
+            </div>
+          </li>
+          <!-- <li class="nav-item">
+              <a href="#">Solutions</a>
+              <div class="dropdown">
+                <div class="dropdown-grid">
+                  <div class="dropdown-item">Option 1</div>
+                  <div class="dropdown-item">Option 2</div>
+                  <div class="dropdown-item">Option 3</div>
+                  <div class="dropdown-item">Option 4</div>
+                  <div class="dropdown-item">Option 5</div>
+                  <div class="dropdown-item">Option 6</div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="#">Resources</a>
+              <div class="dropdown">
+                <div class="dropdown-grid">
+                  <div class="dropdown-item">Option 1</div>
+                  <div class="dropdown-item">Option 2</div>
+                  <div class="dropdown-item">Option 3</div>
+                  <div class="dropdown-item">Option 4</div>
+                  <div class="dropdown-item">Option 5</div>
+                  <div class="dropdown-item">Option 6</div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="#">Company</a>
+              <div class="dropdown">
+                <div class="dropdown-grid">
+                  <div class="dropdown-item">Option 1</div>
+                  <div class="dropdown-item">Option 2</div>
+                  <div class="dropdown-item">Option 3</div>
+                  <div class="dropdown-item">Option 4</div>
+                  <div class="dropdown-item">Option 5</div>
+                  <div class="dropdown-item">Option 6</div>
+                </div>
+              </div>
+            </li>
+          </ul> -->
+      </div>
+      <!-- Hamburger button for mobile (only visible below 1100px) -->
+      <button class="hamburger" id="hamburger-btn">&#9776;</button>
+    </div>
+  </nav>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-section">
+      <div class="mobile-section-title">Menu</div>
+      <div class="dropdown-grid">
+        <a href="https://dugganco.com">
+          <div class="dropdown-item">Home</div>
+        </a>
+        <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
+          <div class="dropdown-item">HTML Resume</div>
+        </a>
+        <a href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
+          <div class="dropdown-item">PDF Resume</div>
+        </a>
+        <a href="https://dugganco.com">
+          <div class="dropdown-item">Cyber News</div>
+        </a>
+        <a href="https://dugganco.com/foodblog.html">
+          <div class="dropdown-item">Dan's Food Blog</div>
+        </a>
+        <a href="">
+          <div class="dropdown-item">(Coming Soon!)</div>
+        </a>
+      </div>
+    </div>
+  </div>
 <br><br>
-    This food blog started mainly as a small project for myself to learn Azure website hosting and some web development. I added
-    some of my interests on here to let you know a little about myself and fill up some whitespace.
-  </p>
+This food blog started mainly as a small project for myself to learn Azure website hosting and some web development. I
+added
+some of my interests on here to let you know a little about myself and fill up some whitespace.
+</p>
 </section>
 
 <!-- ----------------------FOOD SECTION---------------------- https://www.youtube.com/watch?v=vIaduyqHPfY -->
@@ -236,34 +467,34 @@
     </div>
   </div>
 
-<!-- ---------------------COOKIE NOTICE SECTION--------------------- -->
-<div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
-  <p>This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept”
-    you
-    acknowledge the use of cookies and to our <a href="#"><u>Privacy Policy</u></a>.</p>
-  <button type="button" id="i-accept" class="btn btn-primary">I Accept</button>
-</div>
-<footer>
-  <small>©
-    <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.
-  </small>
-</footer>
-<script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-  crossorigin="anonymous"></script>
-<script type="text/javascript">
-    (function ($) {
-      $('#i-accept').on('click', function () {
-        if (localStorage.hidecookiebar !== '1') {
+  <!-- ---------------------COOKIE NOTICE SECTION--------------------- -->
+  <div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
+    <p>This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept”
+      you
+      acknowledge the use of cookies and to our <a href="#"><u>Privacy Policy</u></a>.</p>
+    <button type="button" id="i-accept" class="btn btn-primary">I Accept</button>
+  </div>
+  <footer>
+    <small>©
+      <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.
+    </small>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript">
+      (function ($) {
+        $('#i-accept').on('click', function () {
+          if (localStorage.hidecookiebar !== '1') {
+            $('#cookie-notice').hide();
+            localStorage.hidecookiebar = '1';
+          }
+        });
+        if (localStorage.hidecookiebar == '1') {
           $('#cookie-notice').hide();
-          localStorage.hidecookiebar = '1';
-        }
-      });
-      if (localStorage.hidecookiebar == '1') {
-        $('#cookie-notice').hide();
-      };
-    })(jQuery);
-</script>
-</body>
+        };
+      })(jQuery);
+  </script>
+  </body>
 
 </html>
