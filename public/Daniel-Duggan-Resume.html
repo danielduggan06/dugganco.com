@@ -5,11 +5,24 @@
 <head>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
     <meta name="author" content="dduggan" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daniel Duggan Resume (as an HTML webpage) </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" />
     <style type="text/css">
         html {
-            margin-left: 2%;
-            margin-right: 2%;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background: #fff;
+            color: #333;
+            padding-top: 80px;
+            /* Offset for fixed navbar */
         }
 
         .s1 {
@@ -141,11 +154,370 @@
             transition: .8s;
             transform: scale(1.03);
         }
+
+        /* ---------------------- */
+        /* Navbar (Desktop & Mobile) */
+        /* ---------------------- */
+        .custom-navbar {
+            background: #fff;
+            border-bottom: 1px solid #EFF1F3;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+            font-family: 'Inter', sans-serif;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .custom-navbar .container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        /* Brand positioned to the left */
+        .nav-brand {
+            grid-column: 1 / 2;
+        }
+
+        .nav-brand a {
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .nav-brand img {
+            max-height: 50px;
+            width: auto;
+        }
+
+        /* Desktop nav links in the center */
+        .nav-links-container {
+            grid-column: 2 / 3;
+            display: flex;
+            justify-content: center;
+        }
+
+        ul.nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        li.nav-item {
+            position: relative;
+        }
+
+        li.nav-item>a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        li.nav-item>a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: #0070F3;
+            transition: width 0.3s ease-out;
+        }
+
+        li.nav-item>a:hover::after {
+            width: 100%;
+        }
+
+    /* Desktop dropdown for nav items */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      /* Increase width for better hover coverage */
+      padding: 1.5rem;
+      /* Slightly increase padding for usability */
+
+      background: #fff;
+      border: 1px solid #EFF1F3;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      z-index: 100;
+    }
+
+        li.nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 0.75rem;
+        }
+
+        .dropdown-item {
+            background: #F9F9F9;
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid #EFF1F3;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background: #E6F0FF;
+        }
+
+        /* ---------------------- */
+        /* Mobile Navbar Styles */
+        /* ---------------------- */
+        /* Default: hide hamburger button */
+        .hamburger {
+            display: none;
+        }
+
+        /* For viewports less than 1100px, show hamburger and hide desktop nav links */
+        @media (max-width: 1100px) {
+            .nav-links-container {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                position: absolute;
+                top: 50%;
+                right: 2rem;
+                transform: translateY(-50%);
+                cursor: pointer;
+                font-size: 1.5rem;
+                background: none;
+                border: none;
+                color: #333;
+                z-index: 300;
+            }
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 60px);
+            background: #fff;
+            overflow-y: auto;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            z-index: 200;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-section {
+            margin-bottom: 2rem;
+        }
+
+        .mobile-section-title {
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: #0070F3;
+        }
+
+        .mobile-menu .dropdown-item {
+      padding: 0.5rem;
+      font-size: clamp(0.75rem, 2.5vw, 1rem);
+      white-space: normal;
+      word-break: break-word;
+      hyphens: auto;
+      text-align: center;
+
+      /* Add these lines to vertically center text */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+        .mobile-menu .dropdown-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        /* Responsive adjustments for resume content */
+        @media (max-width: 768px) {
+            .competencies {
+                -webkit-column-count: 1;
+                -moz-column-count: 1;
+                column-count: 1;
+            }
+
+            .s10 {
+                float: none;
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
     </style>
 </head>
 
 
 <body>
+    <!-- Navbar -->
+    <nav class="custom-navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="#">Dan Duggan</a>
+            </div>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+
+                    <li class="nav-item">
+                        <a href="#summary">Menu</a>
+                        <div class="dropdown">
+                            <div class="dropdown-grid">
+                                <a href="https://dugganco.com">
+                                    <div class="dropdown-item">Home</div>
+                                </a>
+                                <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
+                                    <div class="dropdown-item">HTML Resume</div>
+                                </a>
+                                <a
+                                    href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
+                                    <div class="dropdown-item">PDF Resume</div>
+                                </a>
+                                <a href="https://dugganco.com">
+                                    <div class="dropdown-item">Cyber News</div>
+                                </a>
+                                <a href="https://dugganco.com/foodblog.html">
+                                    <div class="dropdown-item">Dan's Food Blog</div>
+                                </a>
+                                <a href="">
+                                    <div class="dropdown-item">(Coming Soon!)</div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#summary">Resume Sections</a>
+                        <div class="dropdown">
+                            <div class="dropdown-grid">
+                                <div class="dropdown-item"><a href="#summary"
+                                        style="text-decoration: none; color: inherit;">Summary</a></div>
+                                <div class="dropdown-item"><a href="#competencies"
+                                        style="text-decoration: none; color: inherit;">Competencies</a></div>
+                                <div class="dropdown-item"><a href="#experience"
+                                        style="text-decoration: none; color: inherit;">Experience</a></div>
+                                <div class="dropdown-item"><a href="#education"
+                                        style="text-decoration: none; color: inherit;">Education</a></div>
+                                <div class="dropdown-item"><a href="#certifications"
+                                        style="text-decoration: none; color: inherit;">Certifications</a></div>
+                                <div class="dropdown-item"><a href="#"
+                                        style="text-decoration: none; color: inherit;">Top</a></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Hamburger button for mobile (only visible below 1100px) -->
+            <button class="hamburger" id="hamburger-btn">&#9776;</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-section">
+            <div class="mobile-section-title">Resume Sections</div>
+            <div class="dropdown-grid"><!-- Mobile Menu Overlay -->
+                <div class="mobile-menu" id="mobile-menu">
+                    <div class="mobile-section">
+                        <div class="mobile-section-title">Menu</div>
+                        <div class="dropdown-grid">
+                            <a href="https://dugganco.com">
+                                <div class="dropdown-item">Home</div>
+                            </a>
+                            <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
+                                <div class="dropdown-item">HTML Resume</div>
+                            </a>
+                            <a
+                                href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
+                                <div class="dropdown-item">PDF Resume</div>
+                            </a>
+                            <a href="https://dugganco.com">
+                                <div class="dropdown-item">Cyber News</div>
+                            </a>
+                            <a href="https://dugganco.com/foodblog.html">
+                                <div class="dropdown-item">Dan's Food Blog</div>
+                            </a>
+                            <a href="">
+                                <div class="dropdown-item">(Coming Soon!)</div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- <div class="mobile-section">
+      <div class="mobile-section-title">Solutions</div>
+      <div class="dropdown-grid">
+        <div class="dropdown-item">Option 1</div>
+        <div class="dropdown-item">Option 2</div>
+        <div class="dropdown-item">Option 3</div>
+        <div class="dropdown-item">Option 4</div>
+        <div class="dropdown-item">Option 5</div>
+        <div class="dropdown-item">Option 6</div>
+      </div>
+    </div>
+    <div class="mobile-section">
+      <div class="mobile-section-title">Resources</div>
+      <div class="dropdown-grid">
+        <div class="dropdown-item">Option 1</div>
+        <div class="dropdown-item">Option 2</div>
+        <div class="dropdown-item">Option 3</div>
+        <div class="dropdown-item">Option 4</div>
+        <div class="dropdown-item">Option 5</div>
+        <div class="dropdown-item">Option 6</div>
+      </div>
+    </div>
+    <div class="mobile-section">
+      <div class="mobile-section-title">Company</div>
+      <div class="dropdown-grid">
+        <div class="dropdown-item">Option 1</div>
+        <div class="dropdown-item">Option 2</div>
+        <div class="dropdown-item">Option 3</div>
+        <div class="dropdown-item">Option 4</div>
+        <div class="dropdown-item">Option 5</div>
+        <div class="dropdown-item">Option 6</div>
+      </div>
+    </div> -->
+                </div>
+                <div class="dropdown-item"><a href="#summary" style="text-decoration: none; color: inherit;">Summary</a>
+                </div>
+                <div class="dropdown-item"><a href="#competencies"
+                        style="text-decoration: none; color: inherit;">Competencies</a></div>
+                <div class="dropdown-item"><a href="#experience"
+                        style="text-decoration: none; color: inherit;">Experience</a></div>
+                <div class="dropdown-item"><a href="#education"
+                        style="text-decoration: none; color: inherit;">Education</a></div>
+                <div class="dropdown-item"><a href="#certifications"
+                        style="text-decoration: none; color: inherit;">Certifications</a></div>
+                <div class="dropdown-item"><a href="#" style="text-decoration: none; color: inherit;">Top</a></div>
+            </div>
+        </div>
+    </div>
+
     <p class="s1"> <span style="float: left"><a
                 href="mailto:daniel.duggan06@gmail.com">daniel.duggan06@gmail.com</a></span>
         <a class="s2"> <span style="float: center;">Daniel Duggan &#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></a>
@@ -162,7 +534,7 @@
 
     <br>
 
-    <div class="sectiondiv">
+    <div class="sectiondiv" id="summary">
         <hr style="height: 4px; background:black; margin-bottom: -1em">
         <h1> SUMMARY </h1>
         <p class="s5">Experienced cybersecurity and IT professional.
@@ -171,13 +543,13 @@
                 link="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">PDF
                 version of
                 this
-                Resume here</a>, hosted via Azure. Expected 2025 graduation for Master’s degree in cybersecurity.
+                Resume here</a>, hosted via Azure. Expected 2025 graduation for Master's degree in cybersecurity.
             Expertise in financial institution cybersecurity, network security, network administration, cloud
             administration, and website hosting/management..</p>
     </div>
 
 
-    <div class="sectiondiv">
+    <div class="sectiondiv" id="competencies">
         <h1> CORE COMPETENCIES </h1>
         <p>
         <ul class="competencies">
@@ -199,7 +571,7 @@
         </ul>
     </div>
 
-    <div class="sectiondiv">
+    <div class="sectiondiv" id="experience">
         <h1> PROFESSIONAL WORK EXPERIENCE </h1>
         <p class="s9">Cybersecurity Analyst<span class="s10">November 2024 - Present</span></p>
         <p class="s11"><a href="https://www.jpmorganchase.com/" target="_blank">JPMorganChase</a> - New York, NY</p>
@@ -220,7 +592,7 @@
         <p class="s11"><a href="https://starkcarpet.com/" target="_blank">Stark Carpet Corp.</a> - New York, NY</p>
         <p>
         <ul>
-            <li>Cloud administration of Microsoft’s Azure products - Entra ID, InTune, Exchange, Sharepoint, and O365,
+            <li>Cloud administration of Microsoft's Azure products - Entra ID, InTune, Exchange, Sharepoint, and O365,
                 as well as VMWare ESXi suite/hypervisor configurations.</li>
             <li>Incident response, threat detection, and vulnerability management via Sentinel One, Huntress, and the
                 Azure cloud suite.</li>
@@ -228,7 +600,7 @@
             <li>Network Administration of SonicWall TZ-series configurations and networking, and Datto networking
                 equipment/suite, including Datto RMM, Datto Backup solution, and implementation of Datto switches and
                 WAPs.</li>
-            <li>AS400\Dancik server along with IBM’s browser/GUI version called Navigator.</li>
+            <li>AS400\Dancik server along with IBM's browser/GUI version called Navigator.</li>
             <li>Troubleshooting Troubleshooting a wide range of issues, such as Hubspot CRM, point-to-site VPNs,
                 PowerShell scripts to resolve issues, hardware issues, internal tools - inventory management
                 applications, sales order processing, etc.</li>
@@ -276,7 +648,7 @@
             <li>Developed PowerShell scripts to resolve multiple issues, maintained site backups via Synology NAS and
                 PowerShell
                 scripting, regularly tested MTTR for on-premise and off-premise servers, regularly updated company
-                website’s
+                website's
                 HTML/CSS.</li>
             <li> Administrated the cloud-based email for the entire organization with Google Workspace, included
                 managing
@@ -350,11 +722,11 @@
         </p>
     </div>
 
-    <div class="sectiondiv">
+    <div class="sectiondiv" id="education">
         </p>
         <h1> EDUCATION </h1>
         <ul>
-            <li><span class="s9"><a href="https://www.tamucc.edu/business/management-information-systems/index.php"
+            <li><span class="s9"><a href="https://www.tamucc.edu/business/index.php"
                         target="_blank">Bachelor's in Management Information Systems</a></span><span
                     style="float: right; font-weight: bold" class="s11">Texas A&M University-Corpus Christi</span>
                 <ul class="s11">Completed</ul>
@@ -370,7 +742,7 @@
     </div>
 
 
-    <div class="sectiondiv">
+    <div class="sectiondiv" id="certifications">
         <h1> CERTIFICATIONS </h1>
         <ul>
             <li class="s9">In Progress:
@@ -390,7 +762,7 @@
             <li class="s9"><a href
                     link="https://www.credly.com/badges/972c8acf-dc44-4b8b-b3e3-ed2bf9d1be8e/public_url">Completed ISC2
                     Certified in Cybersecurity Certification </a></li>
-            <li class="s9">Pursuing via WGU Master’s program:</li>
+            <li class="s9">Pursuing via WGU Master's program:</li>
             <ul style="list-style-type: none">
                 <li>- CompTIA Advanced Security Practitioner (CASP+)</li>
                 <li>- ISACA Certified Information Security Manager (CISM)</li>
@@ -398,30 +770,50 @@
         </ul>
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <!-- External Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg6W2N/68/4Rcy+2pYBbyox1D6Z+eI1lC26bLrY8yk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        // Toggle mobile menu using the hamburger button
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
 
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
 
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
