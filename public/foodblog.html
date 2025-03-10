@@ -1,54 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
   <meta charset="UTF-8" />
-  <title>Dan Duggan's Foog Blog</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dan Duggan's Food Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="title" property="og:title" content="Dan Duggan's Website">
   <meta property="og:type" content="Personal Blog">
   <meta name="image" property="og:image" content="https://i.imgur.com/3xlEfYc.png">
   <meta name="description" property="og:description"
     content="A personal website to share my resume, as well as demonstrate an ability to self-host a website through the Azure platform.">
   <meta name="author" content="Dan Duggan">
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.rawgit.com/balzss/luxbar/ae5835e2/build/luxbar.min.css">
-  <link rel="icon" href="favicon.ico">
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="icon" href="favicon.ico" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" />
-  <!-- <script async src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'></script> -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263"
-    crossorigin="anonymous"></script>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-
-  <style type="text/css">
+  <style>
+    /* Global Styles */
     html {
       scroll-behavior: smooth;
     }
-
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #333;
+      padding-top: 80px; /* Offset for fixed navbar */
+    }
+    
+    /* ---------------------- */
+    /* Navbar (Desktop & Mobile) */
+    /* ---------------------- */
+    .custom-navbar {
+      background: #fff;
+      border-bottom: 1px solid #EFF1F3;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+    
+    .custom-navbar .container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+    }
+    
+    /* Brand positioned to the left */
+    .nav-brand {
+      grid-column: 1 / 2;
+    }
+    
+    .nav-brand a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #333;
+    }
+    
+    /* Desktop nav links in the center */
+    .nav-links-container {
+      grid-column: 2 / 3;
+      display: flex;
+      justify-content: center;
+    }
+    
+    ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+    
+    li.nav-item {
+      position: relative;
+    }
+    
+    li.nav-item > a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    
+    li.nav-item > a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #0070F3;
+      transition: width 0.3s ease-out;
+    }
+    
+    li.nav-item > a:hover::after {
+      width: 100%;
+    }
+    
     /* NAVBAR STYLING */
-
     /* Desktop dropdown for nav items */
     .dropdown {
       display: none;
@@ -57,27 +115,24 @@
       left: 50%;
       transform: translateX(-50%);
       width: 600px;
-      /* Increase width for better hover coverage */
       padding: 1.5rem;
-      /* Slightly increase padding for usability */
-
       background: #fff;
       border: 1px solid #EFF1F3;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
       z-index: 100;
     }
-
+    
     li.nav-item:hover .dropdown {
       display: block;
     }
-
+    
     .dropdown-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(2, auto);
       gap: 0.75rem;
     }
-
+    
     .dropdown-item {
       background: #F9F9F9;
       padding: 0.75rem;
@@ -87,11 +142,11 @@
       transition: background 0.3s ease;
       cursor: pointer;
     }
-
+    
     .dropdown-item:hover {
       background: #E6F0FF;
     }
-
+    
     /* ---------------------- */
     /* Mobile Navbar Styles */
     /* ---------------------- */
@@ -99,13 +154,13 @@
     .hamburger {
       display: none;
     }
-
+    
     /* For viewports less than 1100px, show hamburger and hide desktop nav links */
     @media (max-width: 1100px) {
       .nav-links-container {
         display: none;
       }
-
+    
       .hamburger {
         display: block;
         position: absolute;
@@ -120,7 +175,7 @@
         z-index: 300;
       }
     }
-
+    
     /* Mobile menu overlay */
     .mobile-menu {
       display: none;
@@ -135,21 +190,21 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
       z-index: 200;
     }
-
+    
     .mobile-menu.active {
       display: block;
     }
-
+    
     .mobile-section {
       margin-bottom: 2rem;
     }
-
+    
     .mobile-section-title {
       font-weight: 600;
       margin: 1rem 0 0.5rem;
       color: #0070F3;
     }
-
+    
     .mobile-menu .dropdown-item {
       padding: 0.5rem;
       font-size: clamp(0.75rem, 2.5vw, 1rem);
@@ -157,47 +212,43 @@
       word-break: break-word;
       hyphens: auto;
       text-align: center;
-
-      /* Add these lines to vertically center text */
       display: flex;
       align-items: center;
       justify-content: center;
     }
-
-
+    
     .mobile-menu .dropdown-grid {
       grid-template-columns: repeat(3, 1fr);
       gap: 0.5rem;
     }
-
+    
     /* OPEN HEADER SECTION STYLING */
     .name {
       font-weight: bold;
       text-align: center;
     }
-
+    
     .sectionheader {
       font-weight: bold;
       text-align: center;
       font-size: 18pt;
       scroll-margin-top: 100px
     }
-
+    
     .sectiondescription {
       text-align: center;
       margin-left: 10%;
       margin-right: 10%;
     }
-
+    
     .topparagraph {
       margin-top: 5%;
       margin-left: 10%;
       margin-right: 10%;
       text-align: justify;
     }
-
+    
     /* OPEN FOOD SECTION STYLING */
-
     .foodsection {
       box-sizing: border-box;
       border-radius: 20px;
@@ -206,13 +257,13 @@
       margin-right: 1%;
       margin-top: 5px;
     }
-
+    
     .foodcaption {
       margin-left: 5%;
       padding-bottom: 3px;
       margin-right: 5%;
     }
-
+    
     .container {
       margin: 0;
       padding: 0;
@@ -222,43 +273,41 @@
       columns: 4;
       column-gap: 20px;
     }
-
+    
     .container .box {
       width: 100%;
       margin-bottom: 10px;
       break-inside: avoid;
       transition: .8s;
     }
-
+    
     .container .box img {
       max-width: 100%;
       border-radius: 15px 15px 0px 0px;
     }
-
+    
     .bottom-left {
       /* for captions on top of image */
       position: absolute;
       bottom: 8px;
       left: 16px;
     }
-
-
+    
     @media (max-width: 1200px) {
       .container {
         max-width: 100%;
         width: calc(100%-40px);
         columns: 3;
       }
-
     }
-
+    
     @media (max-width: 768px) {
       .container {
         max-width: 100%;
         columns: 2;
       }
     }
-
+    
     @media (min-width: 480px) {
       .box:hover {
         transition: .8s;
@@ -269,21 +318,30 @@
         padding-bottom: 3%;
       }
     }
-
-
+    
     @media (max-width: 480px) {
       .container {
         max-width: 100%;
         columns: 1;
         height: auto;
       }
-
+    }
+    
+    /* Cookie notice */
+    #cookie-notice {
+      background-color: #343a40;
+      color: white;
+      z-index: 1000;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
     }
   </style>
-
 </head>
 
-<!-- ---------------------INTRO PARAGRAPH SECTION--------------------- -->
 <body>
   <!-- Navbar -->
   <nav class="custom-navbar">
@@ -364,137 +422,171 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
-  <div class="mobile-menu" id="mobile-menu">
-    <div class="mobile-section">
-      <div class="mobile-section-title">Menu</div>
-      <div class="dropdown-grid">
-        <a href="https://dugganco.com">
-          <div class="dropdown-item">Home</div>
-        </a>
-        <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
-          <div class="dropdown-item">HTML Resume</div>
-        </a>
-        <a href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
-          <div class="dropdown-item">PDF Resume</div>
-        </a>
-        <a href="https://dugganco.com">
-          <div class="dropdown-item">Cyber News</div>
-        </a>
-        <a href="https://dugganco.com/foodblog.html">
-          <div class="dropdown-item">Dan's Food Blog</div>
-        </a>
-        <a href="">
-          <div class="dropdown-item">(Coming Soon!)</div>
-        </a>
-      </div>
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-section">
+    <div class="mobile-section-title">Menu</div>
+    <div class="dropdown-grid">
+      <a href="https://dugganco.com">
+        <div class="dropdown-item">Home</div>
+      </a>
+      <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
+        <div class="dropdown-item">HTML Resume</div>
+      </a>
+      <a href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
+        <div class="dropdown-item">PDF Resume</div>
+      </a>
+      <a href="https://dugganco.com">
+        <div class="dropdown-item">Cyber News</div>
+      </a>
+      <a href="https://dugganco.com/foodblog.html">
+        <div class="dropdown-item">Dan's Food Blog</div>
+      </a>
+      <a href="">
+        <div class="dropdown-item">(Coming Soon!)</div>
+      </a>
     </div>
   </div>
-<br><br>
-This food blog started mainly as a small project for myself to learn Azure website hosting and some web development. I
-added
-some of my interests on here to let you know a little about myself and fill up some whitespace.
-</p>
-</section>
-
-<!-- ----------------------FOOD SECTION---------------------- https://www.youtube.com/watch?v=vIaduyqHPfY -->
-<section class="foodsection">
-  <br>
-  <h1 class="sectionheader" id="food">Food I've Been Cookin Up</h1>
-  <p class="sectiondescription">Click each link for the recipe I followed! Except for the ground turkey taco and
-    poached eggs, maybe one day I'll write up my own for those.</p>
-  <div class='container'>
-    <div class="box" id='box_1'><a href="https://www.youtube.com/watch?v=tspdJ6hxqnc" target="_blank"><img
-          src="https://i.imgur.com/nnL2mPH.jpg" title="Cheesecake" /></a>
-      <div class="foodcaption">That's a Cheesecake baby, hell yeah
-      </div>
+  <!-- <div class="mobile-section">
+    <div class="mobile-section-title">Solutions</div>
+    <div class="dropdown-grid">
+      <div class="dropdown-item">Option 1</div>
+      <div class="dropdown-item">Option 2</div>
+      <div class="dropdown-item">Option 3</div>
+      <div class="dropdown-item">Option 4</div>
+      <div class="dropdown-item">Option 5</div>
+      <div class="dropdown-item">Option 6</div>
     </div>
-    <div class='box' id='box_2'><a href="https://www.youtube.com/watch?v=ZdxSPFt4oxk" target="_blank"><img
-          src="https://i.imgur.com/nup64lW.jpg" title="Chicken Adobo" /></a>
-      <div class="foodcaption">Chicken adobo, and also my attempt at
-        being accepted by my girlfriend's family</div>
+  </div>
+  <div class="mobile-section">
+    <div class="mobile-section-title">Resources</div>
+    <div class="dropdown-grid">
+      <div class="dropdown-item">Option 1</div>
+      <div class="dropdown-item">Option 2</div>
+      <div class="dropdown-item">Option 3</div>
+      <div class="dropdown-item">Option 4</div>
+      <div class="dropdown-item">Option 5</div>
+      <div class="dropdown-item">Option 6</div>
     </div>
-    <div class='box' id='box_3'><a href="https://www.youtube.com/watch?v=zEJC1HvWuhE" target="_blank"><img
-          src="https://i.imgur.com/yU9EGoQ.jpg" title="Chicken and Broccoli" /></a>
-      <div class="foodcaption">Couldn't find any good Chinese
-        takeout when I lived in Texas, so I made my own</div>
+  </div>
+  <div class="mobile-section">
+    <div class="mobile-section-title">Company</div>
+    <div class="dropdown-grid">
+      <div class="dropdown-item">Option 1</div>
+      <div class="dropdown-item">Option 2</div>
+      <div class="dropdown-item">Option 3</div>
+      <div class="dropdown-item">Option 4</div>
+      <div class="dropdown-item">Option 5</div>
+      <div class="dropdown-item">Option 6</div>
     </div>
-    <div class='box' id='box_4'><a href="https://www.tiktok.com/t/ZT8MWJH5o/" target="_blank"><img
-          src="https://i.imgur.com/tuwL3Nb.jpg" title="French Onion Soup" /></a>
-      <div class="foodcaption">French Onion Soup, for when it's cold
-        out</div>
-    </div>
-    <div class='box' id='box_5'><a
-        href="https://www.ethanchlebowski.com/cooking-techniques-recipes/my-favorite-pizza-style-detroit?rq=pizza"
-        target="_blank"><img src="https://i.imgur.com/FDQvwj8.jpg" title="Pizza" /></a>
-      <div class="foodcaption">Detroit-style pizza, a classic
-        of mine now</div>
-    </div>
-    <div class='box' id='box_6'><a href="https://www.youtube.com/watch?v=P5cnh1xIxHo&pp=ygULcGVwb3NvIHN0ZXc%3D"
-        target="_blank"><img src="https://i.imgur.com/qXY3jhv.jpg" title="Peposo Stew" /></a>
-      <div class="foodcaption">This is called 'peposo
-        stew', it's an Italian-American peppery beef stew</div>
-    </div>
-    <div class='box' id='box_7'><a href="https://www.youtube.com/watch?v=p450gWjSKTc" target="_blank"><img
-          src="https://i.imgur.com/guGj62L.jpg" title="Irish Soda Bread" /></a>
-      <div class="foodcaption">Irish soda bread. Missed my mom's last
-        St Patrick's Day, so I made my own</div>
-    </div>
-    <div class='box' id='box_8'><img src="https://i.imgur.com/m0tspnj.jpg" title="Low-Calorie Ground Turkey Taco" /></a>
-      <div class="foodcaption">A low-calorie ground turkey taco. No link here, I came up with
-        this one on my own</div>
-    </div>
-    <div class='box' id='box_9'><a href="https://www.youtube.com/watch?v=d0OJSFXgNps" target="_blank"><img
-          src="https://i.imgur.com/TtFvZyI.jpg" title="Wonton Soup" /></a>
-      <div class="foodcaption">Wonton soup. Check out the Chicken and
-        Broccoli somewhere in this collage, too</div>
-    </div>
-    <div class='box' id='box_10'><img src="https://i.imgur.com/iadD15X.jpg" title="Poached Eggs" /></a>
-      <div class="foodcaption">You may not
-        like it, but this is THE SUPERIOR way to eat eggs (poached on an english muffin) - again no link to a recipe
-      </div>
-    </div>
-    <div class='box' id='box_11'><a href="https://www.youtube.com/watch?v=GoFIBYoOdyI" target="_blank"><img
-          src="https://i.imgur.com/jJ7taWS.jpg" title="Philly Cheesesteak Taco" /></a>
-      <div class="foodcaption">Wanted a philly cheesesteak, but
-        without all the bread
-      </div>
-    </div>
-    <div class='box' id='box_12'><a href="https://www.youtube.com/watch?v=_Nw3bDUpb7Q" target="_blank"><img
-          src="https://i.imgur.com/PH2hStI.jpg" title="Chicken Marsala" /></a>
-      <div class="foodcaption">Chicken Marsala, a classic my mom makes.
-        Mine is definitely not as good as hers</div>
-    </div>
+  </div> -->
   </div>
 
-  <!-- ---------------------COOKIE NOTICE SECTION--------------------- -->
-  <div id="cookie-notice" class="position-fixed bottom-0 w-100 p-2 text-bg-dark">
-    <p>This website uses cookies so that we can provide you with the best website experience. By clicking “I Accept”
-      you
-      acknowledge the use of cookies and to our <a href="#"><u>Privacy Policy</u></a>.</p>
-    <button type="button" id="i-accept" class="btn btn-primary">I Accept</button>
-  </div>
+  <!-- Main Content -->
+  <main id="main" class="content">
+    <p class="topparagraph">
+      This food blog started mainly as a small project for myself to learn Azure website hosting and some web development. I added
+      some of my interests on here to let you know a little about myself and fill up some whitespace.
+    </p>
+
+    <!-- Food Section -->
+    <section class="foodsection">
+      <br>
+      <h1 class="sectionheader" id="food">Food I've Been Cookin Up</h1>
+      <p class="sectiondescription">Click each link for the recipe I followed! Except for the ground turkey taco and
+        poached eggs, maybe one day I'll write up my own for those.</p>
+      <div class='container'>
+        <div class="box" id='box_1'><a href="https://www.youtube.com/watch?v=tspdJ6hxqnc" target="_blank"><img
+              src="https://i.imgur.com/nnL2mPH.jpg" title="Cheesecake" /></a>
+          <div class="foodcaption">That's a Cheesecake baby, hell yeah
+          </div>
+        </div>
+        <div class='box' id='box_2'><a href="https://www.youtube.com/watch?v=ZdxSPFt4oxk" target="_blank"><img
+              src="https://i.imgur.com/nup64lW.jpg" title="Chicken Adobo" /></a>
+          <div class="foodcaption">Chicken adobo, and also my attempt at
+            being accepted by my girlfriend's family</div>
+        </div>
+        <div class='box' id='box_3'><a href="https://www.youtube.com/watch?v=zEJC1HvWuhE" target="_blank"><img
+              src="https://i.imgur.com/yU9EGoQ.jpg" title="Chicken and Broccoli" /></a>
+          <div class="foodcaption">Couldn't find any good Chinese
+            takeout when I lived in Texas, so I made my own</div>
+        </div>
+        <div class='box' id='box_4'><a href="https://www.tiktok.com/t/ZT8MWJH5o/" target="_blank"><img
+              src="https://i.imgur.com/tuwL3Nb.jpg" title="French Onion Soup" /></a>
+          <div class="foodcaption">French Onion Soup, for when it's cold
+            out</div>
+        </div>
+        <div class='box' id='box_5'><a
+            href="https://www.ethanchlebowski.com/cooking-techniques-recipes/my-favorite-pizza-style-detroit?rq=pizza"
+            target="_blank"><img src="https://i.imgur.com/FDQvwj8.jpg" title="Pizza" /></a>
+          <div class="foodcaption">Detroit-style pizza, a classic
+            of mine now</div>
+        </div>
+        <div class='box' id='box_6'><a href="https://www.youtube.com/watch?v=P5cnh1xIxHo&pp=ygULcGVwb3NvIHN0ZXc%3D"
+            target="_blank"><img src="https://i.imgur.com/qXY3jhv.jpg" title="Peposo Stew" /></a>
+          <div class="foodcaption">This is called 'peposo
+            stew', it's an Italian-American peppery beef stew</div>
+        </div>
+        <div class='box' id='box_7'><a href="https://www.youtube.com/watch?v=p450gWjSKTc" target="_blank"><img
+              src="https://i.imgur.com/guGj62L.jpg" title="Irish Soda Bread" /></a>
+          <div class="foodcaption">Irish soda bread. Missed my mom's last
+            St Patrick's Day, so I made my own</div>
+        </div>
+        <div class='box' id='box_8'><img src="https://i.imgur.com/m0tspnj.jpg" title="Low-Calorie Ground Turkey Taco" /></a>
+          <div class="foodcaption">A low-calorie ground turkey taco. No link here, I came up with
+            this one on my own</div>
+        </div>
+        <div class='box' id='box_9'><a href="https://www.youtube.com/watch?v=d0OJSFXgNps" target="_blank"><img
+              src="https://i.imgur.com/TtFvZyI.jpg" title="Wonton Soup" /></a>
+          <div class="foodcaption">Wonton soup. Check out the Chicken and
+            Broccoli somewhere in this collage, too</div>
+        </div>
+        <div class='box' id='box_10'><img src="https://i.imgur.com/iadD15X.jpg" title="Poached Eggs" /></a>
+          <div class="foodcaption">You may not
+            like it, but this is THE SUPERIOR way to eat eggs (poached on an english muffin) - again no link to a recipe
+          </div>
+        </div>
+        <div class='box' id='box_11'><a href="https://www.youtube.com/watch?v=GoFIBYoOdyI" target="_blank"><img
+              src="https://i.imgur.com/jJ7taWS.jpg" title="Philly Cheesesteak Taco" /></a>
+          <div class="foodcaption">Wanted a philly cheesesteak, but
+            without all the bread
+          </div>
+        </div>
+        <div class='box' id='box_12'><a href="https://www.youtube.com/watch?v=_Nw3bDUpb7Q" target="_blank"><img
+              src="https://i.imgur.com/PH2hStI.jpg" title="Chicken Marsala" /></a>
+          <div class="foodcaption">Chicken Marsala, a classic my mom makes.
+            Mine is definitely not as good as hers</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cookie Notice -->
+
+
+  <!-- Footer -->
   <footer>
     <small>©
       <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.
     </small>
   </footer>
-  <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript">
-      (function ($) {
-        $('#i-accept').on('click', function () {
-          if (localStorage.hidecookiebar !== '1') {
-            $('#cookie-notice').hide();
-            localStorage.hidecookiebar = '1';
-          }
-        });
-        if (localStorage.hidecookiebar == '1') {
-          $('#cookie-notice').hide();
-        };
-      })(jQuery);
-  </script>
-  </body>
 
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg6W2N/68/4Rcy+2pYBbyox1D6Z+eI1lC26bLrY8yk=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>
+    // Toggle mobile menu using the hamburger button
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburgerBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+    
+    
+  </script>
+</body>
 </html>
