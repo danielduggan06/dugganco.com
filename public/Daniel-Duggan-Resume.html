@@ -415,6 +415,11 @@
             background: #333;
             color: #ddd;
         }
+        body.light-mode .sectiondiv:hover,
+        body.light-mode .sectiondivexp:hover {
+            background: #C0C0C0;
+            color: #2F5496;
+        }
         @media (prefers-color-scheme: dark) {
             body:not(.light-mode) {
                 background: #121212;
@@ -438,8 +443,8 @@
             .s1:not(.light-mode), .s2:not(.light-mode) {
                 color: #eee;
             }
-            .sectiondiv:not(.light-mode):hover,
-            .sectiondivexp:not(.light-mode):hover {
+            body:not(.light-mode) .sectiondiv:hover,
+            body:not(.light-mode) .sectiondivexp:hover {
                 background: #333;
                 color: #ddd;
             }
