@@ -25,34 +25,35 @@
             /* Offset for fixed navbar */
         }
 
-        .s1 {
-            font-family: serif;
-            font-weight: normal;
-            font-size: 12pt;
+        .resume-header {
             text-align: center;
-            text-align: vertical;
-            margin-top: 20pt;
-            margin-bottom: -1em;
-            margin-left: 2%;
-            margin-right: 2%;
+            margin: 20px 2% 10px;
         }
 
-        .s2 {
+        .resume-name {
             font-family: serif;
             font-weight: bold;
             font-size: 18pt;
-            margin-top: 20pt;
-            margin-bottom: -1em;
+            margin-bottom: 0.4em;
         }
 
-        .s3 {
+        .resume-links {
             font-family: serif;
-            font-weight: normal;
             font-size: 12pt;
-            text-align: center;
-            text-align: vertical;
-            margin-top: 10px;
-            margin-bottom: -1em;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem 1rem;
+        }
+
+        .resume-links .separator {
+            color: #aaa;
+        }
+
+        @media (max-width: 600px) {
+            .resume-links .separator {
+                display: none;
+            }
         }
 
         h1 {
@@ -166,8 +167,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
             font-family: 'Inter', sans-serif;
             position: fixed;
-            text-align: center;
-            text-align: vertical;
             top: 0;
             width: 100%;
             z-index: 1000;
@@ -178,6 +177,7 @@
             position: relative;
             max-width: 1200px;
             margin: 0 auto;
+            margin-left: 0;
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
@@ -266,9 +266,7 @@
 
         .dropdown-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, auto);
-            gap: 0.75rem;
+          grid-template-columns: repeat(3, 1fr);
         }
 
         .dropdown-item {
@@ -287,30 +285,38 @@
 
         /* ---------------------- */
         /* Mobile Navbar Styles */
-        /* ---------------------- */
-        /* Default: hide hamburger button */
+        /* Always show hamburger button */
         .hamburger {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: #333;
+            z-index: 300;
+        }
+
+        /* Always hide nav menu text */
+        .nav-links-container {
             display: none;
         }
 
-        /* For viewports less than 1100px, show hamburger and hide desktop nav links */
+        /* mobile responsive adjustments */
         @media (max-width: 1100px) {
-            .nav-links-container {
-                display: none;
+            .nav-brand a {
+                font-size: 1rem;
             }
 
-            .hamburger {
-                display: block;
-                position: absolute;
-                top: 50%;
-                right: 2rem;
-                transform: translateY(-50%);
-                cursor: pointer;
-                font-size: 1.5rem;
-                background: none;
-                border: none;
-                color: #333;
-                z-index: 300;
+            .custom-navbar {
+                padding: 0.5rem 0;
+            }
+
+            body {
+                padding-top: 50px;
             }
         }
 
@@ -318,12 +324,11 @@
         .mobile-menu {
             display: none;
             position: fixed;
-            top: 60px;
+            top: 50px;
             left: 0;
             width: 100%;
-            height: calc(100% - 60px);
+            height: auto;
             background: #fff;
-            overflow-y: auto;
             padding: 1rem;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             z-index: 200;
@@ -331,6 +336,97 @@
 
         .mobile-menu.active {
             display: block;
+        }
+
+        /* dark mode support */
+        body.dark-mode {
+            background: #121212;
+            color: #eee;
+        }
+        body.light-mode {
+            background: #fff;
+            color: #333;
+        }
+        body.light-mode .custom-navbar {
+            background: #fff;
+            border-bottom: 1px solid #EFF1F3;
+        }
+        body.light-mode a {
+            color: #007bff;
+        }
+        body.light-mode .nav-brand a {
+            color: #000;
+        }
+        body.light-mode .dropdown-item {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+        body.light-mode .mobile-menu {
+            background: #fff;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+        body.dark-mode .custom-navbar {
+            background: #1e1e1e;
+            border-bottom: 1px solid #333;
+        }
+        body.dark-mode a {
+            color: #bb86fc;
+        }
+        body.dark-mode .nav-brand a {
+            color: #fff;
+        }
+        body.dark-mode .hamburger {
+            color: #fff;
+        }
+        body.dark-mode .dropdown-item {
+            background: #2a2a2a;
+            color: #eee;
+        }
+        body.dark-mode .mobile-menu {
+            background: #1e1e1e;
+            color: #eee;
+        }
+        /* ensure main document text also flips in dark mode */
+        body.dark-mode p,
+        body.dark-mode li,
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3,
+        body.dark-mode h4, body.dark-mode h5, body.dark-mode h6,
+        body.dark-mode .resume-name, body.dark-mode .resume-links,
+        body.dark-mode .s5, body.dark-mode .s6, body.dark-mode .s8,
+        body.dark-mode .s9, body.dark-mode .s10, body.dark-mode .s11,
+        body.dark-mode .s13 {
+            color: #eee;
+        }
+        body.dark-mode h1 {
+            /* dark variant for heading backgrounds */
+            background-color: #333;
+            color: #ddd;
+        }
+        @media (prefers-color-scheme: dark) {
+            body:not(.light-mode) {
+                background: #121212;
+                color: #eee;
+            }
+            .custom-navbar:not(.light-mode) {
+                background: #1e1e1e;
+                border-bottom: 1px solid #333;
+            }
+            a:not(.light-mode) {
+                color: #bb86fc;
+            }
+            .dropdown-item:not(.light-mode) {
+                background: #2a2a2a;
+                color: #eee;
+            }
+            .mobile-menu:not(.light-mode) {
+                background: #1e1e1e;
+                color: #eee;
+            }
+            .s1:not(.light-mode), .s2:not(.light-mode) {
+                color: #eee;
+            }
         }
 
         .mobile-section {
@@ -341,6 +437,14 @@
             font-weight: 600;
             margin: 1rem 0 0.5rem;
             color: #0070F3;
+            text-align: center;
+        }
+
+        .dropdown-header {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         .mobile-menu .dropdown-item {
@@ -358,8 +462,7 @@
     }
 
         .mobile-menu .dropdown-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
+          grid-template-columns: repeat(2, 1fr);
         }
 
         /* Responsive adjustments for resume content */
@@ -376,6 +479,7 @@
                 margin-bottom: 5px;
             }
         }
+
     </style>
 </head>
 
@@ -385,7 +489,7 @@
     <nav class="custom-navbar">
         <div class="container">
             <div class="nav-brand">
-                <a href="#">Dan Duggan</a>
+                <a href="https://dugganco.com">Duggan Cyber Operations</a>
             </div>
             <div class="nav-links-container">
                 <ul class="nav-links">
@@ -394,6 +498,10 @@
                         <a href="#summary">Menu</a>
                         <div class="dropdown">
                             <div class="dropdown-grid">
+                                <div class="dropdown-header">Menu</div>
+                                <a href="#" onclick="toggleTheme();return false;">
+                                    <div class="dropdown-item">Toggle Theme</div>
+                                </a>
                                 <a href="https://dugganco.com">
                                     <div class="dropdown-item">Home</div>
                                 </a>
@@ -404,14 +512,15 @@
                                     href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
                                     <div class="dropdown-item">PDF Resume</div>
                                 </a>
-                                <a href="https://dugganco.com">
-                                    <div class="dropdown-item">Cyber News</div>
-                                </a>
+
                                 <a href="https://dugganco.com/foodblog.html">
                                     <div class="dropdown-item">Dan's Food Blog</div>
                                 </a>
-                                <a href="">
-                                    <div class="dropdown-item">(Coming Soon!)</div>
+                                <a href="https://plexrequest.dugganco.com">
+                                    <div class="dropdown-item">Plex Request</div>
+                                </a>
+                                <a href="https://nextcloud.dugganco.com">
+                                    <div class="dropdown-item">Nextcloud</div>
                                 </a>
                             </div>
                         </div>
@@ -446,64 +555,66 @@
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-section">
+            <div class="mobile-section-title">Menu</div>
+            <div class="dropdown-grid">
+                <a href="#" onclick="toggleTheme();return false;">
+                    <div class="dropdown-item">Light/Dark Mode</div>
+                </a>
+                <a href="https://dugganco.com">
+                    <div class="dropdown-item">Home</div>
+                </a>
+                <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
+                    <div class="dropdown-item">HTML Resume</div>
+                </a>
+                <a href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
+                    <div class="dropdown-item">PDF Resume</div>
+                </a>
+                <a href="https://dugganco.com/foodblog.html">
+                    <div class="dropdown-item">Dan's Food Blog</div>
+                </a>
+                <a href="https://plexrequest.dugganco.com">
+                    <div class="dropdown-item">Plex Request</div>
+                </a>
+                <a href="https://nextcloud.dugganco.com">
+                    <div class="dropdown-item">Nextcloud</div>
+                </a>
+            </div>
+        </div>
+        <div class="mobile-section">
             <div class="mobile-section-title">Resume Sections</div>
-            <div class="dropdown-grid"><!-- Mobile Menu Overlay -->
-                <div class="mobile-menu" id="mobile-menu">
-                    <div class="mobile-section">
-                        <div class="mobile-section-title">Menu</div>
-                        <div class="dropdown-grid">
-                            <a href="https://dugganco.com">
-                                <div class="dropdown-item">Home</div>
-                            </a>
-                            <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
-                                <div class="dropdown-item">HTML Resume</div>
-                            </a>
-                            <a
-                                href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
-                                <div class="dropdown-item">PDF Resume</div>
-                            </a>
-                            <a href="https://dugganco.com">
-                                <div class="dropdown-item">Cyber News</div>
-                            </a>
-                            <a href="https://dugganco.com/foodblog.html">
-                                <div class="dropdown-item">Dan's Food Blog</div>
-                            </a>
-                            <a href="">
-                                <div class="dropdown-item">(Coming Soon!)</div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="dropdown-item"><a href="#summary" style="text-decoration: none; color: inherit;">Summary</a>
-                </div>
-                <div class="dropdown-item"><a href="#competencies"
-                        style="text-decoration: none; color: inherit;">Competencies</a></div>
-                <div class="dropdown-item"><a href="#experience"
-                        style="text-decoration: none; color: inherit;">Experience</a></div>
-                <div class="dropdown-item"><a href="#education"
-                        style="text-decoration: none; color: inherit;">Education</a></div>
-                <div class="dropdown-item"><a href="#certifications"
-                        style="text-decoration: none; color: inherit;">Certifications</a></div>
-                <div class="dropdown-item"><a href="#" style="text-decoration: none; color: inherit;">Top</a></div>
+            <div class="dropdown-grid">
+                <a href="#summary" style="text-decoration: none;">
+                    <div class="dropdown-item">Summary</div>
+                </a>
+                <a href="#competencies" style="text-decoration: none;">
+                    <div class="dropdown-item">Competencies</div>
+                </a>
+                <a href="#experience" style="text-decoration: none;">
+                    <div class="dropdown-item">Experience</div>
+                </a>
+                <a href="#education" style="text-decoration: none;">
+                    <div class="dropdown-item">Education</div>
+                </a>
+                <a href="#certifications" style="text-decoration: none;">
+                    <div class="dropdown-item">Certifications</div>
+                </a>
+                <a href="#" style="text-decoration: none;">
+                    <div class="dropdown-item">Top</div>
+                </a>
             </div>
         </div>
     </div>
 
-    <p class="s1"> <span style="float: left"><a
-                href="mailto:daniel.duggan06@gmail.com">daniel.duggan06@gmail.com</a></span>
-        <a class="s2"> <span style="float: center;">Daniel Duggan &#160;&#160;&#160;&#160;&#160;&#160;&#160;</span></a>
-        <span style="float: right">
-            <a class="s1">PDF Version: <a href
-                    link="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">Resume</a></a>
-    </p>
-    <p class="s3">
-        <span style="float: left"></span>
-        <span style="float: right">Github: <a href link="http://github.com/danielduggan06">danielduggan06</a></span>
-    </p>
-
-
-
-    <br>
+    <div class="resume-header">
+        <div class="resume-name">Daniel Duggan</div>
+        <div class="resume-links">
+            <a href="mailto:daniel.duggan06@gmail.com">daniel.duggan06@gmail.com</a>
+            <span class="separator">|</span>
+            <a href="http://github.com/danielduggan06" target="_blank">github.com/danielduggan06</a>
+            <span class="separator">|</span>
+            <a href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf" target="_blank">PDF Version</a>
+        </div>
+    </div>
 
     <div class="sectiondiv" id="summary">
         <hr style="height: 4px; background:black; margin-bottom: -1em">
@@ -781,6 +892,29 @@
                 }
             });
         });
+
+        // theme tracking
+        const applyTheme = (theme) => {
+            // clear previous mode
+            document.body.classList.remove('dark-mode', 'light-mode');
+            if (theme === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.add('light-mode');
+            }
+        };
+        // expose function globally for menu links
+        window.toggleTheme = () => {
+            const current = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+            localStorage.setItem('theme', next);
+        };
+        let savedTheme = localStorage.getItem('theme');
+        if (!savedTheme) {
+            savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        applyTheme(savedTheme);
     </script>
 </body>
 
