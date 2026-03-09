@@ -59,6 +59,7 @@
       position: relative;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 2%;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
@@ -382,11 +383,10 @@
     }
     
     .container {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
-      width: 1400px;
+      max-width: 1200px;
       margin: 20px auto;
+      padding: 0 2%;
       columns: 4;
       column-gap: 20px;
     }
@@ -639,8 +639,17 @@
     // Toggle mobile menu using the hamburger button
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       mobileMenu.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (mobileMenu.classList.contains('active') &&
+          !mobileMenu.contains(e.target) &&
+          !hamburgerBtn.contains(e.target)) {
+        mobileMenu.classList.remove('active');
+      }
     });
 
     // theme toggle logic
