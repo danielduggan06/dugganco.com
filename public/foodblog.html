@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dan Duggan's Food Blog</title>
+  <title>Dan's Delicious Dinners &amp; Dishes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="title" property="og:title" content="Dan Duggan's Website">
   <meta property="og:type" content="Personal Blog">
@@ -31,13 +31,7 @@
     
     h1 {
       text-align: center;
-      padding-top: 3%;
-      }
-
-    .topparagraph {
-      text-align: center;
-      margin-left: 40%;
-      margin-right: 33%
+      margin-top: 1.5rem;
     }
 
     /* ---------------------- */
@@ -362,10 +356,23 @@
       margin-right: 10%;
     }
     
+    .page-header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2%;
+    }
+
+    .tagline {
+      text-align: center;
+      font-style: italic;
+      color: #888;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+
     .topparagraph {
-      margin-top: 5%;
-      margin-left: 10%;
-      margin-right: 10%;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
       text-align: justify;
     }
     
@@ -425,9 +432,6 @@
         max-width: 100%;
         columns: 2;
       }
-      h1 {
-        padding-top: 10%;
-      }
     }
     
     @media (min-width: 480px) {
@@ -446,9 +450,6 @@
         max-width: 100%;
         columns: 1;
         height: auto;
-      }
-      h1 {
-        padding-top: 15%;
       }
     }
     
@@ -543,11 +544,12 @@
 
   <!-- Main Content -->
   <main id="main" class="content">
-    <h1>Dan's Thuggin' Duggan Food Blog</h1>
-  </main>
-
-    <div id="topparagraph" class="topparagraph">
-      This whole site started mainly as a small project for myself to learn website hosting and some web development, and I used this content for something to put on there. Gotta pay respects to that.
+    <div class="page-header">
+      <h1>Dan's Delicious Dinners &amp; Dishes</h1>
+      <p class="tagline">Welcome to Flavortown</p>
+      <div id="topparagraph" class="topparagraph">
+        This whole site started mainly as a small project for myself to learn website hosting and some web development, and I used this content for something to put on there. Gotta pay respects to that.
+      </div>
     </div>
 
     <!-- Food Section -->
@@ -619,6 +621,7 @@
       </div>
     </section>
   </main>
+
 
   <!-- Cookie Notice -->
 
