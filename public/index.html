@@ -267,6 +267,55 @@
 
 
     /* ---------------------- */
+    /* Search Bar */
+    /* ---------------------- */
+    .search-bar-container {
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      padding: 0 2%;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    #feed-search {
+      flex: 1;
+      padding: 0.55rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      background: #fff;
+      color: #333;
+      transition: border-color 0.2s;
+    }
+    #feed-search:focus {
+      outline: none;
+      border-color: #0070F3;
+    }
+    #search-count {
+      font-size: 0.8rem;
+      color: #888;
+      white-space: nowrap;
+    }
+    body.dark-mode #feed-search {
+      background: #1e1e1e;
+      color: #eee;
+      border-color: #444;
+    }
+    body.light-mode #feed-search {
+      background: #fff;
+      color: #333;
+      border-color: #ddd;
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not(.light-mode) #feed-search {
+        background: #1e1e1e;
+        color: #eee;
+        border-color: #444;
+      }
+    }
+
+    /* ---------------------- */
     /* Feed Styles */
     /* ---------------------- */
     .grid-container {
@@ -497,46 +546,7 @@
               </div>
             </div>
           </li>
-          <!-- <li class="nav-item">
-              <a href="#">Solutions</a>
-              <div class="dropdown">
-                <div class="dropdown-grid">
-                  <div class="dropdown-item">Option 1</div>
-                  <div class="dropdown-item">Option 2</div>
-                  <div class="dropdown-item">Option 3</div>
-                  <div class="dropdown-item">Option 4</div>
-                  <div class="dropdown-item">Option 5</div>
-                  <div class="dropdown-item">Option 6</div>
-                </div>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="#">Resources</a>
-              <div class="dropdown">
-                <div class="dropdown-grid">
-                  <div class="dropdown-item">Option 1</div>
-                  <div class="dropdown-item">Option 2</div>
-                  <div class="dropdown-item">Option 3</div>
-                  <div class="dropdown-item">Option 4</div>
-                  <div class="dropdown-item">Option 5</div>
-                  <div class="dropdown-item">Option 6</div>
-                </div>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a href="#">Company</a>
-              <div class="dropdown">
-                <div class="dropdown-grid">
-                  <div class="dropdown-item">Option 1</div>
-                  <div class="dropdown-item">Option 2</div>
-                  <div class="dropdown-item">Option 3</div>
-                  <div class="dropdown-item">Option 4</div>
-                  <div class="dropdown-item">Option 5</div>
-                  <div class="dropdown-item">Option 6</div>
-                </div>
-              </div>
-            </li>
-          </ul> -->
+          
       </div>
       <!-- Hamburger button for mobile (only visible below 1100px) -->
       <button class="hamburger" id="hamburger-btn">&#9776;</button>
@@ -579,6 +589,10 @@
   <!-- Main Content (RSS Feed) -->
   <main id="main" class="content">
     <h1>Latest Security News</h1>
+    <div class="search-bar-container">
+      <input type="text" id="feed-search" placeholder="Search articles..." autocomplete="off" />
+      <span id="search-count"></span>
+    </div>
     <div id="feed-container" class="grid-container">
       Loading feeds...
     </div>
@@ -636,6 +650,8 @@
       return response.json();
     }
 
+    let allFeedItems = [];
+
     async function loadFeeds() {
       const CACHE_KEY = 'cachedFeedData';
       const CACHE_TIMESTAMP_KEY = 'cachedFeedTimestamp';
@@ -645,7 +661,8 @@
       const cachedTimestamp = localStorage.getItem(CACHE_TIMESTAMP_KEY);
 
       if (cachedData && cachedTimestamp && (now - cachedTimestamp < CACHE_EXPIRY)) {
-        displayFeedItems(JSON.parse(cachedData));
+        allFeedItems = JSON.parse(cachedData);
+        displayFeedItems(allFeedItems);
         return;
       }
 
@@ -703,11 +720,17 @@
       allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
       localStorage.setItem(CACHE_KEY, JSON.stringify(allItems));
       localStorage.setItem(CACHE_TIMESTAMP_KEY, now.toString());
-      displayFeedItems(allItems);
+      allFeedItems = allItems;
+      displayFeedItems(allFeedItems);
     }
 
     function displayFeedItems(items) {
       const container = document.getElementById('feed-container');
+      const countEl = document.getElementById('search-count');
+      if (countEl) {
+        const q = document.getElementById('feed-search')?.value.trim();
+        countEl.textContent = q ? `${items.length} result${items.length !== 1 ? 's' : ''}` : '';
+      }
       if (items.length === 0) {
         container.innerHTML = '<p>No items to display.</p>';
         return;
@@ -785,6 +808,20 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       loadFeeds();
+
+      document.getElementById('feed-search').addEventListener('input', (e) => {
+        const q = e.target.value.trim().toLowerCase();
+        if (!q) {
+          displayFeedItems(allFeedItems);
+          return;
+        }
+        const filtered = allFeedItems.filter(item =>
+          (item.title || '').toLowerCase().includes(q) ||
+          (item.description || '').toLowerCase().includes(q) ||
+          (item.source || '').toLowerCase().includes(q)
+        );
+        displayFeedItems(filtered);
+      });
       // theme toggle logic
       const applyTheme = (theme) => {
         // remove any existing mode class first
