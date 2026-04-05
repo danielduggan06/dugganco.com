@@ -1,959 +1,1154 @@
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
-    <meta name="author" content="dduggan" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Daniel Duggan Resume (as an HTML webpage) </title>
+  <meta charset="UTF-8" />
+  <title>Daniel Duggan Resume | Duggan Cyber Operations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="title" property="og:title" content="Daniel Duggan Resume" />
+  <meta property="og:type" content="profile" />
+  <meta name="image" property="og:image" content="https://i.imgur.com/3xlEfYc.png" />
+  <meta name="description" property="og:description" content="Recruiter-first web resume for Daniel Duggan, focused on cybersecurity operations, incident response, financial sector security, and modern security tooling." />
+  <meta name="author" content="Dan Duggan" />
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263" crossorigin="anonymous"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap" />
-    <style type="text/css">
-        .resume-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2%;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" />
 
-        body {
-            margin: 0;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            background: #fff;
-            color: #333;
-            padding-top: 80px;
-            /* Offset for fixed navbar */
-        }
-
-        .resume-header {
-            text-align: center;
-            margin: 20px 0 10px;
-        }
-
-        .resume-name {
-            font-family: serif;
-            font-weight: bold;
-            font-size: 18pt;
-            margin-bottom: 0.4em;
-        }
-
-        .resume-links {
-            font-family: serif;
-            font-size: 12pt;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.4rem 1rem;
-        }
-
-        .resume-links .separator {
-            color: #aaa;
-        }
-
-        @media (max-width: 600px) {
-            .resume-links .separator {
-                display: none;
-            }
-        }
-
-        h1 {
-            color: #2F5496;
-            background-color: #C0C0C0;
-            font-family: serif;
-            font-weight: bold;
-            font-size: 14pt;
-            text-align: center;
-        }
-
-        .s5 {
-            font-family: serif;
-            font-weight: normal;
-        }
-
-        .s6 {
-            background-color: #FFF;
-            font-family: serif;
-            font-weight: bold;
-        }
-
-        .s8 {
-            color: #2F5496;
-            background-color: #FFF;
-            font-family: serif;
-            font-weight: normal;
-            font-size: 10pt;
-        }
-
-        p {
-            font-family: serif;
-            font-weight: normal;
-            margin: 5px;
-
-        }
-
-        .s9 {
-            font-family: serif;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .s10 {
-            font-family: serif;
-            font-weight: bold;
-            color: #2F5496;
-            float: right;
-        }
-
-        .s11 {
-            color: #2F5496;
-            font-family: serif;
-            font-weight: normal;
-        }
-
-        .s13 {
-            font-family: serif;
-            font-weight: normal;
-        }
-
-        .competencies {
-            -webkit-column-count: 3;
-            -moz-column-count: 3;
-            column-count: 3;
-            list-style-type: none;
-        }
-
-        ul {
-            list-style-type: disc;
-        }
-
-        li:hover {
-            color: black;
-        }
-
-        .sectiondiv,
-        .sectiondivexp {
-            transition: .8s;
-        }
-
-        .sectiondiv:hover {
-            border-radius: 15px;
-            padding-bottom: 3px;
-            padding-left: 1.4%;
-            padding-right: 1.4%;
-            color: #2F5496;
-            background: #C0C0C0;
-            transition: .8s;
-            transform: scale(1.03);
-        }
-
-        .sectiondivexp:hover {
-            padding-top: 2px;
-            border-radius: 15px;
-            padding-bottom: 3px;
-            padding-left: 1.4%;
-            padding-right: 1.4%;
-            color: #2F5496;
-            background: #C0C0C0;
-            transition: .8s;
-            transform: scale(1.03);
-        }
-
-        /* ---------------------- */
-        /* Navbar (Desktop & Mobile) */
-        /* ---------------------- */
-        .custom-navbar {
-            background: #fff;
-            border-bottom: 1px solid #EFF1F3;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-            font-family: 'Inter', sans-serif;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        .custom-navbar .container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2%;
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-        }
-
-        /* Brand positioned to the left */
-        .nav-brand {
-            grid-column: 1 / 2;
-        }
-
-        .nav-brand a {
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .nav-brand img {
-            max-height: 50px;
-            width: auto;
-        }
-
-        /* Desktop nav links in the center */
-        .nav-links-container {
-            grid-column: 2 / 3;
-            display: flex;
-            justify-content: center;
-        }
-
-        ul.nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        li.nav-item {
-            position: relative;
-        }
-
-        li.nav-item>a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        li.nav-item>a::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background-color: #0070F3;
-            transition: width 0.3s ease-out;
-        }
-
-        li.nav-item>a:hover::after {
-            width: 100%;
-        }
-
-    /* Desktop dropdown for nav items */
-    .dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      /* Increase width for better hover coverage */
-      padding: 1.5rem;
-      /* Slightly increase padding for usability */
-
-      background: #fff;
-      border: 1px solid #EFF1F3;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-      z-index: 100;
+  <style>
+    :root {
+      --bg:            #050d1a;
+      --surface:       #0a1828;
+      --surface-2:     #0f2035;
+      --surface-3:     #162840;
+      --border:        #1a3354;
+      --border-subtle: #0f2035;
+      --accent:        #3b82f6;
+      --accent-2:      #60a5fa;
+      --accent-dim:    rgba(59,130,246,0.12);
+      --accent-glow:   rgba(59,130,246,0.22);
+      --text:          #e2eaf5;
+      --text-2:        #7a97b8;
+      --text-3:        #3d5a7a;
+      --white:         #ffffff;
+      --navbar-h:      64px;
+      --r:             12px;
+      --r-sm:          8px;
+      --t:             0.2s ease;
     }
 
-        li.nav-item:hover .dropdown {
-            display: block;
-        }
+    body.light-mode {
+      --bg:            #eef3fc;
+      --surface:       #ffffff;
+      --surface-2:     #e4ecf8;
+      --surface-3:     #d8e4f4;
+      --border:        #bdd0ec;
+      --border-subtle: #d8e4f4;
+      --accent:        #1d4ed8;
+      --accent-2:      #2563eb;
+      --accent-dim:    rgba(29,78,216,0.09);
+      --accent-glow:   rgba(29,78,216,0.16);
+      --text:          #0a1628;
+      --text-2:        #3a5a80;
+      --text-3:        #8aabbf;
+    }
 
-        .dropdown-grid {
-            display: grid;
-          grid-template-columns: repeat(3, 1fr);
-        }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-        .dropdown-item {
-            background: #F9F9F9;
-            padding: 0.75rem;
-            text-align: center;
-            border: 1px solid #EFF1F3;
-            border-radius: 4px;
-            transition: background 0.3s ease;
-            cursor: pointer;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding-top: var(--navbar-h);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-        .dropdown-item:hover {
-            background: #E6F0FF;
-        }
+    a { color: inherit; text-decoration: none; }
 
-        /* ---------------------- */
-        /* Mobile Navbar Styles */
-        /* Always show hamburger button */
-        .hamburger {
-            display: block;
-            grid-column: 3 / 4;
-            justify-self: end;
-            cursor: pointer;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: #333;
-            z-index: 1001;
-            padding: 0;
-        }
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--navbar-h);
+      background: rgba(5, 13, 26, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
 
-        /* Always hide nav menu text */
-        .nav-links-container {
-            display: none;
-        }
+    body.light-mode .navbar { background: rgba(238, 243, 252, 0.88); }
 
-        /* mobile responsive adjustments */
-        @media (max-width: 1100px) {
-            .nav-brand a {
-                font-size: 1rem;
-            }
+    .navbar-inner {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
 
-            .custom-navbar {
-                padding: 0.5rem 0;
-            }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
 
-            body {
-                padding-top: 50px;
-            }
-        }
+    .nav-brand-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
 
-        /* Mobile menu overlay */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 1200px;
-            height: auto;
-            background: #fff;
-            padding: 1rem 2%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            z-index: 200;
-        }
+    .nav-brand-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
 
-        .mobile-menu.active {
-            display: block;
-        }
+    .nav-brand-text span { color: var(--accent); }
 
-        /* dark mode support */
-        body.dark-mode {
-            background: #121212;
-            color: #eee;
-        }
-        body.light-mode {
-            background: #fff;
-            color: #333;
-        }
-        body.light-mode .custom-navbar {
-            background: #fff;
-            border-bottom: 1px solid #EFF1F3;
-        }
-        body.light-mode a {
-            color: #007bff;
-        }
-        body.light-mode .nav-brand a {
-            color: #000;
-        }
-        body.light-mode .dropdown-item {
-            background: #f5f5f5;
-            border: 1px solid #ddd;
-            color: #333;
-        }
-        body.light-mode .mobile-menu {
-            background: #fff;
-            border: 1px solid #ddd;
-            color: #333;
-        }
-        body.dark-mode .custom-navbar {
-            background: #1e1e1e;
-            border-bottom: 1px solid #333;
-        }
-        body.dark-mode a {
-            color: #bb86fc;
-        }
-        body.dark-mode .nav-brand a {
-            color: #fff;
-        }
-        body.dark-mode .hamburger {
-            color: #fff;
-        }
-        body.dark-mode .dropdown-item {
-            background: #2a2a2a;
-            color: #eee;
-        }
-        body.dark-mode .mobile-menu {
-            background: #1e1e1e;
-            color: #eee;
-        }
-        /* ensure main document text also flips in dark mode */
-        body.dark-mode p,
-        body.dark-mode li,
-        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3,
-        body.dark-mode h4, body.dark-mode h5, body.dark-mode h6,
-        body.dark-mode .resume-name, body.dark-mode .resume-links,
-        body.dark-mode .s5, body.dark-mode .s6, body.dark-mode .s8,
-        body.dark-mode .s9, body.dark-mode .s10, body.dark-mode .s11,
-        body.dark-mode .s13 {
-            color: #eee;
-        }
-        body.dark-mode h1 {
-            /* dark variant for heading backgrounds */
-            background-color: #333;
-            color: #ddd;
-        }
-        body.dark-mode .sectiondiv:hover,
-        body.dark-mode .sectiondivexp:hover {
-            background: #333;
-            color: #ddd;
-        }
-        body.light-mode .sectiondiv:hover,
-        body.light-mode .sectiondivexp:hover {
-            background: #C0C0C0;
-            color: #2F5496;
-        }
-        @media (prefers-color-scheme: dark) {
-            body:not(.light-mode) {
-                background: #121212;
-                color: #eee;
-            }
-            .custom-navbar:not(.light-mode) {
-                background: #1e1e1e;
-                border-bottom: 1px solid #333;
-            }
-            a:not(.light-mode) {
-                color: #bb86fc;
-            }
-            .dropdown-item:not(.light-mode) {
-                background: #2a2a2a;
-                color: #eee;
-            }
-            .mobile-menu:not(.light-mode) {
-                background: #1e1e1e;
-                color: #eee;
-            }
-            .s1:not(.light-mode), .s2:not(.light-mode) {
-                color: #eee;
-            }
-            body:not(.light-mode) .sectiondiv:hover,
-            body:not(.light-mode) .sectiondivexp:hover {
-                background: #333;
-                color: #ddd;
-            }
-        }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
 
-        .mobile-section {
-            margin-bottom: 2rem;
-        }
+    .nav-links a {
+      display: block;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--r-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: color var(--t), background var(--t);
+      white-space: nowrap;
+    }
 
-        .mobile-section-title {
-            font-weight: 600;
-            margin: 1rem 0 0.5rem;
-            color: #0070F3;
-            text-align: center;
-        }
+    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+    .nav-links a.active { color: var(--accent); background: var(--accent-dim); }
 
-        .dropdown-header {
-            grid-column: 1 / -1;
-            text-align: center;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
 
-        .mobile-menu .dropdown-item {
-      padding: 0.5rem;
-      font-size: clamp(0.75rem, 2.5vw, 1rem);
-      white-space: normal;
-      word-break: break-word;
-      hyphens: auto;
+    .theme-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      border-radius: var(--r-sm);
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--t);
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .theme-btn:hover {
+      color: var(--text);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      border-radius: var(--r-sm);
+      padding: 0.35rem 0.6rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: var(--navbar-h);
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem 1.25rem;
+      z-index: 999;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .mobile-nav.open { display: block; }
+
+    .mobile-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+    }
+
+    .mobile-nav-grid a {
+      display: block;
       text-align: center;
+      padding: 0.55rem 0.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--r-sm);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: all var(--t);
+    }
 
-      /* Add these lines to vertically center text */
+    .mobile-nav-grid a:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .resume-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 4.5rem 2rem 2.5rem;
+      min-height: 46vh;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-        .mobile-menu .dropdown-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
+    .resume-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(59,130,246,0.16) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 82% 78% at 50% 42%, black 32%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 82% 78% at 50% 42%, black 32%, transparent 100%);
+      pointer-events: none;
+    }
 
-        /* Responsive adjustments for resume content */
-        @media (max-width: 768px) {
-            .competencies {
-                -webkit-column-count: 1;
-                -moz-column-count: 1;
-                column-count: 1;
-            }
+    .resume-glow {
+      position: absolute;
+      top: 28%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 720px;
+      height: 320px;
+      background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 68%);
+      filter: blur(48px);
+      pointer-events: none;
+    }
 
-            .s10 {
-                float: none;
-                display: block;
-                margin-bottom: 5px;
-            }
-        }
+    .resume-orb-1,
+    .resume-orb-2 {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(32px);
+    }
 
-    </style>
+    .resume-orb-1 {
+      top: -60px;
+      left: -50px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 65%);
+    }
+
+    .resume-orb-2 {
+      right: -50px;
+      bottom: -45px;
+      width: 360px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(96,165,250,0.09) 0%, transparent 65%);
+    }
+
+    .hero-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 96px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+    }
+
+    .resume-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.25fr 0.9fr;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .resume-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.35);
+      border-radius: 9999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 1.2rem;
+    }
+
+    .resume-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-2);
+    }
+
+    .resume-kicker {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent-2);
+      margin-bottom: 0.7rem;
+      letter-spacing: -0.01em;
+    }
+
+    .resume-hero h1 {
+      font-size: clamp(2.35rem, 5vw, 4rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+
+    body.light-mode .resume-hero h1 { color: var(--text); }
+
+    .resume-hero h1 .highlight {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .resume-summary {
+      max-width: 640px;
+      color: var(--text-2);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .resume-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.4rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border-radius: var(--r-sm);
+      padding: 0.82rem 1.3rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      transition: all var(--t);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 26px rgba(59,130,246,0.24);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-2);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 30px rgba(59,130,246,0.38);
+    }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text-2);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      color: var(--text);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .resume-contact-card {
+      background: rgba(10, 24, 40, 0.7);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.2rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    body.light-mode .resume-contact-card { background: rgba(255,255,255,0.82); }
+
+    .contact-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.85rem;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.18rem;
+      padding: 0.75rem 0.85rem;
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+    }
+
+    .contact-item span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+    }
+
+    .contact-item a,
+    .contact-item p {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .resume-meta-strip {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem 1.5rem;
+    }
+
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .highlight-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      min-height: 108px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      box-shadow: 0 10px 34px rgba(0,0,0,0.16);
+    }
+
+    .highlight-chip .chip-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+    }
+
+    .highlight-chip h2 {
+      font-size: 1rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+    }
+
+    .highlight-chip p {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: var(--text-2);
+    }
+
+    .page-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.2rem 2rem 0;
+    }
+
+    .section-band {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.65rem;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+    }
+
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      letter-spacing: -0.04em;
+      color: var(--text);
+    }
+
+    .section-header p {
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--text-2);
+      max-width: 720px;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .experience-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 1.25rem;
+      transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+    }
+
+    .experience-card.featured {
+      background: linear-gradient(180deg, rgba(15, 32, 53, 0.98), rgba(10, 24, 40, 0.98));
+      border-color: rgba(59,130,246,0.22);
+    }
+
+    body.light-mode .experience-card.featured {
+      background: linear-gradient(180deg, #f7faff, #edf4ff);
+      border-color: rgba(29,78,216,0.18);
+    }
+
+    .experience-card:hover {
+      border-color: rgba(59,130,246,0.35);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+      transform: translateY(-1px);
+    }
+
+    .role-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .role-title-group h3 {
+      font-size: 1.08rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .role-company {
+      font-size: 0.9rem;
+      color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    .role-date {
+      flex-shrink: 0;
+      background: var(--accent-dim);
+      color: var(--accent-2);
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 9999px;
+      padding: 0.38rem 0.75rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .role-summary {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-2);
+      margin-bottom: 0.9rem;
+      max-width: 860px;
+    }
+
+    .role-bullets {
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .role-bullets li {
+      color: var(--text-2);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .role-bullets strong { color: var(--text); }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .subsection-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.35rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .subsection-card h3 {
+      font-size: 1.02rem;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .skill-groups {
+      display: grid;
+      gap: 0.95rem;
+    }
+
+    .skill-group h4 {
+      font-size: 0.77rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-group p {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text-2);
+    }
+
+    .cert-list,
+    .education-list {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .cert-item,
+    .education-item {
+      padding: 0.95rem 1rem;
+      border-radius: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .cert-item strong,
+    .education-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.92rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .cert-item p,
+    .education-item p {
+      color: var(--text-2);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    .cert-item.in-progress {
+      border-style: dashed;
+      border-color: rgba(59,130,246,0.28);
+    }
+
+    .anchor-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.9rem;
+    }
+
+    .anchor-row a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 0.8rem;
+      border-radius: 9999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-2);
+      transition: all var(--t);
+    }
+
+    .anchor-row a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 1.3rem auto 0;
+      padding: 1.75rem 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-brand-icon {
+      width: 26px;
+      height: 26px;
+      background: var(--accent);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .footer-brand span {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-2);
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--text-3);
+    }
+
+    @media (max-width: 980px) {
+      .resume-hero-inner,
+      .support-grid,
+      .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .navbar-inner { padding: 0 1.25rem; }
+      .resume-hero { padding: 3.5rem 1.25rem 2rem; }
+      .resume-meta-strip,
+      .page-section,
+      footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+
+    @media (max-width: 700px) {
+      .role-top { flex-direction: column; }
+      .resume-hero h1 { letter-spacing: -0.04em; }
+      .resume-contact-card { padding: 1rem; }
+    }
+
+    @media (max-width: 600px) {
+      .mobile-nav-grid { grid-template-columns: repeat(2, 1fr); }
+      .resume-hero {
+        min-height: auto;
+        padding-top: 2.8rem;
+      }
+      .resume-orb-1,
+      .resume-orb-2,
+      .resume-glow { display: none; }
+      .resume-summary { font-size: 0.94rem; }
+      .section-band,
+      .subsection-card { padding: 1.1rem; }
+    }
+  </style>
 </head>
-
-
 <body>
-    <!-- Navbar -->
-    <nav class="custom-navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="https://dugganco.com">Duggan Cyber Operations</a>
-            </div>
-            <div class="nav-links-container">
-                <ul class="nav-links">
 
-                    <li class="nav-item">
-                        <a href="#summary">Menu</a>
-                        <div class="dropdown">
-                            <div class="dropdown-grid">
-                                <div class="dropdown-header">Menu</div>
-                                <a href="#" onclick="toggleTheme();return false;">
-                                    <div class="dropdown-item">Toggle Theme</div>
-                                </a>
-                                <a href="https://dugganco.com">
-                                    <div class="dropdown-item">Home</div>
-                                </a>
-                                <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
-                                    <div class="dropdown-item">HTML Resume</div>
-                                </a>
-                                <a
-                                    href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
-                                    <div class="dropdown-item">PDF Resume</div>
-                                </a>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="nav-brand">
+        <div class="nav-brand-icon">DC</div>
+        <span class="nav-brand-text">Duggan <span>Cyber</span> Ops</span>
+      </a>
 
-                                <a href="https://dugganco.com/consulting.html">
-                                    <div class="dropdown-item">Consulting</div>
-                                </a>
-                                <a href="https://dugganco.com/foodblog.html">
-                                    <div class="dropdown-item">Dan's Food Blog</div>
-                                </a>
-                                <a href="https://plexrequest.dugganco.com">
-                                    <div class="dropdown-item">Plex Request</div>
-                                </a>
-                                <a href="https://nextcloud.dugganco.com">
-                                    <div class="dropdown-item">Nextcloud</div>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#summary">Resume Sections</a>
-                        <div class="dropdown">
-                            <div class="dropdown-grid">
-                                <div class="dropdown-item"><a href="#summary"
-                                        style="text-decoration: none; color: inherit;">Summary</a></div>
-                                <div class="dropdown-item"><a href="#competencies"
-                                        style="text-decoration: none; color: inherit;">Competencies</a></div>
-                                <div class="dropdown-item"><a href="#experience"
-                                        style="text-decoration: none; color: inherit;">Experience</a></div>
-                                <div class="dropdown-item"><a href="#education"
-                                        style="text-decoration: none; color: inherit;">Education</a></div>
-                                <div class="dropdown-item"><a href="#certifications"
-                                        style="text-decoration: none; color: inherit;">Certifications</a></div>
-                                <div class="dropdown-item"><a href="#"
-                                        style="text-decoration: none; color: inherit;">Top</a></div>
-                                </a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!-- Hamburger button for mobile (only visible below 1100px) -->
-            <button class="hamburger" id="hamburger-btn">&#9776;</button>
-        </div>
-    </nav>
+      <ul class="nav-links">
+        <li><a href="/">News Feed</a></li>
+        <li><a href="/consulting.html">Consulting</a></li>
+        <li><a href="/Daniel-Duggan-Resume.html" class="active">Resume</a></li>
+        <li><a href="/foodblog.html">Food Blog</a></li>
+        <li><a href="https://nextcloud.dugganco.com" target="_blank">Nextcloud ↗</a></li>
+        <li><a href="https://plexrequest.dugganco.com" target="_blank">Plex ↗</a></li>
+      </ul>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-section">
-            <div class="mobile-section-title">Menu</div>
-            <div class="dropdown-grid">
-                <a href="https://dugganco.com">
-                    <div class="dropdown-item">Home</div>
-                </a>
-                <a href="https://dugganco.com/consulting.html">
-                    <div class="dropdown-item">Consulting</div>
-                </a>
-                <a href="https://dugganco.com/foodblog.html">
-                    <div class="dropdown-item">Food Blog</div>
-                </a>
-                <a href="https://dugganco.com/Daniel-Duggan-Resume.html">
-                    <div class="dropdown-item">HTML Resume</div>
-                </a>
-                <a href="https://nextcloud.dugganco.com">
-                    <div class="dropdown-item">Nextcloud</div>
-                </a>
-                <a href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">
-                    <div class="dropdown-item">PDF Resume</div>
-                </a>
-                <a href="https://plexrequest.dugganco.com">
-                    <div class="dropdown-item">Plex Request</div>
-                </a>
-                <a href="#" onclick="toggleTheme();return false;">
-                    <div class="dropdown-item">Light/Dark Theme</div>
-                </a>
-            </div>
-        </div>
-        <div class="mobile-section">
-            <div class="mobile-section-title">Resume Sections</div>
-            <div class="dropdown-grid">
-                <a href="#summary" style="text-decoration: none;">
-                    <div class="dropdown-item">Summary</div>
-                </a>
-                <a href="#competencies" style="text-decoration: none;">
-                    <div class="dropdown-item">Competencies</div>
-                </a>
-                <a href="#experience" style="text-decoration: none;">
-                    <div class="dropdown-item">Experience</div>
-                </a>
-                <a href="#education" style="text-decoration: none;">
-                    <div class="dropdown-item">Education</div>
-                </a>
-                <a href="#certifications" style="text-decoration: none;">
-                    <div class="dropdown-item">Certifications</div>
-                </a>
-                <a href="#" style="text-decoration: none;">
-                    <div class="dropdown-item">Top</div>
-                </a>
-            </div>
-        </div>
+      <div class="nav-right">
+        <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀ Light</button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Menu">☰</button>
+      </div>
     </div>
+  </nav>
 
-    <div class="resume-content">
-    <div class="resume-header">
-        <div class="resume-name">Daniel Duggan</div>
-        <div class="resume-links">
+  <div class="mobile-nav" id="mobile-nav">
+    <div class="mobile-nav-grid">
+      <a href="/">Home</a>
+      <a href="/consulting.html">Consulting</a>
+      <a href="/Daniel-Duggan-Resume.html">Resume</a>
+      <a href="/Daniel-Duggan-Resume.pdf" target="_blank">PDF Resume</a>
+      <a href="/foodblog.html">Food Blog</a>
+      <a href="https://nextcloud.dugganco.com" target="_blank">Nextcloud</a>
+      <a href="https://plexrequest.dugganco.com" target="_blank">Plex Request</a>
+    </div>
+  </div>
+
+  <header class="resume-hero">
+    <div class="resume-glow"></div>
+    <div class="resume-orb-1"></div>
+    <div class="resume-orb-2"></div>
+    <div class="hero-fade"></div>
+
+    <div class="resume-hero-inner">
+      <div>
+        <div class="resume-badge">Recruiter-First Web Resume</div>
+        <div class="resume-kicker">Cybersecurity Operations • Incident Response • Security Tooling</div>
+        <h1>Daniel <span class="highlight">Duggan</span></h1>
+        <p class="resume-summary">
+          Cybersecurity professional with experience across incident response, financial-sector security, cloud administration, and enterprise tooling. This web resume highlights the strongest current experience and core credentials, while the PDF version remains the full record.
+        </p>
+        <div class="resume-actions">
+          <a class="btn-primary" href="/Daniel-Duggan-Resume.pdf" target="_blank">Open PDF Resume</a>
+          <a class="btn-secondary" href="#experience">View Selected Experience</a>
+        </div>
+        <div class="anchor-row">
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#certifications">Certifications</a>
+          <a href="#education">Education</a>
+        </div>
+      </div>
+
+      <aside class="resume-contact-card">
+        <div class="contact-label">Quick Profile</div>
+        <div class="contact-list">
+          <div class="contact-item">
+            <span>Email</span>
             <a href="mailto:daniel.duggan06@gmail.com">daniel.duggan06@gmail.com</a>
-            <span class="separator">|</span>
-            <a href="http://github.com/danielduggan06" target="_blank">github.com/danielduggan06</a>
-            <span class="separator">|</span>
-            <a href="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf" target="_blank">PDF Version</a>
+          </div>
+          <div class="contact-item">
+            <span>GitHub</span>
+            <a href="https://github.com/danielduggan06" target="_blank">github.com/danielduggan06</a>
+          </div>
+          <div class="contact-item">
+            <span>Focus</span>
+            <p>Cybersecurity operations, incident response, financial-sector security, and modern detection tooling.</p>
+          </div>
         </div>
+      </aside>
     </div>
+  </header>
 
-    <div class="sectiondiv" id="summary">
-        <hr style="height: 4px; background:black; margin-bottom: -1em">
-        <h1> SUMMARY </h1>
-        <p class="s5">Experienced cybersecurity and IT professional.
-            Feel
-            free to download a <a href
-                link="https://duggancostorage.blob.core.windows.net/duggancostorage/Daniel-Duggan-Resume.pdf">PDF
-                version of
-                this
-                Resume here</a>, hosted via Azure. Expected 2025 graduation for Master's degree in cybersecurity.
-            Expertise in financial institution cybersecurity, network security, network administration, cloud
-            administration, and website hosting/management..</p>
+  <section class="resume-meta-strip">
+    <div class="highlight-grid">
+      <article class="highlight-chip">
+        <div class="chip-label">Tooling</div>
+        <h2>CrowdStrike</h2>
+        <p>Hands-on incident response and log ingestion work across modern security operations environments.</p>
+      </article>
+      <article class="highlight-chip">
+        <div class="chip-label">Core Discipline</div>
+        <h2>Incident Response</h2>
+        <p>Experience across response workflows, alert triage, security operations tooling, and investigative support.</p>
+      </article>
+      <article class="highlight-chip">
+        <div class="chip-label">Industry</div>
+        <h2>Financial Sector Experience</h2>
+        <p>Current and prior work connected to JPMorganChase and Citibank, with strong exposure to regulated environments.</p>
+      </article>
+      <article class="highlight-chip">
+        <div class="chip-label">Credentials</div>
+        <h2>Certifications</h2>
+        <p>CompTIA CySA+, Security+, ISC2 Certified in Cybersecurity, with further security certifications in progress.</p>
+      </article>
     </div>
+  </section>
 
+  <main>
+    <section class="page-section" id="experience">
+      <div class="section-band">
+        <div class="section-header">
+          <div class="section-label">Selected Experience</div>
+          <h2>Recent roles with the most hiring signal</h2>
+          <p>The strongest and most relevant positions are expanded here, while older roles are compressed to keep the page recruiter-friendly without losing credibility.</p>
+        </div>
 
-    <div class="sectiondiv" id="competencies">
-        <h1> CORE COMPETENCIES </h1>
-        <p>
-        <ul class="competencies">
-            <li>- Cybersecurity Incident Response</li>
-            <li>- TCP/IP Configurations</li>
-            <li>- Network Structure & Security</li>
-            <li>- Front-End HTML/CSS/Javascript</li>
-
-            <li>- Windows & Linux Server Administration</li>
-            <li>- Cybersecurity frameworks and laws,
-                ISO 27001-2, NIST 800, HIPAA, SOX</li>
-            <li>- IT Hardware Repair and Installation</span></li>
-            <li>- PowerShell Scripting</li>
-
-            <li>- Information Assurance</li>
-            <li>- IT Technical Support</li>
-            <li>- Solutions-Oriented Problem Solving</li>
-
-        </ul>
-    </div>
-
-    <div class="sectiondiv" id="experience">
-        <h1> PROFESSIONAL WORK EXPERIENCE </h1>
-        <p class="s9">Cybersecurity Analyst<span class="s10">November 2024 - Present</span></p>
-        <p class="s11"><a href="https://www.jpmorganchase.com/" target="_blank">JPMorganChase</a> - New York, NY</p>
-        <p>
-        <ul>
-            <li>Incident Response via Crowdstrike, Cortex, Splunk, Exabeam, and SOAR alerts from ThreatConnect.</li>
-            <li>Member of the Acquisitions Cybersecurity Team at JPMC, where the team acts flexibly around a company
-                that is acquired by JPMorganChase, then acts as either SOC monitoring, incident response, integration
-                consultant, tuning consultant, etc, depending on what the acquisition/subsidiary company needs.</li>
-            <li>Working with security engineers to ingest logs from all relevant sources into CrowdStrike NG-SIEM.</li>
-        </ul>
-        </p>
-    </div>
-
-    <div class="sectiondivexp">
-        <p class="s9">IT Cloud Administrator<span class="s10">January
-                2024– November 2024 </span></p>
-        <p class="s11"><a href="https://starkcarpet.com/" target="_blank">Stark Carpet Corp.</a> - New York, NY</p>
-        <p>
-        <ul>
-            <li>Cloud administration of Microsoft's Azure products - Entra ID, InTune, Exchange, Sharepoint, and O365,
-                as well as VMWare ESXi suite/hypervisor configurations.</li>
-            <li>Incident response, threat detection, and vulnerability management via Sentinel One, Huntress, and the
-                Azure cloud suite.</li>
-            <li>Change management and implementation of MFA security controls.</li>
-            <li>Network Administration of SonicWall TZ-series configurations and networking, and Datto networking
-                equipment/suite, including Datto RMM, Datto Backup solution, and implementation of Datto switches and
-                WAPs.</li>
-            <li>AS400\Dancik server along with IBM's browser/GUI version called Navigator.</li>
-            <li>Troubleshooting Troubleshooting a wide range of issues, such as Hubspot CRM, point-to-site VPNs,
-                PowerShell scripts to resolve issues, hardware issues, internal tools - inventory management
-                applications, sales order processing, etc.</li>
-            <li>Jira ticketing system for both project and issue tracking.</li>
-        </ul>
-        </p>
-    </div>
-    <div class="sectiondivexp">
-        <p class="s9">Info Security Engineer Lead (GRC)<span class="s10">January
-                2023– January 2024 </span></p>
-        <p class="s11"><a href="https://www.citi.com/" target="_blank">Citibank</a> - New York, NY</p>
-        <p>
-        <ul>
-            <li>Comprehensive research and analysis on Citi's external customer password requirements, resulting in the
-                implementation of robust security measures and an enhanced customer experience.</li>
-            <li>IAM, MFA & SAM procedure review, significantly fortifying the organization's cyber defense policies with
-                regulators and ensuring compliance with industry best practices.</li>
-            <li>FFIEC compliance across all internal applications, thus bolstering the company's security posture by
-                collaborated closely with application owners to define stringent MFA requirements.</li>
-            <li>Ad hoc XML-based reporting creation and SQL queries using IBM Cognos to generate actionable insights
-                from complex data sets, empowering data-driven decision-making for the MFA assessment team.</li>
-            <li>Played a key role in the development and deployment of a cutting-edge internal authentication inventory
-                application via Jira stories, improving overall operational efficiency and enhancing the organization's
-                ability
-                to
-                respond to security incidents effectively.</li>
-        </ul>
-        </p>
-    </div>
-
-
-    <div class="sectiondivexp">
-        <p class="s9">Network Administrator<span class="s10">October
-                2020 – January 2023</span></p>
-        <p class="s11"><a href="https://www.citi.com/" target="_blank">Pathways Youth &amp; Family Services</a> - San
-            Antonio, TX</p>
-        <p>
-        <ul>
-            <li> Notable projects completed: Implementing Cisco Umbrella content and
-                geo-filtering, implementing RADIUS authentication with Active Directory,
-                moved all users to the Vonage Business Communications VoIP system,
-                implemented network segmentation through VLANs for on-site guest networks,
-                and implemented site-to-site VPNs with Cisco Firepower 1010 firewalls in a
-                mesh- grid.</li>
-            <li>Developed PowerShell scripts to resolve multiple issues, maintained site backups via Synology NAS and
-                PowerShell
-                scripting, regularly tested MTTR for on-premise and off-premise servers, regularly updated company
-                website's
-                HTML/CSS.</li>
-            <li> Administrated the cloud-based email for the entire organization with Google Workspace, included
-                managing
-                group
-                permissions, base user roles and permissions, archival and backups (Google Takeout), TXT and MX records,
-                and
-                email
-                security settings like mail filtering, quarantine rules, and spam/phishing rules.</li>
-            <li> Developed the IT security training curriculum for our employees, as well
-                as created a new knowledge base for IT technicians.</li>
-            <li> Assisted with PC and laptop repair, mainly HP devices, resolved issues
-                with various software used by the company, including Google Meet, Zoom,
-                and other videoconference solutions, as well as assisted with the
-                maintenance of a BYOD mobile device system and the issues revolving around
-                Vonage Business VoIP and GMail clients on both iPhone and Android devices.</li>
-            <li> Supported and maintained 13 office locations and network infrastructure,
-                including Netgear switches, Cisco ASA/Firepower 1010 firewalls, Windows
-                2012, 2016, 2019, and 2022 Servers, and Ubiquiti Unifi and Cisco Meraki
-                access points.</li>
-            <li> Installed IP camera systems and wireless solutions in multiple
-                locations, saving company ~4% of its yearly expenditures in costs for
-                potential contractor work.</li>
-        </ul>
-        </p>
-    </div>
-
-
-    <div class="sectiondivexp">
-        <p class="s9">Desktop Support Technician <span class="s10">June
-                2018 – September 2020</span></p>
-        <p class="s11"><a href="https://www.bulletproofnetwork.com/" target="_blank">Daemon Systems, LLC</a> - San
-            Antonio,
-            TX</p>
-        <p>
-        <ul>
-            <li> Managed IT equipment inventory, roughly 200+ laptops for one company.</li>
-            <li> Diagnosed and resolved both hardware and software issues both in-shop
-                and on-site as an MSP technician.</li>
-            <li>Managed Barracuda ESS mail filtering, inbound and outbound rules, whitelists, and blacklists.</li>
-            <li> Implemented new VPN solutions for 12 different companies as they shifted to
-                WFH during the peak of the 2020 Covid pandemic via Debian-based Untangle firewalls.</li>
-            <li> Performed duties with the upgrade, replacement, maintenance, repair, and
-                installation of laptops and desktops.</li>
-            <li> Performed scans on PCs ensuring network devices are 100% compliant with
-                latest security patches.</li>
-            <li> Troubleshot Windows 10, 7, and XP and performed data backup, restore,
-                and wipe and reload of Windows distros.</li>
-            <li> Diagnosed and resolved both hardware and software issues, as an MSP
-                technician and server backup verification.</li>
-        </ul>
-        </p>
-    </div>
-
-
-    <div class="sectiondivexp">
-        <p class="s9">IT Intern – Desktop Support <span class="s10">August
-                2017 – December 2017</span></p>
-        <p class="s11"><a href="https://www.swbc.com/" target="_blank">SWBC</a> <span style=" color: #0070C0;">–
-            </span>San
-            Antonio,
-            TX</p>
-        <p>
-        <ul>
-            <li> Outside of help desk experience, worked with Avaya Site Administration
-                for PBX and VoIP phone systems.</li>
-            <li> Tasked with completing a large backlog of MACD/EMAC tickets and active
-                Directory administration.</li>
-            <li> Experienced with SCCM (System Center 2012 R2 Configuration Manager)
-                Admin and VMware vSphere Client.</li>
-        </ul>
-        </p>
-    </div>
-
-    <div class="sectiondiv" id="education">
-        </p>
-        <h1> EDUCATION </h1>
-        <ul>
-            <li><span class="s9"><a href="https://www.tamucc.edu/business/index.php"
-                        target="_blank">Bachelor's in Management Information Systems</a></span><span
-                    style="float: right; font-weight: bold" class="s11">Texas A&M University-Corpus Christi</span>
-                <ul class="s11">Completed</ul>
-            </li>
-            <li><span class="s9"><a
-                        href="https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-masters-program.html"
-                        target="_blank">Master's in Cybersecurity and Information Assurance</a></span><span
-                    style="float: right; font-weight: bold" class="s11">Western Governor's University</span>
-                <ul class="s11">2025 Expected
-                    Graduation</ul>
-            </li>
-        </ul>
-    </div>
-
-
-    <div class="sectiondiv" id="certifications">
-        <h1> CERTIFICATIONS </h1>
-        <ul>
-            <li class="s9">In Progress:
-                CompTIA
-                PenTest+
-                Certification</a></li>
-            <li class="s9"><a href="https://www.credly.com/badges/a5b84469-5573-4b5b-a815-4f96bf7bd8c1/public_url" target="_blank">Completed
-                    CompTIA
-                    CySA+
-                    Certification</a></li>
-            <li class="s9"><a href="https://www.credly.com/badges/4db29925-0924-4f09-99d3-a94f98158d36/public_url" target="_blank">Completed
-                    CompTIA
-                    Security+
-                    Certification</a></li>
-            <li class="s9"><a href="https://www.credly.com/badges/972c8acf-dc44-4b8b-b3e3-ed2bf9d1be8e/public_url" target="_blank">Completed ISC2
-                    Certified in Cybersecurity Certification </a></li>
-            <li class="s9">Pursuing via WGU Master's program:</li>
-            <ul style="list-style-type: none">
-                <li>- CompTIA Advanced Security Practitioner (CASP+)</li>
-                <li>- ISACA Certified Information Security Manager (CISM)</li>
+        <div class="experience-list">
+          <article class="experience-card featured">
+            <div class="role-top">
+              <div class="role-title-group">
+                <h3>Cybersecurity Analyst</h3>
+                <div class="role-company"><a href="https://www.jpmorganchase.com/" target="_blank">JPMorganChase</a> • New York, NY</div>
+              </div>
+              <div class="role-date">Nov 2024 - Present</div>
+            </div>
+            <p class="role-summary">Current role centered on cybersecurity operations and incident response in a Tier 1 financial environment, with direct exposure to enterprise detection and security engineering workflows.</p>
+            <ul class="role-bullets">
+              <li><strong>Incident response operations</strong> using CrowdStrike, Cortex, Splunk, Exabeam, and SOAR-driven alerting from ThreatConnect.</li>
+              <li><strong>Acquisitions cybersecurity team support</strong> spanning monitoring, incident response, integration consulting, and tuning work based on subsidiary needs.</li>
+              <li><strong>Security telemetry improvement</strong> through collaboration with engineers to ingest relevant sources into CrowdStrike NG-SIEM.</li>
             </ul>
-        </ul>
+          </article>
+
+          <article class="experience-card featured">
+            <div class="role-top">
+              <div class="role-title-group">
+                <h3>IT Cloud Administrator</h3>
+                <div class="role-company"><a href="https://starkcarpet.com/" target="_blank">Stark Carpet Corp.</a> • New York, NY</div>
+              </div>
+              <div class="role-date">Jan 2024 - Nov 2024</div>
+            </div>
+            <p class="role-summary">Hybrid security and cloud administration role covering Microsoft cloud services, endpoint protection, networking, and day-to-day infrastructure operations.</p>
+            <ul class="role-bullets">
+              <li><strong>Administered Microsoft cloud platforms</strong> including Entra ID, InTune, Exchange, SharePoint, and Microsoft 365 alongside VMware ESXi environments.</li>
+              <li><strong>Performed security operations work</strong> through SentinelOne, Huntress, Azure security tooling, MFA rollout, and vulnerability management support.</li>
+              <li><strong>Managed infrastructure and networking</strong> across SonicWall firewalls, Datto networking, backup, RMM, VPNs, and related troubleshooting.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card featured">
+            <div class="role-top">
+              <div class="role-title-group">
+                <h3>Info Security Engineer Lead (GRC)</h3>
+                <div class="role-company"><a href="https://www.citi.com/" target="_blank">Citibank</a> • New York, NY</div>
+              </div>
+              <div class="role-date">Jan 2023 - Jan 2024</div>
+            </div>
+            <p class="role-summary">Security governance and authentication-focused role supporting password policy analysis, MFA control review, regulatory alignment, and internal security tooling.</p>
+            <ul class="role-bullets">
+              <li><strong>Researched and analyzed</strong> external customer password requirements to support stronger security controls with improved customer experience.</li>
+              <li><strong>Reviewed IAM, MFA, and SAM procedures</strong> to strengthen cyber defense policy alignment with regulators and internal security expectations.</li>
+              <li><strong>Supported internal authentication inventory work</strong> through Jira-driven delivery, XML reporting, and SQL/Cognos reporting for the MFA assessment team.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <div class="role-top">
+              <div class="role-title-group">
+                <h3>Network Administrator</h3>
+                <div class="role-company">Pathways Youth &amp; Family Services • San Antonio, TX</div>
+              </div>
+              <div class="role-date">Oct 2020 - Jan 2023</div>
+            </div>
+            <p class="role-summary">Broad infrastructure and security administration role supporting multi-site networking, endpoint support, backup, automation, and security training.</p>
+            <ul class="role-bullets">
+              <li>Implemented Cisco Umbrella filtering, RADIUS authentication, VLAN segmentation, site-to-site VPNs, and firewall changes across distributed offices.</li>
+              <li>Maintained backup posture, PowerShell automation, cloud email administration, and practical IT security training for staff.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <div class="role-top">
+              <div class="role-title-group">
+                <h3>Desktop Support Technician</h3>
+                <div class="role-company">Daemon Systems, LLC • San Antonio, TX</div>
+              </div>
+              <div class="role-date">Jun 2018 - Sep 2020</div>
+            </div>
+            <p class="role-summary">MSP support role with hands-on device, VPN, mail filtering, patching, and migration work during a high-demand remote-work period.</p>
+            <ul class="role-bullets">
+              <li>Implemented VPN solutions for multiple companies during the 2020 remote-work shift and supported secure endpoint rollout and maintenance.</li>
+              <li>Managed Barracuda ESS filtering, hardware lifecycle work, Windows recovery tasks, and general MSP support operations.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <div class="role-top">
+              <div class="role-title-group">
+                <h3>IT Intern - Desktop Support</h3>
+                <div class="role-company">SWBC • San Antonio, TX</div>
+              </div>
+              <div class="role-date">Aug 2017 - Dec 2017</div>
+            </div>
+            <p class="role-summary">Early enterprise IT support experience including Active Directory, SCCM, VMware, and telephony administration support.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section" id="skills">
+      <div class="support-grid">
+        <div class="subsection-card">
+          <h3>Core Skills</h3>
+          <div class="skill-groups">
+            <div class="skill-group">
+              <h4>Security Operations</h4>
+              <p>Incident response, alert triage, vulnerability management, MFA controls, security policy review, compliance-aligned security work.</p>
+            </div>
+            <div class="skill-group">
+              <h4>Detection / Response Tooling</h4>
+              <p>CrowdStrike, Cortex, Splunk, Exabeam, ThreatConnect, SentinelOne, Huntress, Azure security tooling, Cognos reporting.</p>
+            </div>
+            <div class="skill-group">
+              <h4>Infrastructure / Cloud</h4>
+              <p>Entra ID, InTune, Exchange, SharePoint, Microsoft 365, VMware ESXi, Windows and Linux administration, backup and recovery support.</p>
+            </div>
+            <div class="skill-group">
+              <h4>Networking / Administration</h4>
+              <p>SonicWall, Cisco networking, VPN implementation, VLAN segmentation, firewall administration, PowerShell scripting, endpoint support.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="subsection-card" id="certifications">
+            <h3>Certifications</h3>
+            <div class="cert-list">
+              <article class="cert-item">
+                <strong><a href="https://www.credly.com/badges/a5b84469-5573-4b5b-a815-4f96bf7bd8c1/public_url" target="_blank">CompTIA CySA+</a></strong>
+                <p>Completed</p>
+              </article>
+              <article class="cert-item">
+                <strong><a href="https://www.credly.com/badges/4db29925-0924-4f09-99d3-a94f98158d36/public_url" target="_blank">CompTIA Security+</a></strong>
+                <p>Completed</p>
+              </article>
+              <article class="cert-item">
+                <strong><a href="https://www.credly.com/badges/972c8acf-dc44-4b8b-b3e3-ed2bf9d1be8e/public_url" target="_blank">ISC2 Certified in Cybersecurity</a></strong>
+                <p>Completed</p>
+              </article>
+              <article class="cert-item in-progress">
+                <strong>CompTIA PenTest+, CASP+, and CISM</strong>
+                <p>In progress or planned through continuing professional development and graduate study.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="subsection-card" id="education" style="margin-top: 1rem;">
+            <h3>Education</h3>
+            <div class="education-list">
+              <article class="education-item">
+                <strong><a href="https://www.tamucc.edu/business/index.php" target="_blank">Bachelor's in Management Information Systems</a></strong>
+                <p>Texas A&amp;M University-Corpus Christi • Completed</p>
+              </article>
+              <article class="education-item">
+                <strong><a href="https://www.wgu.edu/online-it-degrees/cybersecurity-information-assurance-masters-program.html" target="_blank">Master's in Cybersecurity and Information Assurance</a></strong>
+                <p>Western Governors University • Graduate study in progress</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <div class="footer-brand-icon">DC</div>
+      <span>Duggan Cyber Operations</span>
     </div>
-    </div><!-- end .resume-content -->
-<br><br><br><br>
-    <!-- External Scripts -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg6W2N/68/4Rcy+2pYBbyox1D6Z+eI1lC26bLrY8yk=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <script>
-        // Toggle mobile menu using the hamburger button
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <div class="footer-copy">
+      &copy; <script>document.write(new Date().getFullYear())</script> dugganco.com - All rights reserved
+    </div>
+  </footer>
 
-        hamburgerBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-        });
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263" crossorigin="anonymous"></script>
 
-        document.addEventListener('click', (e) => {
-            if (mobileMenu.classList.contains('active') &&
-                !mobileMenu.contains(e.target) &&
-                !hamburgerBtn.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-            }
-        });
+  <script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileNav = document.getElementById('mobile-nav');
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        });
+    hamburgerBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      mobileNav.classList.toggle('open');
+    });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+    document.addEventListener('click', e => {
+      if (mobileNav.classList.contains('open') &&
+          !mobileNav.contains(e.target) &&
+          !hamburgerBtn.contains(e.target)) {
+        mobileNav.classList.remove('open');
+      }
+    });
 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => mobileNav.classList.remove('open'));
+    });
 
-        // theme tracking
-        const applyTheme = (theme) => {
-            // clear previous mode
-            document.body.classList.remove('dark-mode', 'light-mode');
-            if (theme === 'dark') {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.add('light-mode');
-            }
-        };
-        // expose function globally for menu links
-        window.toggleTheme = () => {
-            const current = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-            const next = current === 'dark' ? 'light' : 'dark';
-            applyTheme(next);
-            localStorage.setItem('theme', next);
-        };
-        let savedTheme = localStorage.getItem('theme');
-        if (!savedTheme) {
-            savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        applyTheme(savedTheme);
-    </script>
+    const themeBtn = document.getElementById('theme-btn');
+
+    function applyTheme(theme) {
+      document.body.classList.toggle('light-mode', theme === 'light');
+      themeBtn.textContent = theme === 'light' ? '☾ Dark' : '☀ Light';
+      localStorage.setItem('theme', theme);
+    }
+
+    window.toggleTheme = () => {
+      applyTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light');
+    };
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', event => {
+        const targetId = anchor.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(saved);
+    });
+  </script>
+
 </body>
-
 </html>
