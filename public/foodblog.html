@@ -85,17 +85,15 @@
 
     .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: var(--navbar-h);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      border-bottom: 1px solid var(--border);
       background: rgba(18, 12, 8, 0.74);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
     }
 
     body.light-mode .navbar {
@@ -103,81 +101,59 @@
     }
 
     .navbar-inner {
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
+      max-width: 1280px; width: 100%;
+      margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
     }
 
     .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-shrink: 0;
+      display: flex; align-items: center;
+      gap: 0.6rem; flex-shrink: 0;
     }
 
     .nav-brand-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 0.82rem;
-      box-shadow: 0 10px 24px rgba(255, 138, 61, 0.3);
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem;
+      color: #fff; flex-shrink: 0;
     }
 
     .nav-brand-text {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      white-space: nowrap;
+      font-size: 1rem; font-weight: 700;
+      color: var(--text); white-space: nowrap;
     }
 
-    .nav-brand-text span { color: var(--accent-2); }
+    .nav-brand-text span { color: var(--accent); }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      list-style: none;
+      display: flex; align-items: center;
+      gap: 0.25rem; list-style: none;
     }
 
     .nav-links a {
-      display: block;
-      padding: 0.45rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.875rem;
-      font-weight: 500;
+      display: block; padding: 0.4rem 0.85rem;
+      border-radius: var(--r-sm);
+      font-size: 0.875rem; font-weight: 500;
       color: var(--text-2);
-      transition: background var(--t), color var(--t), transform var(--t);
+      transition: color var(--t), background var(--t);
       white-space: nowrap;
     }
 
     .nav-links a:hover {
       color: var(--text);
-      background: var(--accent-soft);
-      transform: translateY(-1px);
+      background: var(--surface-2);
     }
 
     .nav-links a.active {
-      color: var(--text);
-      background: linear-gradient(135deg, rgba(255, 138, 61, 0.18), rgba(255, 190, 100, 0.12));
-      border: 1px solid var(--border);
+      color: var(--accent);
+      background: var(--accent-soft);
     }
 
     .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
     }
 
     .theme-btn,
@@ -188,76 +164,48 @@
     }
 
     .theme-btn {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-2);
-      border-radius: 999px;
-      padding: 0.5rem 0.85rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all var(--t);
+      background: var(--surface-2); border: 1px solid var(--border);
+      color: var(--text-2); border-radius: var(--r-sm);
+      padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 500;
+      cursor: pointer; transition: all var(--t);
       white-space: nowrap;
     }
 
     .theme-btn:hover {
-      color: var(--text);
-      border-color: var(--border-strong);
-      background: var(--surface-2);
+      color: var(--text); border-color: var(--accent); background: var(--accent-soft);
     }
 
     .hamburger {
-      display: none;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-2);
-      border-radius: 12px;
-      padding: 0.38rem 0.65rem;
-      cursor: pointer;
-      font-size: 1.1rem;
-      line-height: 1;
+      display: none; background: none;
+      border: 1px solid var(--border); color: var(--text-2);
+      border-radius: var(--r-sm); padding: 0.35rem 0.6rem;
+      cursor: pointer; font-size: 1.1rem; line-height: 1;
     }
 
     .mobile-nav {
-      display: none;
-      position: fixed;
-      top: var(--navbar-h);
-      left: 0;
-      right: 0;
-      z-index: 999;
-      padding: 1rem 1.25rem 1.35rem;
-      background: rgba(18, 12, 8, 0.95);
-      border-bottom: 1px solid var(--border);
+      display: none; position: fixed;
+      top: var(--navbar-h); left: 0; right: 0;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem 1.25rem; z-index: 999;
       box-shadow: var(--shadow);
-    }
-
-    body.light-mode .mobile-nav {
-      background: rgba(248, 239, 229, 0.96);
     }
 
     .mobile-nav.open { display: block; }
 
     .mobile-nav-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.65rem;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 0.5rem;
     }
 
     .mobile-nav-grid a {
-      display: block;
-      padding: 0.8rem;
-      text-align: center;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text-2);
-      font-size: 0.88rem;
-      font-weight: 600;
+      display: block; text-align: center;
+      padding: 0.55rem 0.5rem;
+      background: var(--surface-2); border: 1px solid rgba(255, 202, 152, 0.12);
+      border-radius: var(--r-sm); font-size: 0.82rem; font-weight: 500;
+      color: var(--text-2); transition: all var(--t);
     }
 
-    .mobile-nav-grid a.active {
-      color: var(--text);
-      background: linear-gradient(135deg, rgba(255, 138, 61, 0.16), rgba(255, 190, 100, 0.08));
+    .mobile-nav-grid a:hover {
+      background: var(--accent-soft); border-color: var(--accent); color: var(--accent);
     }
 
     .hero {
@@ -781,18 +729,16 @@
     }
 
     @media (max-width: 900px) {
-      .nav-links,
-      .theme-btn.desktop-only {
-        display: none;
-      }
+      .nav-links { display: none; }
 
       .hamburger {
-        display: inline-flex;
+        display: block;
       }
+
+      .navbar-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
     }
 
     @media (max-width: 720px) {
-      .navbar-inner,
       .section-shell,
       .closing,
       .footer,
@@ -817,8 +763,7 @@
       }
 
       .stats-grid,
-      .gallery-grid,
-      .mobile-nav-grid {
+      .gallery-grid {
         grid-template-columns: 1fr;
       }
 
@@ -834,6 +779,8 @@
       .hero-card-overlay {
         inset: auto 0.75rem 0.75rem 0.75rem;
       }
+
+      .mobile-nav-grid { grid-template-columns: repeat(2,1fr); }
     }
   </style>
 </head>
@@ -841,36 +788,36 @@
 <body>
   <nav class="navbar">
     <div class="navbar-inner">
-      <a class="nav-brand" href="https://dugganco.com">
-        <div class="nav-brand-icon">DD</div>
-        <div class="nav-brand-text">Duggan <span>Cyber Operations</span></div>
+      <a class="nav-brand" href="/">
+        <div class="nav-brand-icon">DC</div>
+        <span class="nav-brand-text">Duggan <span>Cyber</span> Ops</span>
       </a>
 
       <ul class="nav-links">
-        <li><a href="https://dugganco.com">Home</a></li>
-        <li><a href="https://dugganco.com/consulting.html">Consulting</a></li>
-        <li><a href="https://dugganco.com/Daniel-Duggan-Resume.html">Resume</a></li>
-        <li><a class="active" href="https://dugganco.com/foodblog.html">Food Blog</a></li>
-        <li><a href="https://nextcloud.dugganco.com">Nextcloud</a></li>
-        <li><a href="https://plexrequest.dugganco.com">Plex Request</a></li>
+        <li><a href="/">News Feed</a></li>
+        <li><a href="/consulting.html">Consulting</a></li>
+        <li><a href="/Daniel-Duggan-Resume.html">Resume</a></li>
+        <li><a class="active" href="/foodblog.html">Food Blog</a></li>
+        <li><a href="https://nextcloud.dugganco.com" target="_blank" rel="noopener noreferrer">Nextcloud ↗</a></li>
+        <li><a href="https://plexrequest.dugganco.com" target="_blank" rel="noopener noreferrer">Plex ↗</a></li>
       </ul>
 
       <div class="nav-right">
-        <button class="theme-btn desktop-only" id="theme-btn" type="button" onclick="toggleTheme()">Dark</button>
-        <button class="hamburger" id="hamburger-btn" type="button" aria-label="Open navigation menu">&#9776;</button>
+        <button class="theme-btn" id="theme-btn" type="button" onclick="toggleTheme()">☀ Light</button>
+        <button class="hamburger" id="hamburger-btn" type="button" aria-label="Menu">☰</button>
       </div>
     </div>
   </nav>
 
   <div class="mobile-nav" id="mobile-nav">
     <div class="mobile-nav-grid">
-      <a href="https://dugganco.com">Home</a>
-      <a href="https://dugganco.com/consulting.html">Consulting</a>
-      <a href="https://dugganco.com/Daniel-Duggan-Resume.html">Resume</a>
-      <a class="active" href="https://dugganco.com/foodblog.html">Food Blog</a>
-      <a href="https://nextcloud.dugganco.com">Nextcloud</a>
-      <a href="https://plexrequest.dugganco.com">Plex Request</a>
-      <a href="#" id="mobile-theme-link" onclick="toggleTheme(); return false;">Dark Mode</a>
+      <a href="/">Home</a>
+      <a href="/consulting.html">Consulting</a>
+      <a href="/Daniel-Duggan-Resume.html">Resume</a>
+      <a href="/Daniel-Duggan-Resume.pdf" target="_blank" rel="noopener noreferrer">PDF Resume</a>
+      <a href="/foodblog.html">Food Blog</a>
+      <a href="https://nextcloud.dugganco.com" target="_blank" rel="noopener noreferrer">Nextcloud</a>
+      <a href="https://plexrequest.dugganco.com" target="_blank" rel="noopener noreferrer">Plex Request</a>
     </div>
   </div>
 
@@ -1197,29 +1144,15 @@
     });
 
     const themeButton = document.getElementById('theme-btn');
-    const mobileThemeLink = document.getElementById('mobile-theme-link');
-
-    function syncThemeLabels(theme) {
-      const nextTheme = theme === 'light' ? 'Dark' : 'Light';
-      if (themeButton) {
-        themeButton.textContent = nextTheme;
-      }
-      if (mobileThemeLink) {
-        mobileThemeLink.textContent = nextTheme + ' Mode';
-      }
-    }
 
     function applyTheme(theme) {
-      document.body.classList.remove('dark-mode', 'light-mode');
-      document.body.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
-      syncThemeLabels(theme);
+      document.body.classList.toggle('light-mode', theme === 'light');
+      themeButton.textContent = theme === 'light' ? '\u263e Dark' : '\u2600 Light';
+      localStorage.setItem('theme', theme);
     }
 
     function toggleTheme() {
-      const currentTheme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
-      const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
-      applyTheme(nextTheme);
-      localStorage.setItem('theme', nextTheme);
+      applyTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light');
     }
 
     let savedTheme = localStorage.getItem('theme');
