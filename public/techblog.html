@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tech Blog | Duggan Cyber Operations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="title" property="og:title" content="Tech Blog | Duggan Cyber Operations" />
+  <meta property="og:type" content="website" />
+  <meta name="image" property="og:image" content="https://i.imgur.com/3xlEfYc.png" />
+  <meta name="description" property="og:description" content="Technical writing from Dan Duggan on security, AI, cloud infrastructure, and homelabbing." />
+  <meta name="author" content="Dan Duggan" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7634336533389263" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root {
+      --bg: #050d1a;
+      --surface: rgba(10, 24, 40, 0.92);
+      --surface-2: rgba(15, 32, 53, 0.95);
+      --border: #1a3354;
+      --border-soft: rgba(96, 165, 250, 0.18);
+      --accent: #3b82f6;
+      --accent-2: #60a5fa;
+      --accent-soft: rgba(59, 130, 246, 0.14);
+      --text: #e2eaf5;
+      --text-2: #88a2c1;
+      --text-3: #557290;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      --navbar-h: 64px;
+      --r: 24px;
+      --r-sm: 10px;
+      --t: 0.22s ease;
+    }
+
+    body.light-mode {
+      --bg: #eef3fc;
+      --surface: rgba(255, 255, 255, 0.96);
+      --surface-2: rgba(229, 237, 249, 0.98);
+      --border: #c2d4ef;
+      --border-soft: rgba(29, 78, 216, 0.14);
+      --accent: #1d4ed8;
+      --accent-2: #2563eb;
+      --accent-soft: rgba(29, 78, 216, 0.08);
+      --text: #0a1628;
+      --text-2: #426383;
+      --text-3: #7c98bb;
+      --shadow: 0 24px 70px rgba(33, 63, 110, 0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      min-height: 100vh;
+      padding-top: var(--navbar-h);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 16% 12%, rgba(59, 130, 246, 0.18), transparent 22%),
+        radial-gradient(circle at 86% 10%, rgba(96, 165, 250, 0.14), transparent 18%),
+        linear-gradient(180deg, #061224 0%, var(--bg) 24%, #040913 100%);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body.light-mode {
+      background:
+        radial-gradient(circle at 16% 12%, rgba(29, 78, 216, 0.12), transparent 22%),
+        radial-gradient(circle at 86% 10%, rgba(37, 99, 235, 0.08), transparent 18%),
+        linear-gradient(180deg, #f7fbff 0%, var(--bg) 24%, #e8eff9 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--navbar-h);
+      background: rgba(5, 13, 26, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+    }
+
+    body.light-mode .navbar { background: rgba(238, 243, 252, 0.9); }
+
+    .navbar-inner,
+    .hero-inner,
+    .shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .navbar-inner {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-brand-icon {
+      width: 32px; height: 32px; border-radius: 7px; background: var(--accent);
+      display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 700;
+    }
+    .nav-brand-text { font-size: 1rem; font-weight: 700; color: var(--text); white-space: nowrap; }
+    .nav-brand-text span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a {
+      display: block; padding: 0.4rem 0.85rem; border-radius: var(--r-sm);
+      font-size: 0.875rem; font-weight: 500; color: var(--text-2); transition: color var(--t), background var(--t);
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+    .nav-links a.active { color: var(--accent); background: var(--accent-soft); }
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+    .theme-btn, .filter-chip {
+      font-family: inherit; cursor: pointer; transition: all var(--t);
+      border-radius: var(--r-sm); border: 1px solid var(--border);
+    }
+    .theme-btn {
+      background: var(--surface-2); color: var(--text-2); padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 500;
+    }
+    .theme-btn:hover { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
+    .hamburger {
+      display: none; background: none; border: 1px solid var(--border); color: var(--text-2);
+      border-radius: var(--r-sm); padding: 0.35rem 0.6rem; cursor: pointer; font-size: 1.1rem;
+    }
+    .mobile-nav {
+      display: none; position: fixed; top: var(--navbar-h); left: 0; right: 0; z-index: 999;
+      background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem 1.25rem; box-shadow: var(--shadow);
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .mobile-nav-grid a {
+      display: block; text-align: center; padding: 0.55rem 0.5rem; border-radius: var(--r-sm);
+      background: var(--surface-2); border: 1px solid var(--border-soft); color: var(--text-2); font-size: 0.82rem; font-weight: 500;
+    }
+
+    .hero { padding: 5.5rem 0 3.5rem; overflow: hidden; }
+    .hero-inner {
+      display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr); gap: 2rem; align-items: start;
+    }
+    .hero-copy { max-width: 720px; }
+    .hero-kicker {
+      display: inline-flex; align-items: center; gap: 0.55rem; margin-bottom: 1rem; padding: 0.45rem 0.85rem;
+      border-radius: 999px; background: var(--accent-soft); border: 1px solid rgba(96, 165, 250, 0.24);
+      color: var(--accent-2); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .hero-title {
+      font-family: 'Source Serif 4', serif; font-size: clamp(3rem, 6vw, 5rem); line-height: 0.96; letter-spacing: -0.05em;
+      margin-bottom: 1.2rem; max-width: 11ch;
+    }
+    .hero-title span { color: var(--accent-2); }
+    .hero-copy p { max-width: 62ch; font-size: 1.05rem; line-height: 1.82; color: var(--text-2); }
+    .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-top: 1.8rem; }
+    .stat-card, .hero-panel, .toolbar, .post-card, .article-shell, .empty-state, .loading-state, .error-state {
+      background: var(--surface); border: 1px solid var(--border-soft); box-shadow: var(--shadow);
+    }
+    .stat-card { padding: 1rem 1.05rem; border-radius: 18px; }
+    .stat-card span { display: block; color: var(--text-3); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    .stat-card strong { font-size: 1.32rem; }
+    .hero-panel {
+      padding: 1.35rem; border-radius: 28px;
+      background: linear-gradient(180deg, rgba(14, 28, 46, 0.98), rgba(8, 18, 31, 0.98));
+    }
+    body.light-mode .hero-panel {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(240, 246, 255, 0.96));
+    }
+    .hero-panel-label { color: var(--text-3); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; }
+    .hero-panel ul { list-style: none; display: grid; gap: 0.85rem; }
+    .hero-panel li { padding: 0.95rem 1rem; border-radius: 18px; background: rgba(96, 165, 250, 0.08); border: 1px solid var(--border-soft); }
+    .hero-panel h3 { font-size: 0.98rem; margin-bottom: 0.3rem; }
+    .hero-panel p { color: var(--text-2); font-size: 0.92rem; line-height: 1.66; }
+
+    .shell { padding-bottom: 4rem; }
+    .toolbar { padding: 1.3rem; border-radius: 26px; margin-bottom: 1rem; display: grid; gap: 1rem; }
+    .toolbar-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: end; }
+    .toolbar-copy h2 {
+      font-family: 'Source Serif 4', serif; font-size: clamp(2rem, 3vw, 2.7rem); letter-spacing: -0.03em; margin-bottom: 0.35rem;
+    }
+    .toolbar-copy p { color: var(--text-2); max-width: 58ch; line-height: 1.72; }
+    .search-shell {
+      display: flex; align-items: center; gap: 0.6rem; min-width: min(380px, 100%);
+      padding: 0.8rem 1rem; border-radius: 16px; background: var(--surface-2); border: 1px solid var(--border-soft);
+    }
+    .search-shell input {
+      width: 100%; border: none; outline: none; background: transparent; color: var(--text); font: inherit;
+    }
+    .search-shell input::placeholder { color: var(--text-3); }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+    .filter-chip {
+      background: var(--surface-2); color: var(--text-2); padding: 0.55rem 0.9rem; font-size: 0.82rem; font-weight: 600;
+    }
+    .filter-chip:hover, .filter-chip.active { color: var(--accent); background: var(--accent-soft); border-color: rgba(96, 165, 250, 0.3); }
+    .results-meta {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1rem 0;
+      color: var(--text-2); font-size: 0.92rem;
+    }
+    .post-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; }
+    .post-card {
+      grid-column: span 6; padding: 1.35rem; border-radius: 24px;
+      background: linear-gradient(180deg, rgba(14, 27, 45, 0.98), rgba(8, 17, 29, 0.98));
+      display: flex; flex-direction: column; gap: 0.95rem;
+    }
+    body.light-mode .post-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(240, 246, 255, 0.98));
+    }
+    .meta-row, .tag-row, .article-meta, .article-tags {
+      display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: center;
+    }
+    .meta-pill, .tag-pill {
+      display: inline-flex; align-items: center; padding: 0.34rem 0.68rem; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent-2); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .post-card h3, .article-title { font-family: 'Source Serif 4', serif; letter-spacing: -0.03em; }
+    .post-card h3 { font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.05; }
+    .post-card p { color: var(--text-2); line-height: 1.78; flex: 1; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .read-link { color: var(--accent-2); font-size: 0.92rem; font-weight: 700; }
+
+    .empty-state, .loading-state, .error-state {
+      padding: 1.2rem 1.3rem; border-radius: 20px; color: var(--text-2); margin-bottom: 1rem;
+    }
+
+    .article-shell {
+      display: none; margin-top: 0.5rem; padding: 1.7rem; border-radius: 28px;
+      background: linear-gradient(180deg, rgba(12, 24, 40, 0.98), rgba(7, 15, 25, 0.98));
+    }
+    body.light-mode .article-shell {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(241, 246, 255, 0.98));
+    }
+    .article-shell.visible { display: block; }
+    .article-back { display: inline-flex; margin-bottom: 1.2rem; color: var(--accent-2); font-size: 0.9rem; font-weight: 700; }
+    .article-header { display: grid; gap: 0.95rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-soft); }
+    .article-title { font-size: clamp(2.5rem, 5vw, 4.2rem); line-height: 0.98; }
+    .article-excerpt { color: var(--text-2); line-height: 1.82; max-width: 64ch; }
+    .article-content {
+      font-family: 'Source Serif 4', serif; font-size: 1.08rem; line-height: 1.92; color: var(--text);
+    }
+    .article-content h1, .article-content h2, .article-content h3 {
+      font-family: 'Inter', sans-serif; letter-spacing: -0.03em; margin: 1.75rem 0 0.65rem;
+    }
+    .article-content h1 { font-size: 2.1rem; }
+    .article-content h2 { font-size: 1.55rem; }
+    .article-content h3 { font-size: 1.2rem; }
+    .article-content p { margin: 0.95rem 0; }
+    .article-content ul { margin: 1rem 0 1rem 1.35rem; }
+    .article-content li { margin: 0.4rem 0; }
+    .article-content code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: var(--accent-soft); border-radius: 8px; padding: 0.1rem 0.35rem; font-size: 0.92em;
+    }
+    .article-content pre {
+      overflow-x: auto; margin: 1rem 0; padding: 1rem; border-radius: 16px; background: rgba(4, 10, 18, 0.88); border: 1px solid var(--border-soft);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.92rem; line-height: 1.7;
+    }
+
+    .footer { padding: 0 2rem 2.8rem; text-align: center; color: var(--text-3); }
+
+    @media (max-width: 1080px) {
+      .hero-inner, .toolbar-top { grid-template-columns: 1fr; }
+      .post-card { grid-column: span 12; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .hamburger { display: inline-flex; }
+      .mobile-nav-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .navbar-inner, .hero-inner, .shell, .footer { padding-left: 1rem; padding-right: 1rem; }
+      .mobile-nav { padding: 1rem; }
+      .article-shell { padding: 1.2rem; }
+      .article-title { font-size: 2.1rem; }
+      .article-content { font-size: 1rem; }
+      .search-shell { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a class="nav-brand" href="/index.html" aria-label="Duggan Cyber Operations home">
+        <div class="nav-brand-icon">DCO</div>
+        <div class="nav-brand-text">Duggan <span>Cyber Operations</span></div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/consulting.html">Consulting</a></li>
+        <li><a href="/Daniel-Duggan-Resume.html">Resume</a></li>
+        <li><a href="/foodblog.html">Food Blog</a></li>
+        <li><a class="active" href="/techblog.html">Tech Blog</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <button id="theme-btn" class="theme-btn" type="button" onclick="toggleTheme()">Light</button>
+        <button id="hamburger-btn" class="hamburger" type="button" aria-label="Open navigation menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="mobile-nav" class="mobile-nav">
+    <div class="mobile-nav-grid">
+      <a href="/index.html">Home</a>
+      <a href="/consulting.html">Consulting</a>
+      <a href="/Daniel-Duggan-Resume.html">Resume</a>
+      <a href="/Daniel-Duggan-Resume.pdf" target="_blank" rel="noopener noreferrer">PDF Resume</a>
+      <a href="/foodblog.html">Food Blog</a>
+      <a href="/techblog.html">Tech Blog</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="hero-kicker">Field Notes From The Operator Side</div>
+          <h1 class="hero-title">Security, AI, cloud, and <span>homelab writeups.</span></h1>
+          <p>
+            This page is for the material that starts as rough notes, survives a real editing cycle, and becomes useful
+            enough to publish. It is the cleaner public layer above the internal note stream.
+          </p>
+
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span>Primary Topics</span>
+              <strong>Security, AI, infra</strong>
+            </div>
+            <div class="stat-card">
+              <span>Workflow</span>
+              <strong>Notes → Review → Publish</strong>
+            </div>
+            <div class="stat-card">
+              <span>Publishing Model</span>
+              <strong>Static site, generated data</strong>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="hero-panel-label">What shows up here</div>
+          <ul>
+            <li>
+              <h3>Security operations and detection work</h3>
+              <p>Practical observations, tool notes, and process improvements that actually mattered in use.</p>
+            </li>
+            <li>
+              <h3>AI workflow architecture</h3>
+              <p>How LLMs fit into production-ish writing and automation flows without turning everything into generic output.</p>
+            </li>
+            <li>
+              <h3>Cloud and homelab infrastructure</h3>
+              <p>Build logs, architecture tradeoffs, and retrospectives from systems running in the background.</p>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="shell">
+      <div class="toolbar">
+        <div class="toolbar-top">
+          <div class="toolbar-copy">
+            <h2>Published posts</h2>
+            <p>
+              Search, filter, and open posts directly from generated JSON. The public site stays static while the editorial pipeline lives in Nextcloud and n8n.
+            </p>
+          </div>
+
+          <label class="search-shell" for="search-input">
+            <span>⌕</span>
+            <input id="search-input" type="search" placeholder="Search posts, tags, or topics" />
+          </label>
+        </div>
+
+        <div id="filter-row" class="filter-row"></div>
+      </div>
+
+      <div class="results-meta">
+        <div id="results-label">Loading published posts…</div>
+        <div id="view-label">Index view</div>
+      </div>
+
+      <div id="list-shell">
+        <div id="loading-state" class="loading-state">Fetching the post manifest and preparing the index.</div>
+        <div id="error-state" class="error-state" hidden></div>
+        <div id="empty-state" class="empty-state" hidden>No posts match the current filters yet.</div>
+        <div id="post-grid" class="post-grid"></div>
+      </div>
+
+      <article id="article-shell" class="article-shell">
+        <a id="article-back" class="article-back" href="/techblog.html">← Back to all posts</a>
+        <header class="article-header">
+          <div id="article-meta" class="article-meta"></div>
+          <h2 id="article-title" class="article-title"></h2>
+          <p id="article-excerpt" class="article-excerpt"></p>
+          <div id="article-tags" class="article-tags"></div>
+        </header>
+        <div id="article-content" class="article-content"></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.</small>
+  </footer>
+
+  <script>
+    const EMBEDDED_MANIFEST = {
+      generated_at: "2026-04-06T00:00:00-04:00",
+      posts: [
+        {
+          title: "Welcome To The Tech Blog",
+          slug: "welcome-to-the-tech-blog",
+          excerpt: "Why this blog exists and what will show up here across security, AI, cloud infrastructure, and homelabbing.",
+          category: "infrastructure",
+          tags: ["security", "ai", "cloud", "homelab"],
+          published_at: "2026-04-06T00:00:00-04:00",
+          updated_at: "2026-04-06T00:00:00-04:00",
+          reading_time: 3
+        }
+      ]
+    };
+
+    const EMBEDDED_POSTS = {
+      "welcome-to-the-tech-blog": {
+        title: "Welcome To The Tech Blog",
+        slug: "welcome-to-the-tech-blog",
+        excerpt: "Why this blog exists and what will show up here across security, AI, cloud infrastructure, and homelabbing.",
+        category: "infrastructure",
+        tags: ["security", "ai", "cloud", "homelab"],
+        published_at: "2026-04-06T00:00:00-04:00",
+        updated_at: "2026-04-06T00:00:00-04:00",
+        reading_time: 3,
+        meta_description: "An introduction to Dan Duggan's tech blog covering security, AI, cloud infrastructure, and homelabbing.",
+        body_markdown: "# Welcome To The Tech Blog\n\nThis page exists because the site needed a place for technical writing that sits between live notes and polished portfolio material.\n\n## What To Expect\n\n- Security operations notes after they have been cleaned up and reviewed\n- AI workflow experiments that are useful in real work, not just demos\n- Cloud and homelab architecture writeups with tradeoff-focused commentary\n- Publishing and automation patterns built around static infrastructure\n\n## Why The Workflow Matters\n\nPosts begin as rough markdown inside Nextcloud. Moving a note into the `Review` folder triggers n8n, which sends the piece through an AI drafting pass and writes the improved version back for human review. Only after a second deliberate move into `Publish` does the article become public.\n\nThat keeps the website fast and static while still making the writing process mobile-friendly.\n"
+      }
+    };
+
+    const state = { manifest: [], selectedTopic: "All", query: "" };
+
+    const hamburgerBtn = document.getElementById("hamburger-btn");
+    const mobileNav = document.getElementById("mobile-nav");
+    const themeButton = document.getElementById("theme-btn");
+    const searchInput = document.getElementById("search-input");
+    const filterRow = document.getElementById("filter-row");
+    const resultsLabel = document.getElementById("results-label");
+    const viewLabel = document.getElementById("view-label");
+    const loadingState = document.getElementById("loading-state");
+    const errorState = document.getElementById("error-state");
+    const emptyState = document.getElementById("empty-state");
+    const postGrid = document.getElementById("post-grid");
+    const articleShell = document.getElementById("article-shell");
+    const articleMeta = document.getElementById("article-meta");
+    const articleTitle = document.getElementById("article-title");
+    const articleExcerpt = document.getElementById("article-excerpt");
+    const articleTags = document.getElementById("article-tags");
+    const articleContent = document.getElementById("article-content");
+    const listShell = document.getElementById("list-shell");
+
+    hamburgerBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      mobileNav.classList.toggle("open");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (mobileNav.classList.contains("open") && !mobileNav.contains(event.target) && !hamburgerBtn.contains(event.target)) {
+        mobileNav.classList.remove("open");
+      }
+    });
+
+    function applyTheme(theme) {
+      document.body.classList.toggle("light-mode", theme === "light");
+      themeButton.textContent = theme === "light" ? "\u263e Dark" : "\u2600 Light";
+      localStorage.setItem("theme", theme);
+    }
+
+    function toggleTheme() {
+      applyTheme(document.body.classList.contains("light-mode") ? "dark" : "light");
+    }
+
+    let savedTheme = localStorage.getItem("theme");
+    if (!savedTheme) {
+      savedTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    }
+    applyTheme(savedTheme);
+    window.toggleTheme = toggleTheme;
+
+    function formatDate(isoString) {
+      return new Date(isoString).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function renderInline(text) {
+      return escapeHtml(text).replace(/`([^`]+)`/g, "<code>$1</code>");
+    }
+
+    function renderMarkdown(markdown) {
+      const lines = markdown.replace(/\r/g, "").split("\n");
+      const parts = [];
+      let paragraph = [];
+      let listItems = [];
+      let inCodeBlock = false;
+      let codeLines = [];
+
+      function flushParagraph() {
+        if (paragraph.length) {
+          parts.push(`<p>${renderInline(paragraph.join(" "))}</p>`);
+          paragraph = [];
+        }
+      }
+
+      function flushList() {
+        if (listItems.length) {
+          parts.push(`<ul>${listItems.map((item) => `<li>${renderInline(item)}</li>`).join("")}</ul>`);
+          listItems = [];
+        }
+      }
+
+      function flushCode() {
+        if (codeLines.length) {
+          parts.push(`<pre>${escapeHtml(codeLines.join("\n"))}</pre>`);
+          codeLines = [];
+        }
+      }
+
+      for (const line of lines) {
+        if (line.trim().startsWith("```")) {
+          flushParagraph();
+          flushList();
+          if (inCodeBlock) {
+            flushCode();
+            inCodeBlock = false;
+          } else {
+            inCodeBlock = true;
+          }
+          continue;
+        }
+
+        if (inCodeBlock) {
+          codeLines.push(line);
+          continue;
+        }
+
+        const headingMatch = line.match(/^(#{1,3})\s+(.*)$/);
+        if (headingMatch) {
+          flushParagraph();
+          flushList();
+          const level = headingMatch[1].length;
+          parts.push(`<h${level}>${renderInline(headingMatch[2].trim())}</h${level}>`);
+          continue;
+        }
+
+        const listMatch = line.match(/^- (.*)$/);
+        if (listMatch) {
+          flushParagraph();
+          listItems.push(listMatch[1].trim());
+          continue;
+        }
+
+        if (!line.trim()) {
+          flushParagraph();
+          flushList();
+          continue;
+        }
+
+        paragraph.push(line.trim());
+      }
+
+      flushParagraph();
+      flushList();
+      flushCode();
+      return parts.join("");
+    }
+
+    async function loadManifest() {
+      try {
+        const response = await fetch("./data/blog-manifest.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`Manifest request failed with ${response.status}`);
+        const data = await response.json();
+        return Array.isArray(data.posts) ? data.posts : [];
+      } catch (error) {
+        return EMBEDDED_MANIFEST.posts;
+      }
+    }
+
+    function applyFilters(posts, query, topic) {
+      const normalizedQuery = query.trim().toLowerCase();
+      return posts.filter((post) => {
+        const topicMatch = topic === "All" || post.category === topic;
+        const queryMatch = !normalizedQuery || [post.title, post.excerpt, post.category, ...(post.tags || [])].join(" ").toLowerCase().includes(normalizedQuery);
+        return topicMatch && queryMatch;
+      });
+    }
+
+    function buildFilters(posts) {
+      const categories = ["All", ...new Set(posts.map((post) => post.category).filter(Boolean))];
+      filterRow.innerHTML = "";
+
+      categories.forEach((topic) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `filter-chip${state.selectedTopic === topic ? " active" : ""}`;
+        button.textContent = topic;
+        button.addEventListener("click", () => {
+          state.selectedTopic = topic;
+          buildFilters(state.manifest);
+          updateListView();
+        });
+        filterRow.appendChild(button);
+      });
+    }
+
+    function renderPostList(posts) {
+      postGrid.innerHTML = "";
+      loadingState.hidden = true;
+      errorState.hidden = true;
+
+      if (!posts.length) {
+        emptyState.hidden = false;
+        resultsLabel.textContent = "0 posts match the current filters.";
+        return;
+      }
+
+      emptyState.hidden = true;
+      resultsLabel.textContent = `${posts.length} published post${posts.length === 1 ? "" : "s"} in the index.`;
+
+      posts.forEach((post) => {
+        const article = document.createElement("article");
+        article.className = "post-card";
+        article.innerHTML = `
+          <div class="meta-row">
+            <span class="meta-pill">${escapeHtml(post.category || "general")}</span>
+            <span class="meta-pill">${formatDate(post.published_at)}</span>
+            <span class="meta-pill">${escapeHtml(String(post.reading_time || 0))} min read</span>
+          </div>
+          <h3>${escapeHtml(post.title)}</h3>
+          <p>${escapeHtml(post.excerpt || "")}</p>
+          <div class="tag-row">${(post.tags || []).slice(0, 4).map((tag) => `<span class="tag-pill">${escapeHtml(tag)}</span>`).join("")}</div>
+          <div class="card-footer">
+            <span>${escapeHtml(post.slug)}</span>
+            <a class="read-link" href="/techblog.html?post=${encodeURIComponent(post.slug)}">Read article →</a>
+          </div>
+        `;
+        postGrid.appendChild(article);
+      });
+    }
+
+    async function loadPost(slug) {
+      try {
+        const response = await fetch(`./data/blog-posts/${encodeURIComponent(slug)}.json`, { cache: "no-store" });
+        if (!response.ok) throw new Error(`Post request failed with ${response.status}`);
+        return await response.json();
+      } catch (error) {
+        return EMBEDDED_POSTS[slug] || null;
+      }
+    }
+
+    function renderPost(post) {
+      articleMeta.innerHTML = `
+        <span class="meta-pill">${escapeHtml(post.category || "general")}</span>
+        <span class="meta-pill">${formatDate(post.published_at)}</span>
+        <span class="meta-pill">${escapeHtml(String(post.reading_time || 0))} min read</span>
+      `;
+      articleTitle.textContent = post.title || "Untitled post";
+      articleExcerpt.textContent = post.excerpt || "";
+      articleTags.innerHTML = (post.tags || []).map((tag) => `<span class="tag-pill">${escapeHtml(tag)}</span>`).join("");
+      articleContent.innerHTML = renderMarkdown(post.body_markdown || "");
+      articleShell.classList.add("visible");
+      listShell.hidden = true;
+      resultsLabel.textContent = "Viewing one published article.";
+      viewLabel.textContent = `Article view: ${post.slug}`;
+    }
+
+    function showIndexView() {
+      articleShell.classList.remove("visible");
+      listShell.hidden = false;
+      viewLabel.textContent = "Index view";
+    }
+
+    function updateListView() {
+      const filtered = applyFilters(state.manifest, state.query, state.selectedTopic);
+      renderPostList(filtered);
+    }
+
+    async function initBlog() {
+      const params = new URLSearchParams(window.location.search);
+      const requestedSlug = params.get("post");
+
+      state.manifest = await loadManifest();
+      state.manifest.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+      buildFilters(state.manifest);
+
+      if (requestedSlug) {
+        const post = await loadPost(requestedSlug);
+        if (post) {
+          renderPost(post);
+          return;
+        }
+
+        errorState.hidden = false;
+        errorState.textContent = `Could not load the post "${requestedSlug}". Returning to the index view instead.`;
+      }
+
+      showIndexView();
+      updateListView();
+    }
+
+    searchInput.addEventListener("input", (event) => {
+      state.query = event.target.value;
+      updateListView();
+    });
+
+    document.getElementById("article-back").addEventListener("click", (event) => {
+      event.preventDefault();
+      history.pushState({}, "", "/techblog.html");
+      showIndexView();
+      updateListView();
+    });
+
+    window.addEventListener("popstate", async () => {
+      const params = new URLSearchParams(window.location.search);
+      const requestedSlug = params.get("post");
+      if (requestedSlug) {
+        const post = await loadPost(requestedSlug);
+        if (post) {
+          renderPost(post);
+          return;
+        }
+      }
+      showIndexView();
+      updateListView();
+    });
+
+    initBlog();
+  </script>
+</body>
+</html>

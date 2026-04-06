@@ -1,0 +1,24 @@
+{
+  "name": "Tech Blog Review Workflow",
+  "nodes": [
+    { "name": "Review Folder Trigger", "type": "filesystemTrigger", "path": "Blog Articles/Review/" },
+    { "name": "Read Markdown File", "type": "readBinaryFile" },
+    { "name": "Parse Frontmatter And Body", "type": "code" },
+    { "name": "Normalize Metadata", "type": "code" },
+    { "name": "Load Draft Prompt", "type": "set", "value": "docs/n8n/tech-blog/prompts/tech-blog-draft-prompt.md" },
+    { "name": "ChatGPT Codex Draft", "type": "openai", "credential": "placeholder-openai-credential" },
+    { "name": "Merge AI Output", "type": "code" },
+    { "name": "Increment Review Round", "type": "code" },
+    { "name": "Write Reviewed Markdown", "type": "writeBinaryFile", "path": "Blog Articles/Reviewed/" }
+  ],
+  "connections": [
+    ["Review Folder Trigger", "Read Markdown File"],
+    ["Read Markdown File", "Parse Frontmatter And Body"],
+    ["Parse Frontmatter And Body", "Normalize Metadata"],
+    ["Normalize Metadata", "Load Draft Prompt"],
+    ["Load Draft Prompt", "ChatGPT Codex Draft"],
+    ["ChatGPT Codex Draft", "Merge AI Output"],
+    ["Merge AI Output", "Increment Review Round"],
+    ["Increment Review Round", "Write Reviewed Markdown"]
+  ]
+}

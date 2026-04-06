@@ -1,0 +1,24 @@
+{
+  "name": "Tech Blog Publish Workflow",
+  "nodes": [
+    { "name": "Publish Folder Trigger", "type": "filesystemTrigger", "path": "Blog Articles/Publish/" },
+    { "name": "Read Reviewed Markdown", "type": "readBinaryFile" },
+    { "name": "Parse Reviewed Content", "type": "code" },
+    { "name": "Validate Publishability", "type": "if" },
+    { "name": "Compute Reading Time", "type": "code" },
+    { "name": "Build Post JSON", "type": "code" },
+    { "name": "Write Post File", "type": "writeBinaryFile", "path": "public/data/blog-posts/" },
+    { "name": "Update Manifest", "type": "code" },
+    { "name": "Archive Published Note", "type": "moveBinaryFile", "path": "Blog Articles/Published/" }
+  ],
+  "connections": [
+    ["Publish Folder Trigger", "Read Reviewed Markdown"],
+    ["Read Reviewed Markdown", "Parse Reviewed Content"],
+    ["Parse Reviewed Content", "Validate Publishability"],
+    ["Validate Publishability", "Compute Reading Time"],
+    ["Compute Reading Time", "Build Post JSON"],
+    ["Build Post JSON", "Write Post File"],
+    ["Write Post File", "Update Manifest"],
+    ["Update Manifest", "Archive Published Note"]
+  ]
+}
