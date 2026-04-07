@@ -1,0 +1,95 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REPO_DIR="${REPO_DIR:-/home/dduggan/.config/superpowers/worktrees/dugganco.com/tech-blog-ai-publishing}"
+BRANCH="${REPO_BRANCH:-main}"
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "python3 is required" >&2
+  exit 127
+fi
+
+if ! command -v git >/dev/null 2>&1; then
+  echo "git is required" >&2
+  exit 127
+fi
+
+WORKDIR="$(mktemp -d)"
+cleanup() {
+  rm -rf "$WORKDIR"
+}
+trap cleanup EXIT
+
+INPUT_JSON="$WORKDIR/input.json"
+
+case "${1:-}" in
+  --base64)
+    if [[ -z "${2:-}" ]]; then
+      echo "--base64 requires a payload argument" >&2
+      exit 1
+    fi
+    printf '%s' "$2" | base64 -d > "$INPUT_JSON"
+    ;;
+  --file)
+    if [[ -z "${2:-}" ]]; then
+      echo "--file requires a path argument" >&2
+      exit 1
+    fi
+    cp "$2" "$INPUT_JSON"
+    ;;
+  "")
+    cat > "$INPUT_JSON"
+    ;;
+  *)
+    echo "Usage: $0 [--base64 <payload_b64> | --file <input_json_path>]" >&2
+    exit 1
+    ;;
+esac
+
+cd "$REPO_DIR"
+
+git checkout "$BRANCH"
+git pull --ff-only origin "$BRANCH"
+git config user.name "n8n Tech Blog"
+git config user.email "n8n-tech-blog@dugganco.local"
+
+python3 - "$INPUT_JSON" "$REPO_DIR" <<'PY'
+import json
+import pathlib
+import sys
+from datetime import datetime, timezone
+
+input_path = pathlib.Path(sys.argv[1])
+repo_dir = pathlib.Path(sys.argv[2])
+
+payload = json.loads(input_path.read_text(encoding="utf-8"))
+keep_slugs = {str(slug).strip() for slug in payload.get("keep_slugs", []) if str(slug).strip()}
+manifest_entries = payload.get("manifest_entries", [])
+
+posts_dir = repo_dir / "public" / "data" / "blog-posts"
+posts_dir.mkdir(parents=True, exist_ok=True)
+
+for existing in posts_dir.glob("*.json"):
+    if existing.stem not in keep_slugs:
+        existing.unlink()
+
+filtered_entries = [entry for entry in manifest_entries if str(entry.get("slug", "")).strip() in keep_slugs]
+
+manifest = {
+    "generated_at": datetime.now(timezone.utc).astimezone().isoformat(),
+    "posts": filtered_entries,
+}
+
+manifest_path = repo_dir / "public" / "data" / "blog-manifest.json"
+manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+PY
+
+git add public/data/blog-manifest.json public/data/blog-posts
+
+if git diff --cached --quiet; then
+  echo "No repo content changes to commit."
+  exit 0
+fi
+
+git commit -m "Reconcile tech blog published state"
+git push origin "$BRANCH"

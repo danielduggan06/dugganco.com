@@ -1,0 +1,426 @@
+﻿[
+{
+    "updatedAt":  "2026-04-07T11:45:00.000Z",
+    "createdAt":  "2026-04-07T11:45:00.000Z",
+    "id":  "techBlogReconcilePublishedStateWf",
+    "name":  "Tech Blog Reconcile Published State",
+    "description":  "Treats 4-Published as canonical, removes orphaned generated JSON, filters the manifest, and reconciles the website repo.",
+    "active":  false,
+    "isArchived":  false,
+    "nodes":  [
+                  {
+                      "parameters":  {
+                                         "rule":  {
+                                                      "interval":  [
+                                                                       {
+                                                                           "field":  "minutes",
+                                                                           "minutesInterval":  5
+                                                                       }
+                                                                   ]
+                                                  }
+                                     },
+                      "id":  "6e602f8c-0f38-46d4-b9df-0fe67f6f2101",
+                      "name":  "Schedule Trigger",
+                      "type":  "n8n-nodes-base.scheduleTrigger",
+                      "typeVersion":  1.3,
+                      "position":  [
+                                       0,
+                                       0
+                                   ]
+                  },
+                  {
+                      "parameters":  {
+                                         "authentication":  "accessToken",
+                                         "resource":  "folder",
+                                         "operation":  "create",
+                                         "path":  "/Notes/Blog Articles/4-Published/json"
+                                     },
+                      "id":  "d06f995c-2d91-4db7-a46e-883529631102",
+                      "name":  "Ensure JSON Folder",
+                      "type":  "n8n-nodes-base.nextCloud",
+                      "typeVersion":  1,
+                      "position":  [
+                                       220,
+                                       -120
+                                   ],
+                      "continueOnFail":  true,
+                      "credentials":  {
+                                          "nextCloudApi":  {
+                                                               "id":  "RvsFdJqFHNICksKj",
+                                                               "name":  "Nextcloud-tech-blog-n8n-automation"
+                                                           }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "authentication":  "accessToken",
+                                         "resource":  "folder",
+                                         "operation":  "create",
+                                         "path":  "/Notes/Blog Articles/4-Published/json/posts"
+                                     },
+                      "id":  "915afec3-fbd8-4995-9cff-c04396971103",
+                      "name":  "Ensure Posts Folder",
+                      "type":  "n8n-nodes-base.nextCloud",
+                      "typeVersion":  1,
+                      "position":  [
+                                       440,
+                                       -120
+                                   ],
+                      "continueOnFail":  true,
+                      "credentials":  {
+                                          "nextCloudApi":  {
+                                                               "id":  "RvsFdJqFHNICksKj",
+                                                               "name":  "Nextcloud-tech-blog-n8n-automation"
+                                                           }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "authentication":  "accessToken",
+                                         "resource":  "folder",
+                                         "operation":  "list",
+                                         "path":  "/Notes/Blog Articles/4-Published/"
+                                     },
+                      "id":  "a17f37c1-b29e-49fe-81ea-93ac758f2104",
+                      "name":  "List Published Folder",
+                      "type":  "n8n-nodes-base.nextCloud",
+                      "typeVersion":  1,
+                      "position":  [
+                                       660,
+                                       0
+                                   ],
+                      "credentials":  {
+                                          "nextCloudApi":  {
+                                                               "id":  "RvsFdJqFHNICksKj",
+                                                               "name":  "Nextcloud-tech-blog-n8n-automation"
+                                                           }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "mode":  "runOnceForAllItems",
+                                         "language":  "javaScript",
+                                         "jsCode":  "const items = $input.all();\nconst canonical = new Set();\n\nfor (const item of items) {\n  if (item.json.type !== \u0027file\u0027) continue;\n  const path = decodeURIComponent(String(item.json.path || \u0027\u0027));\n  const fileName = path.split(\u0027/\u0027).pop() || \u0027\u0027;\n  const match = fileName.match(/^\\d{4}-\\d{2}-\\d{2}-(.+)\\.md$/i);\n  if (match) canonical.add(match[1]);\n}\n\nreturn [{\n  json: {\n    canonical_slugs: Array.from(canonical).sort(),\n    manifest_path: \u0027/Notes/Blog Articles/4-Published/json/blog-manifest.json\u0027\n  }\n}];"
+                                     },
+                      "id":  "91d75ece-89eb-492c-b7d7-c08da7fd5105",
+                      "name":  "Build Canonical Slugs",
+                      "type":  "n8n-nodes-base.code",
+                      "typeVersion":  2,
+                      "position":  [
+                                       880,
+                                       0
+                                   ]
+                  },
+                  {
+                      "parameters":  {
+                                         "authentication":  "accessToken",
+                                         "resource":  "folder",
+                                         "operation":  "list",
+                                         "path":  "/Notes/Blog Articles/4-Published/json/posts/"
+                                     },
+                      "id":  "9470b40e-94e1-427e-b5fe-9b24862d4106",
+                      "name":  "List Existing JSON Posts",
+                      "type":  "n8n-nodes-base.nextCloud",
+                      "typeVersion":  1,
+                      "position":  [
+                                       1100,
+                                       0
+                                   ],
+                      "continueOnFail":  true,
+                      "credentials":  {
+                                          "nextCloudApi":  {
+                                                               "id":  "RvsFdJqFHNICksKj",
+                                                               "name":  "Nextcloud-tech-blog-n8n-automation"
+                                                           }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "mode":  "runOnceForAllItems",
+                                         "language":  "javaScript",
+                                         "jsCode":  "const source = $(\u0027Build Canonical Slugs\u0027).first().json;\nconst canonical = new Set(source.canonical_slugs || []);\nconst items = $input.all();\n\nconst orphanJsonPaths = [];\n\nfor (const item of items) {\n  if (item.json.type !== \u0027file\u0027) continue;\n  const path = decodeURIComponent(String(item.json.path || \u0027\u0027));\n  if (!path.toLowerCase().endsWith(\u0027.json\u0027)) continue;\n  const fileName = path.split(\u0027/\u0027).pop() || \u0027\u0027;\n  const slug = fileName.replace(/\\.json$/i, \u0027\u0027);\n  const normalizedPath = path.startsWith(\u0027/\u0027) ? path : `/${path}`;\n  if (!canonical.has(slug)) {\n    orphanJsonPaths.push(normalizedPath);\n  }\n}\n\nreturn [{\n  json: {\n    canonical_slugs: source.canonical_slugs || [],\n    manifest_path: source.manifest_path,\n    orphan_json_paths: orphanJsonPaths.sort()\n  }\n}];"
+                                     },
+                      "id":  "c20ad1d5-0db7-4466-b60a-b517480e3107",
+                      "name":  "Build Reconcile Plan",
+                      "type":  "n8n-nodes-base.code",
+                      "typeVersion":  2,
+                      "position":  [
+                                       1320,
+                                       0
+                                   ]
+                  },
+                  {
+                      "parameters":  {
+                                         "mode":  "runOnceForAllItems",
+                                         "language":  "javaScript",
+                                         "jsCode":  "const source = $(\u0027Build Reconcile Plan\u0027).first().json;\nreturn (source.orphan_json_paths || []).map((path) =\u003e ({ json: { path } }));"
+                                     },
+                      "id":  "4a226f63-22e6-4181-9eb7-1a1d99a18108",
+                      "name":  "Expand Orphan JSON Paths",
+                      "type":  "n8n-nodes-base.code",
+                      "typeVersion":  2,
+                      "position":  [
+                                       1540,
+                                       -120
+                                   ]
+                  },
+                  {
+                      "parameters":  {
+                                         "authentication":  "accessToken",
+                                         "resource":  "file",
+                                         "operation":  "delete",
+                                         "path":  "={{ $json.path }}"
+                                     },
+                      "id":  "3a91d8e0-7ee4-4cb2-a10e-337f71f50109",
+                      "name":  "Delete Orphan JSON",
+                      "type":  "n8n-nodes-base.nextCloud",
+                      "typeVersion":  1,
+                      "position":  [
+                                       1760,
+                                       -120
+                                   ],
+                      "credentials":  {
+                                          "nextCloudApi":  {
+                                                               "id":  "RvsFdJqFHNICksKj",
+                                                               "name":  "Nextcloud-tech-blog-n8n-automation"
+                                                           }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "authentication":  "accessToken",
+                                         "resource":  "file",
+                                         "operation":  "download",
+                                         "path":  "={{ $json.manifest_path }}",
+                                         "binaryPropertyName":  "manifest"
+                                     },
+                      "id":  "55fb2f27-8f61-42d9-aed0-f8702ba56110",
+                      "name":  "Download Existing Manifest",
+                      "type":  "n8n-nodes-base.nextCloud",
+                      "typeVersion":  1,
+                      "position":  [
+                                       1540,
+                                       80
+                                   ],
+                      "continueOnFail":  true,
+                      "credentials":  {
+                                          "nextCloudApi":  {
+                                                               "id":  "RvsFdJqFHNICksKj",
+                                                               "name":  "Nextcloud-tech-blog-n8n-automation"
+                                                           }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "mode":  "runOnceForEachItem",
+                                         "language":  "javaScript",
+                                         "jsCode":  "const source = $(\u0027Build Reconcile Plan\u0027).first().json;\nconst canonical = new Set(source.canonical_slugs || []);\n\nlet manifestEntries = [];\nif ($binary?.manifest?.data) {\n  try {\n    manifestEntries = JSON.parse(Buffer.from($binary.manifest.data, \u0027base64\u0027).toString(\u0027utf8\u0027));\n  } catch (error) {\n    manifestEntries = [];\n  }\n}\n\nif (!Array.isArray(manifestEntries)) manifestEntries = [];\n\nconst filtered = manifestEntries\n  .filter((entry) =\u003e canonical.has(String(entry.slug || \u0027\u0027).trim()))\n  .sort((a, b) =\u003e new Date(b.published_at).getTime() - new Date(a.published_at).getTime());\n\nconst payload = {\n  keep_slugs: Array.from(canonical).sort(),\n  manifest_entries: filtered\n};\n\nreturn [{\n  json: {\n    manifest_path: source.manifest_path,\n    manifest_json: JSON.stringify(filtered, null, 2),\n    repo_payload_b64: Buffer.from(JSON.stringify(payload), \u0027utf8\u0027).toString(\u0027base64\u0027)\n  }\n}];"
+                                     },
+                      "id":  "c2b86bfa-4b48-4954-a319-4911dd5fa111",
+                      "name":  "Filter Existing Manifest",
+                      "type":  "n8n-nodes-base.code",
+                      "typeVersion":  2,
+                      "position":  [
+                                       1760,
+                                       80
+                                   ]
+                  },
+                  {
+                      "parameters":  {
+                                         "authentication":  "accessToken",
+                                         "resource":  "file",
+                                         "operation":  "upload",
+                                         "path":  "={{ $json.manifest_path }}",
+                                         "binaryDataUpload":  false,
+                                         "fileContent":  "={{ $json.manifest_json }}"
+                                     },
+                      "id":  "c2c99471-bf3f-4ec7-88bb-7ff1c25d8112",
+                      "name":  "Upload Reconciled Manifest JSON",
+                      "type":  "n8n-nodes-base.nextCloud",
+                      "typeVersion":  1,
+                      "position":  [
+                                       1980,
+                                       80
+                                   ],
+                      "credentials":  {
+                                          "nextCloudApi":  {
+                                                               "id":  "RvsFdJqFHNICksKj",
+                                                               "name":  "Nextcloud-tech-blog-n8n-automation"
+                                                           }
+                                      }
+                  },
+                  {
+                      "parameters":  {
+                                         "authentication":  "password",
+                                         "resource":  "command",
+                                         "operation":  "execute",
+                                         "command":  "=/home/dduggan/bin/tech-blog-reconcile-published-to-repo.sh --base64 \u0027{{.repo_payload_b64}}\u0027",
+                                         "cwd":  "/home/dduggan"
+                                     },
+                      "id":  "9d53ae90-0d2d-48b1-9c15-dc520e78a113",
+                      "name":  "Run Repo Reconcile",
+                      "type":  "n8n-nodes-base.ssh",
+                      "typeVersion":  1,
+                      "position":  [
+                                       2200,
+                                       80
+                                   ],
+                      "credentials":  {
+                                          "sshPassword":  {
+                                                              "id":  "2eqyZWE7NQaj9z2W",
+                                                              "name":  "SSH - n8n host VM"
+                                                          }
+                                      }
+                  }
+              ],
+    "connections":  {
+                        "Schedule Trigger":  {
+                                                 "main":  [
+                                                              [
+                                                                  {
+                                                                      "node":  "Ensure JSON Folder",
+                                                                      "type":  "main",
+                                                                      "index":  0
+                                                                  }
+                                                              ]
+                                                          ]
+                                             },
+                        "Ensure JSON Folder":  {
+                                                   "main":  [
+                                                                [
+                                                                    {
+                                                                        "node":  "Ensure Posts Folder",
+                                                                        "type":  "main",
+                                                                        "index":  0
+                                                                    }
+                                                                ]
+                                                            ]
+                                               },
+                        "Ensure Posts Folder":  {
+                                                    "main":  [
+                                                                 [
+                                                                     {
+                                                                         "node":  "List Published Folder",
+                                                                         "type":  "main",
+                                                                         "index":  0
+                                                                     }
+                                                                 ]
+                                                             ]
+                                                },
+                        "List Published Folder":  {
+                                                      "main":  [
+                                                                   [
+                                                                       {
+                                                                           "node":  "Build Canonical Slugs",
+                                                                           "type":  "main",
+                                                                           "index":  0
+                                                                       }
+                                                                   ]
+                                                               ]
+                                                  },
+                        "Build Canonical Slugs":  {
+                                                      "main":  [
+                                                                   [
+                                                                       {
+                                                                           "node":  "List Existing JSON Posts",
+                                                                           "type":  "main",
+                                                                           "index":  0
+                                                                       }
+                                                                   ],
+                                                                   [
+                                                                       {
+                                                                           "node":  "Download Existing Manifest",
+                                                                           "type":  "main",
+                                                                           "index":  0
+                                                                       }
+                                                                   ]
+                                                               ]
+                                                  },
+                        "List Existing JSON Posts":  {
+                                                         "main":  [
+                                                                      [
+                                                                          {
+                                                                              "node":  "Build Reconcile Plan",
+                                                                              "type":  "main",
+                                                                              "index":  0
+                                                                          }
+                                                                      ]
+                                                                  ]
+                                                     },
+                        "Build Reconcile Plan":  {
+                                                     "main":  [
+                                                                  [
+                                                                      {
+                                                                          "node":  "Expand Orphan JSON Paths",
+                                                                          "type":  "main",
+                                                                          "index":  0
+                                                                      }
+                                                                  ],
+                                                                  [
+                                                                      {
+                                                                          "node":  "Filter Existing Manifest",
+                                                                          "type":  "main",
+                                                                          "index":  0
+                                                                      }
+                                                                  ]
+                                                              ]
+                                                 },
+                        "Expand Orphan JSON Paths":  {
+                                                         "main":  [
+                                                                      [
+                                                                          {
+                                                                              "node":  "Delete Orphan JSON",
+                                                                              "type":  "main",
+                                                                              "index":  0
+                                                                          }
+                                                                      ]
+                                                                  ]
+                                                     },
+                        "Download Existing Manifest":  {
+                                                           "main":  [
+                                                                        [
+                                                                            {
+                                                                                "node":  "Filter Existing Manifest",
+                                                                                "type":  "main",
+                                                                                "index":  0
+                                                                            }
+                                                                        ]
+                                                                    ]
+                                                       },
+                        "Filter Existing Manifest":  {
+                                                         "main":  [
+                                                                      [
+                                                                          {
+                                                                              "node":  "Upload Reconciled Manifest JSON",
+                                                                              "type":  "main",
+                                                                              "index":  0
+                                                                          }
+                                                                      ]
+                                                                  ]
+                                                     },
+                        "Upload Reconciled Manifest JSON":  {
+                                                                "main":  [
+                                                                             [
+                                                                                 {
+                                                                                     "node":  "Run Repo Reconcile",
+                                                                                     "type":  "main",
+                                                                                     "index":  0
+                                                                                 }
+                                                                             ]
+                                                                         ]
+                                                            }
+                    },
+    "settings":  {
+                     "executionOrder":  "v1",
+                     "binaryMode":  "separate",
+                     "availableInMCP":  false
+                 },
+    "staticData":  null,
+    "pinData":  null,
+    "versionId":  "00000000-0000-0000-0000-000000000000",
+    "triggerCount":  0,
+    "meta":  {
+                 "templateCredsSetupCompleted":  true
+             }
+}
+]
