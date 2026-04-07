@@ -677,6 +677,22 @@
       gap: 0.8rem;
     }
 
+    .project-list {
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .project-list li {
+      color: var(--text-2);
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+
+    .project-list strong {
+      color: var(--text);
+    }
+
     .cert-item,
     .education-item {
       padding: 0.95rem 1rem;
@@ -1049,6 +1065,15 @@
         </div>
 
         <div>
+          <div class="subsection-card" style="margin-bottom: 1rem;">
+            <h3>Selected Projects</h3>
+            <ul class="project-list">
+              <li><strong>Built an n8n pipeline</strong> that parses Zillow alerts, enriches listings with HUD and Rentcast data, calculates investment metrics, and sends automated deal notifications.</li>
+              <li><strong>Developed Python automation</strong> to extract property and market data from web sources and generate Excel-based analysis artifacts for underwriting workflows.</li>
+              <li><strong>Created self-hosted AI-assisted workflow tooling</strong> to improve project continuity, site iteration, and personal automation across local CLI and web projects.</li>
+            </ul>
+          </div>
+
           <div class="subsection-card" id="certifications">
             <h3>Certifications</h3>
             <div class="cert-list">
