@@ -9,7 +9,7 @@ category: security
 created_at: 2026-04-06T00:00:00-04:00
 updated_at: 2026-04-06T00:00:00-04:00
 source_type: note
-source_path: "Nextcloud/Notes/Blog Articles/Review/"
+source_path: "Nextcloud/Notes/Blog Articles/1-Review/"
 summary: ""
 excerpt: ""
 publish_at: null
@@ -17,6 +17,7 @@ canonical_url: ""
 meta_description: ""
 og_image: ""
 review_round: 1
+published_json_path: ""
 ---
 
 # Working Title
