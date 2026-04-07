@@ -46,6 +46,13 @@ case "${1:-}" in
     ;;
 esac
 
+cd "$REPO_DIR"
+
+git checkout "$BRANCH"
+git pull --ff-only origin "$BRANCH"
+git config user.name "n8n Tech Blog"
+git config user.email "n8n-tech-blog@dugganco.local"
+
 python3 - "$INPUT_JSON" "$REPO_DIR" <<'PY'
 import json
 import pathlib
@@ -74,12 +81,6 @@ manifest_path = repo_dir / "public" / "data" / "blog-manifest.json"
 manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 PY
 
-cd "$REPO_DIR"
-
-git checkout "$BRANCH"
-git pull --ff-only origin "$BRANCH"
-git config user.name "n8n Tech Blog"
-git config user.email "n8n-tech-blog@dugganco.local"
 git add public/data/blog-manifest.json public/data/blog-posts
 
 if git diff --cached --quiet; then
