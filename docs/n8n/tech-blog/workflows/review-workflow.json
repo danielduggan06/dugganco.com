@@ -1,24 +1,323 @@
-{
-  "name": "Tech Blog Review Workflow",
-  "nodes": [
-    { "name": "Review Folder Trigger", "type": "filesystemTrigger", "path": "Blog Articles/Review/" },
-    { "name": "Read Markdown File", "type": "readBinaryFile" },
-    { "name": "Parse Frontmatter And Body", "type": "code" },
-    { "name": "Normalize Metadata", "type": "code" },
-    { "name": "Load Draft Prompt", "type": "set", "value": "docs/n8n/tech-blog/prompts/tech-blog-draft-prompt.md" },
-    { "name": "ChatGPT Codex Draft", "type": "openai", "credential": "placeholder-openai-credential" },
-    { "name": "Merge AI Output", "type": "code" },
-    { "name": "Increment Review Round", "type": "code" },
-    { "name": "Write Reviewed Markdown", "type": "writeBinaryFile", "path": "Blog Articles/Reviewed/" }
-  ],
-  "connections": [
-    ["Review Folder Trigger", "Read Markdown File"],
-    ["Read Markdown File", "Parse Frontmatter And Body"],
-    ["Parse Frontmatter And Body", "Normalize Metadata"],
-    ["Normalize Metadata", "Load Draft Prompt"],
-    ["Load Draft Prompt", "ChatGPT Codex Draft"],
-    ["ChatGPT Codex Draft", "Merge AI Output"],
-    ["Merge AI Output", "Increment Review Round"],
-    ["Increment Review Round", "Write Reviewed Markdown"]
-  ]
-}
+[
+  {
+    "updatedAt": "2026-04-06T13:30:00.000Z",
+    "createdAt": "2026-04-06T13:30:00.000Z",
+    "id": "techBlogReviewWf1",
+    "name": "Tech Blog Review Workflow",
+    "description": "Polls Nextcloud 1-Review, drafts through the host Codex CLI wrapper on VM 218, writes to 2-Reviewed, and removes the review source file.",
+    "active": false,
+    "isArchived": false,
+    "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "cfd9f1ea-519c-46c4-9d4a-2c44c8067101",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "accessToken",
+        "resource": "folder",
+        "operation": "list",
+        "path": "/Notes/Blog Articles/1-Review/"
+      },
+      "id": "9a12e4f1-a0ef-4259-9aa6-07ebd42ca9f2",
+      "name": "List Review Folder",
+      "type": "n8n-nodes-base.nextCloud",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "credentials": {
+        "nextCloudApi": {
+          "id": "RvsFdJqFHNICksKj",
+          "name": "Nextcloud-tech-blog-n8n-automation"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const items = $input.all();\nconst normalizePath = (value) => {\n  const decoded = decodeURIComponent(String(value || ''));\n  return decoded.startsWith('/') ? decoded : `/${decoded}`;\n};\nreturn items\n  .filter((item) => item.json.type === 'file' && typeof item.json.path === 'string' && item.json.path.toLowerCase().endsWith('.md'))\n  .map((item) => ({\n    json: {\n      ...item.json,\n      source_path: normalizePath(item.json.path),\n      source_folder: '/Notes/Blog Articles/1-Review/',\n      reviewed_folder: '/Notes/Blog Articles/2-Reviewed/'\n    }\n  }));"
+      },
+      "id": "d0a9b8a9-9ec9-40b5-8d76-ee2259f0ab07",
+      "name": "Filter Markdown Files",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "accessToken",
+        "resource": "file",
+        "operation": "download",
+        "path": "={{ $json.source_path }}",
+        "binaryPropertyName": "data"
+      },
+      "id": "2f1acde9-54ee-43f7-9a58-e26e0fb53f52",
+      "name": "Download Review Markdown",
+      "type": "n8n-nodes-base.nextCloud",
+      "typeVersion": 1,
+      "position": [
+        660,
+        0
+      ],
+      "credentials": {
+        "nextCloudApi": {
+          "id": "RvsFdJqFHNICksKj",
+          "name": "Nextcloud-tech-blog-n8n-automation"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "language": "javaScript",
+        "jsCode": "const sourcePath = $json.source_path;\nconst fileName = sourcePath.split('/').pop();\nconst buffer = await helpers.getBinaryDataBuffer(0, 'data');\nconst raw = buffer.toString('utf8');\nconst match = raw.match(/^---\\n([\\s\\S]*?)\\n---\\n?([\\s\\S]*)$/);\nconst frontmatterRaw = match ? match[1] : '';\nconst body = (match ? match[2] : raw).trim();\n\nconst metadata = {};\nlet currentKey = null;\nfor (const line of frontmatterRaw.split(/\\r?\\n/)) {\n  if (!line.trim()) continue;\n  const listMatch = line.match(/^\\s*-\\s+(.*)$/);\n  if (listMatch && currentKey) {\n    if (!Array.isArray(metadata[currentKey])) metadata[currentKey] = [];\n    metadata[currentKey].push(listMatch[1].trim().replace(/^['\"]|['\"]$/g, ''));\n    continue;\n  }\n  const keyMatch = line.match(/^([A-Za-z0-9_]+):\\s*(.*)$/);\n  if (!keyMatch) continue;\n  const [, key, rawValue] = keyMatch;\n  currentKey = key;\n  const value = rawValue.trim();\n  if (value === '') {\n    metadata[key] = [];\n    continue;\n  }\n  if (value === 'null') {\n    metadata[key] = null;\n    continue;\n  }\n  metadata[key] = value.replace(/^['\"]|['\"]$/g, '');\n}\n\nconst slugify = (value) => value\n  .toLowerCase()\n  .replace(/[^a-z0-9]+/g, '-')\n  .replace(/^-+|-+$/g, '')\n  .replace(/-{2,}/g, '-');\n\nconst title = metadata.title || body.split(/\\r?\\n/).find((line) => line.startsWith('# '))?.replace(/^#\\s+/, '') || fileName.replace(/\\.md$/i, '');\nconst slug = metadata.slug && metadata.slug.trim() ? metadata.slug.trim() : slugify(title);\nconst reviewRound = Number(metadata.review_round || 0) || 0;\nconst reviewedPath = `/Notes/Blog Articles/2-Reviewed/${fileName}`;\n\nreturn {\n  json: {\n    source_path: sourcePath,\n    reviewed_path: reviewedPath,\n    file_name: fileName,\n    raw_markdown: raw,\n    frontmatter: metadata,\n    body_markdown: body,\n    title,\n    slug,\n    review_round: reviewRound,\n    created_at: metadata.created_at || '',\n    updated_at: metadata.updated_at || '',\n    source_type: metadata.source_type || 'note',\n    source_path_meta: metadata.source_path || '/Notes/Blog Articles/1-Review/',\n    published_json_path: metadata.published_json_path || ''\n  }\n};"
+      },
+      "id": "85af28c7-b8f0-4e10-890d-c3e1a9ab92e1",
+      "name": "Parse Frontmatter And Body",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "language": "javaScript",
+        "jsCode": "const source = $('Parse Frontmatter And Body').item.json;\nconst payload = {\n  title: source.title,\n  slug: source.slug,\n  frontmatter: source.frontmatter,\n  body_markdown: source.body_markdown\n};\n\nreturn {\n  json: {\n    ...source,\n    codex_payload_b64: Buffer.from(JSON.stringify(payload), 'utf8').toString('base64')\n  }\n};"
+      },
+      "id": "8c617567-c39a-40b8-b402-4e6bc8ea27c2",
+      "name": "Build Codex Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "password",
+        "resource": "command",
+        "operation": "execute",
+        "command": "=/home/dduggan/bin/tech-blog-review-via-codex.sh --base64 '{{$json.codex_payload_b64}}'",
+        "cwd": "/home/dduggan"
+      },
+      "id": "3e32db73-2abf-4687-8e89-9dd88c799fd1",
+      "name": "Run Codex Draft",
+      "type": "n8n-nodes-base.ssh",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        0
+      ],
+      "credentials": {
+        "sshPassword": {
+          "id": "2eqyZWE7NQaj9z2W",
+          "name": "SSH - n8n host VM"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "language": "javaScript",
+        "jsCode": "const source = $('Build Codex Payload').item.json;\nconst stdout = String($json.stdout || '').trim();\nif (!stdout) {\n  throw new Error('Codex wrapper did not return stdout.');\n}\n\nlet ai;\ntry {\n  ai = JSON.parse(stdout);\n} catch (error) {\n  throw new Error(`Codex wrapper returned invalid JSON: ${error.message}`);\n}\n\nconst now = new Date().toISOString();\nconst reviewRound = (Number(source.review_round || 0) || 0) + 1;\nconst slug = (source.slug || ai.slug || '').trim();\nconst tags = Array.isArray(ai.tags) ? ai.tags : Array.isArray(source.frontmatter.tags) ? source.frontmatter.tags : [];\n\nconst lines = [];\nlines.push('---');\nlines.push(`title: \"${String(ai.title || source.title).replace(/\"/g, '\\\\\"')}\"`);\nlines.push(`slug: \"${String(slug).replace(/\"/g, '\\\\\"')}\"`);\nlines.push('status: reviewed');\nlines.push('tags:');\nfor (const tag of tags) lines.push(`  - ${String(tag)}`);\nlines.push(`category: ${String(ai.category || source.frontmatter.category || 'security')}`);\nlines.push(`created_at: ${source.frontmatter.created_at || now}`);\nlines.push(`updated_at: ${now}`);\nlines.push(`source_type: ${source.frontmatter.source_type || 'note'}`);\nlines.push(`source_path: \"${String(source.frontmatter.source_path || '/Notes/Blog Articles/1-Review/').replace(/\"/g, '\\\\\"')}\"`);\nlines.push(`summary: \"${String(ai.summary || '').replace(/\"/g, '\\\\\"')}\"`);\nlines.push(`excerpt: \"${String(ai.excerpt || '').replace(/\"/g, '\\\\\"')}\"`);\nlines.push(`publish_at: ${source.frontmatter.publish_at || 'null'}`);\nlines.push(`canonical_url: \"${String(source.frontmatter.canonical_url || '').replace(/\"/g, '\\\\\"')}\"`);\nlines.push(`meta_description: \"${String(ai.meta_description || '').replace(/\"/g, '\\\\\"')}\"`);\nlines.push(`og_image: \"${String(source.frontmatter.og_image || '').replace(/\"/g, '\\\\\"')}\"`);\nlines.push(`review_round: ${reviewRound}`);\nlines.push(`published_json_path: \"${String(source.frontmatter.published_json_path || '').replace(/\"/g, '\\\\\"')}\"`);\nlines.push('---');\nlines.push('');\nlines.push(String(ai.body_markdown || source.body_markdown || '').trim());\n\nreturn {\n  json: {\n    source_path: source.source_path,\n    reviewed_path: source.reviewed_path,\n    reviewed_markdown: lines.join('\\n')\n  }\n};"
+      },
+      "id": "1c7b12d7-87c8-496a-9cfa-e9d96fcfbbac",
+      "name": "Build Reviewed Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "accessToken",
+        "resource": "file",
+        "operation": "upload",
+        "path": "={{ $json.reviewed_path }}",
+        "binaryDataUpload": false,
+        "fileContent": "={{ $json.reviewed_markdown }}"
+      },
+      "id": "531208e4-bae7-4d6d-b6e7-3e61ae83e687",
+      "name": "Upload Reviewed Markdown",
+      "type": "n8n-nodes-base.nextCloud",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        0
+      ],
+      "credentials": {
+        "nextCloudApi": {
+          "id": "RvsFdJqFHNICksKj",
+          "name": "Nextcloud-tech-blog-n8n-automation"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "accessToken",
+        "resource": "file",
+        "operation": "delete",
+        "path": "={{ $('Build Reviewed Markdown').item.json.source_path }}"
+      },
+      "id": "680fdc86-7289-459d-ae03-f1aa7f4be945",
+      "name": "Delete Review Source",
+      "type": "n8n-nodes-base.nextCloud",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        0
+      ],
+      "credentials": {
+        "nextCloudApi": {
+          "id": "RvsFdJqFHNICksKj",
+          "name": "Nextcloud-tech-blog-n8n-automation"
+        }
+      }
+    }
+    ],
+    "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "List Review Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List Review Folder": {
+      "main": [
+        [
+          {
+            "node": "Filter Markdown Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Markdown Files": {
+      "main": [
+        [
+          {
+            "node": "Download Review Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Review Markdown": {
+      "main": [
+        [
+          {
+            "node": "Parse Frontmatter And Body",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Frontmatter And Body": {
+      "main": [
+        [
+          {
+            "node": "Build Codex Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Codex Payload": {
+      "main": [
+        [
+          {
+            "node": "Run Codex Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Codex Draft": {
+      "main": [
+        [
+          {
+            "node": "Build Reviewed Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Reviewed Markdown": {
+      "main": [
+        [
+          {
+            "node": "Upload Reviewed Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Reviewed Markdown": {
+      "main": [
+        [
+          {
+            "node": "Delete Review Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "binaryMode": "separate",
+      "availableInMCP": false
+    },
+    "staticData": null,
+    "meta": {
+      "templateCredsSetupCompleted": true
+    },
+    "pinData": {},
+    "versionId": "3c612b3c-2fd7-4d2e-8a87-0da4fed9f741",
+    "activeVersionId": null,
+    "versionCounter": 1,
+    "triggerCount": 0,
+    "tags": []
+  }
+]
