@@ -1,4 +1,22 @@
 {
-  "generated_at": "2026-04-07T11:05:00-04:00",
-  "posts": []
+  "generated_at": "2026-04-07T16:40:41.019929-04:00",
+  "posts": [
+    {
+      "title": "Beginning of Dan Duggan's Tech Blog",
+      "slug": "beginning-of-dan-duggan-s-tech-blog",
+      "excerpt": "Starting a blog never ranked high on my skill list. I'm not a writer and barely a reader, but after years in infrastructure and security I have more stories than excuses to stay quiet.",
+      "category": "Commentary",
+      "tags": [
+        "introduction",
+        "cybersecurity",
+        "infrastructure",
+        "information-technology",
+        "artificial-intelligence"
+      ],
+      "published_at": "2026-04-07T20:40:35.811Z",
+      "updated_at": "2026-04-07T20:40:35.811Z",
+      "reading_time": 1,
+      "meta_description": "Dan Duggan kicks off his tech blog with a blunt overview of the IT, security, infrastructure, AI, and geopolitical topics he plans to cover—and why his anti-war stance will stay visible."
+    }
+  ]
 }
