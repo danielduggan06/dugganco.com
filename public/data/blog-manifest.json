@@ -1,36 +1,4 @@
 {
-  "generated_at": "2026-04-07T10:45:00-04:00",
-  "posts": [
-    {
-      "title": "Why Small Homelabs Need Better Secrets Management",
-      "slug": "small-homelab-secrets-management",
-      "excerpt": "Self-hosted services break when secrets sprawl across .env files and sticky notes. Here’s how to clean that up without going full enterprise theater.",
-      "category": "security",
-      "tags": [
-        "security",
-        "homelab",
-        "infrastructure"
-      ],
-      "published_at": "2026-04-06T23:34:10.747Z",
-      "updated_at": "2026-04-06T23:34:10.747Z",
-      "reading_time": 2,
-      "meta_description": "Practical secrets-management advice for small homelabs: unique admin passwords, a sane shared store like Vaultwarden, clear separation between machine and human credentials, and documentation so rebuilds don’t hurt."
-    },
-    {
-      "title": "Welcome To The Tech Blog",
-      "slug": "welcome-to-the-tech-blog",
-      "excerpt": "Why this blog exists and what will show up here across security, AI, cloud infrastructure, and homelabbing.",
-      "category": "infrastructure",
-      "tags": [
-        "security",
-        "ai",
-        "cloud",
-        "homelab"
-      ],
-      "published_at": "2026-04-06T00:00:00-04:00",
-      "updated_at": "2026-04-06T00:00:00-04:00",
-      "reading_time": 3,
-      "meta_description": "An introduction to Dan Duggan's tech blog covering security, AI, cloud infrastructure, and homelabbing."
-    }
-  ]
+  "generated_at": "2026-04-07T11:05:00-04:00",
+  "posts": []
 }
