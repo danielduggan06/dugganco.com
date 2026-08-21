@@ -184,121 +184,78 @@
     }
 
     /* =============================================
-       HERO
+       MASTHEAD
     ============================================= */
-    .hero {
+    .masthead {
       position: relative;
-      padding: 5rem 2rem 4rem;
+      padding: 1.75rem 2rem 1.35rem;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52vh;
     }
 
-    /* Dot grid */
-    .hero::before {
+    .masthead::before {
       content: '';
       position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(59,130,246,0.18) 1px, transparent 1px);
-      background-size: 30px 30px;
+      background-image: radial-gradient(circle, rgba(59,130,246,0.16) 1px, transparent 1px);
+      background-size: 28px 28px;
       pointer-events: none;
-      mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, black 30%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, black 30%, transparent 100%);
+      mask-image: radial-gradient(ellipse 80% 120% at 12% 40%, black 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 120% at 12% 40%, black 20%, transparent 75%);
     }
 
-    .hero-glow {
+    .masthead-glow {
       position: absolute;
-      top: 40%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px; height: 400px;
-      background: radial-gradient(ellipse, rgba(59,130,246,0.18) 0%, transparent 65%);
-      pointer-events: none; filter: blur(50px);
+      top: -40%; left: -8%;
+      width: 420px; height: 220px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.14) 0%, transparent 70%);
+      pointer-events: none; filter: blur(40px);
     }
 
-    .hero-orb-1 {
-      position: absolute; top: -60px; left: -60px;
-      width: 380px; height: 380px;
-      background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 65%);
-      border-radius: 50%; pointer-events: none; filter: blur(30px);
-      animation: float1 9s ease-in-out infinite;
-    }
-
-    .hero-orb-2 {
-      position: absolute; bottom: -40px; right: -40px;
-      width: 440px; height: 360px;
-      background: radial-gradient(circle, rgba(96,165,250,0.09) 0%, transparent 65%);
-      border-radius: 50%; pointer-events: none; filter: blur(40px);
-      animation: float2 11s ease-in-out infinite;
-    }
-
-    .hero-fade {
+    .masthead-fade {
       position: absolute; bottom: 0; left: 0; right: 0;
-      height: 100px;
+      height: 36px;
       background: linear-gradient(to bottom, transparent, var(--bg));
       pointer-events: none;
     }
 
-    @keyframes float1 {
-      0%,100% { transform: translate(0,0); }
-      50% { transform: translate(25px,18px); }
-    }
-
-    @keyframes float2 {
-      0%,100% { transform: translate(0,0); }
-      50% { transform: translate(-18px,-25px); }
-    }
-
-    .hero-inner {
+    .masthead-inner {
       position: relative; z-index: 2;
-      text-align: center; max-width: 720px;
+      max-width: 1280px;
+      margin: 0 auto;
     }
 
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(59,130,246,0.1);
-      border: 1px solid rgba(59,130,246,0.35);
-      border-radius: 9999px;
-      padding: 0.35rem 1rem;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent-2); margin-bottom: 1.5rem;
+    .masthead-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.25rem;
     }
 
-    .hero-badge::before {
-      content: ''; width: 6px; height: 6px;
-      border-radius: 50%; background: var(--accent-2);
-      animation: blink 2s infinite;
+    .masthead h1 {
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: var(--text);
     }
 
-    @keyframes blink {
-      0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+    .masthead-dateline {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-3);
+      white-space: nowrap;
+      letter-spacing: 0.01em;
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 4.5vw, 3.1rem);
-      font-weight: 800; letter-spacing: -1.2px;
-      line-height: 1.1; color: var(--white);
-      margin-bottom: 1rem;
-    }
-
-    body.light-mode .hero h1 { color: var(--text); }
-
-    .hero h1 .highlight {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 1rem; color: var(--text-2);
-      line-height: 1.7; max-width: 520px;
-      margin: 0 auto 2rem;
+    .masthead-lede {
+      margin-top: 0.45rem;
+      font-size: 0.92rem;
+      color: var(--text-2);
+      line-height: 1.55;
+      max-width: 38rem;
     }
 
     /* =============================================
-       SEARCH BAR (below hero)
+       SEARCH BAR (below masthead)
     ============================================= */
     .search-bar-section {
       background: var(--surface);
@@ -731,25 +688,15 @@
       .feed-section { padding: 1rem 1rem 3rem; }
       .grid-container { grid-template-columns: 1fr; }
 
-      /* Hero: compact, understated on mobile */
-      .hero {
-        padding: 2rem 1.25rem 1.5rem;
-        min-height: auto;
+      .masthead { padding: 1.15rem 1.25rem 1rem; }
+      .masthead-glow { display: none; }
+      .masthead-row {
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.25rem 0.85rem;
       }
-      .hero-orb-1, .hero-orb-2, .hero-glow { display: none; }
-      .hero::before {
-        background-size: 24px 24px;
-        mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
-        -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 20%, transparent 100%);
-      }
-      .hero-badge { display: none; }
-      .hero h1 {
-        font-size: 1.5rem;
-        letter-spacing: -0.5px;
-        margin-bottom: 0;
-      }
-      .hero-sub { display: none; }
-      .hero-fade { height: 40px; }
+      .masthead h1 { font-size: 1.2rem; }
+      .masthead-lede { font-size: 0.84rem; }
 
       /* Show mobile search trigger, hide full search panel by default */
       .mobile-search-bar { display: flex; }
@@ -847,18 +794,18 @@
   </div>
 
   <!-- =============================================
-       HERO
+       MASTHEAD
   ============================================= -->
-  <header class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-orb-1"></div>
-    <div class="hero-orb-2"></div>
-    <div class="hero-fade"></div>
+  <header class="masthead">
+    <div class="masthead-glow"></div>
+    <div class="masthead-fade"></div>
 
-    <div class="hero-inner">
-      <div class="hero-badge">Live Intelligence Feed</div>
-      <h1><span class="highlight">Security News.</span><br>All Sources. One Feed.</h1>
-      <p class="hero-sub">Aggregated headlines from 16 leading cybersecurity sources — The Hacker News, Krebs, BleepingComputer, CISA, and more — sorted by newest first.</p>
+    <div class="masthead-inner">
+      <div class="masthead-row">
+        <h1>Security news</h1>
+        <p class="masthead-dateline"><span id="source-count">16</span> sources · newest first</p>
+      </div>
+      <p class="masthead-lede">Headlines from Krebs, CISA, BleepingComputer, The Hacker News, and other outlets.</p>
     </div>
   </header>
 
@@ -1251,6 +1198,8 @@
       applyTheme(saved);
 
       // Feeds
+      const sourceCount = document.getElementById('source-count');
+      if (sourceCount) sourceCount.textContent = String(FEEDS.length);
       loadFeeds();
 
       // Search
