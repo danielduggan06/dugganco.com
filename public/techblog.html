@@ -28,7 +28,7 @@
       --accent-soft: rgba(59, 130, 246, 0.14);
       --text: #e2eaf5;
       --text-2: #7a97b8;
-      --text-3: #557290;
+      --text-3: #3d5a7a;
       --shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
       --navbar-h: 64px;
       --r: 10px;
@@ -49,12 +49,16 @@
       --accent-soft: rgba(29, 78, 216, 0.08);
       --text: #0a1628;
       --text-2: #3a5a80;
-      --text-3: #7c98bb;
+      --text-3: #8aabbf;
       --shadow: 0 8px 24px rgba(33, 63, 110, 0.1);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+      overflow-x: hidden;
+    }
 
     body {
       min-height: 100vh;
@@ -63,7 +67,6 @@
       color: var(--text);
       background: var(--bg);
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
 
     body.light-mode {
@@ -87,7 +90,6 @@
 
     body.light-mode .navbar { background: rgba(238,243,252,0.88); }
 
-    .masthead-inner,
     .shell {
       max-width: 1280px;
       margin: 0 auto;
@@ -231,6 +233,7 @@
       padding: 1.75rem 0 1.35rem;
       overflow: hidden;
     }
+
     .masthead::before {
       content: '';
       position: absolute; inset: 0;
@@ -240,30 +243,55 @@
       mask-image: radial-gradient(ellipse 80% 120% at 12% 40%, black 20%, transparent 75%);
       -webkit-mask-image: radial-gradient(ellipse 80% 120% at 12% 40%, black 20%, transparent 75%);
     }
-    .masthead-inner { position: relative; z-index: 2; }
+
+    .masthead-glow {
+      position: absolute;
+      top: -40%; left: -8%;
+      width: 420px; height: 220px;
+      background: radial-gradient(ellipse, rgba(59,130,246,0.14) 0%, transparent 70%);
+      pointer-events: none; filter: blur(40px);
+    }
+
+    .masthead-fade {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 36px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+    }
+
+    .masthead-inner {
+      position: relative; z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
     .masthead-row {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       gap: 1.25rem;
     }
+
     .masthead h1 {
-      font-family: 'Source Serif 4', serif;
-      font-size: 1.7rem;
+      font-size: 1.45rem;
       font-weight: 600;
       letter-spacing: -0.03em;
       line-height: 1.2;
       color: var(--text);
     }
+
     .masthead-dateline {
       font-size: 0.78rem;
       font-weight: 500;
       color: var(--text-3);
       white-space: nowrap;
+      letter-spacing: 0.01em;
     }
+
     .masthead-lede {
-      margin-top: 0.4rem;
-      font-size: 0.95rem;
+      margin-top: 0.45rem;
+      font-size: 0.92rem;
       color: var(--text-2);
       line-height: 1.55;
       max-width: 38rem;
@@ -375,11 +403,19 @@
       .nav-links { display: none; }
       .hamburger { display: block; }
       .navbar-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .masthead { padding: 1.15rem 0 1rem; }
+      .masthead-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .masthead-glow { display: none; }
+      .masthead-row {
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.25rem 0.85rem;
+      }
+      .masthead h1 { font-size: 1.2rem; }
+      .masthead-lede { font-size: 0.84rem; }
     }
 
     @media (max-width: 860px) {
-      .masthead-row { flex-wrap: wrap; gap: 0.25rem 0.85rem; }
-      .masthead h1 { font-size: 1.4rem; }
       .toolbar-top { justify-content: stretch; }
       .search-shell { min-width: 100%; }
     }
@@ -435,17 +471,19 @@
     </div>
   </div>
 
-  <main>
-    <header class="masthead">
-      <div class="masthead-inner">
-        <div class="masthead-row">
-          <h1>Tech blog</h1>
-          <p class="masthead-dateline">Security · AI · homelab</p>
-        </div>
-        <p class="masthead-lede">Notes that were worth keeping.</p>
+  <header class="masthead">
+    <div class="masthead-glow"></div>
+    <div class="masthead-fade"></div>
+    <div class="masthead-inner">
+      <div class="masthead-row">
+        <h1>Tech blog</h1>
+        <p class="masthead-dateline">Security · AI · homelab</p>
       </div>
-    </header>
+      <p class="masthead-lede">Notes that were worth keeping.</p>
+    </div>
+  </header>
 
+  <main>
     <section class="shell">
       <div class="toolbar">
         <div class="toolbar-top">
