@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="icon" href="/favicon.ico?v=2" />
+  <link rel="icon" href="/favicon.ico?v=3" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <style>
@@ -427,7 +427,7 @@
     .services-bg .section-header {
       text-align: left;
       max-width: none;
-      margin-bottom: 0;
+      margin-bottom: 2rem;
     }
 
     .services-bg .section-header p {
@@ -435,24 +435,25 @@
       max-width: 36rem;
     }
 
-    .services-header {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+    .services-heading {
+      display: flex;
       align-items: center;
-      gap: 1.5rem 2.5rem;
-      margin-bottom: 2.4rem;
-      position: relative;
+      gap: 0.7rem;
+    }
+
+    .services-heading h2 {
+      margin: 0;
     }
 
     .services-logo {
-      width: clamp(128px, 18vw, 196px);
-      height: auto;
+      height: 1.2em;
+      width: auto;
       display: block;
-      filter: drop-shadow(0 0 32px rgba(59,130,246,0.4));
+      flex-shrink: 0;
     }
 
-    body.light-mode .services-logo {
-      filter: drop-shadow(0 8px 24px rgba(29,78,216,0.22));
+    body:not(.light-mode) .services-logo {
+      filter: brightness(1.7);
     }
 
     .services-grid {
@@ -957,9 +958,6 @@
         grid-column: 1 / -1;
         grid-template-columns: 1.1fr 0.9fr;
       }
-      .services-logo {
-        width: 120px;
-      }
     }
 
     @media (max-width: 900px) {
@@ -986,13 +984,6 @@
       .service-card.featured {
         grid-template-columns: 1fr;
       }
-      .services-header {
-        grid-template-columns: 1fr;
-      }
-      .services-logo {
-        width: 96px;
-        justify-self: start;
-      }
     }
   </style>
 </head>
@@ -1004,7 +995,7 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <a href="/" class="nav-brand">
-        <div class="nav-brand-icon"><img src="/logo.png" alt=""></div>
+        <div class="nav-brand-icon"><img src="/favicon.png" alt=""></div>
         <span class="nav-brand-text">Duggan <span>Cyber</span> Ops</span>
       </a>
 
@@ -1092,13 +1083,13 @@
   ============================================= -->
   <section class="services-bg" id="services">
     <div class="section-wrap">
-      <div class="services-header">
-        <div class="section-header">
-          <div class="section-label">Services</div>
+      <div class="section-header">
+        <div class="section-label">Services</div>
+        <div class="services-heading">
           <h2>What We Can Do for You</h2>
-          <p>The expertise behind global financial institutions - now working for you.</p>
+          <img class="services-logo" src="/favicon.png" alt="" />
         </div>
-        <img class="services-logo" src="/logo.png" alt="Duggan Cyber Ops" />
+        <p>The expertise behind global financial institutions - now working for you.</p>
       </div>
       <div class="services-grid">
 
@@ -1311,7 +1302,7 @@
   ============================================= -->
   <footer>
     <div class="footer-brand">
-      <div class="footer-brand-icon"><img src="/logo.png" alt=""></div>
+      <div class="footer-brand-icon"><img src="/favicon.png" alt=""></div>
       <span>Duggan Cyber Operations</span>
     </div>
     <div class="footer-copy">
