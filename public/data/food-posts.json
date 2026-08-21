@@ -1,0 +1,165 @@
+{
+  "generated_at": "2026-08-20T21:30:00-04:00",
+  "posts": [
+    {
+      "slug": "cheesecake",
+      "title": "Cheesecake",
+      "tag": "Dessert",
+      "caption": "That's a cheesecake baby, hell yeah.",
+      "recipe_url": "https://www.youtube.com/watch?v=tspdJ6hxqnc",
+      "images": [
+        {
+          "src": "https://i.imgur.com/nnL2mPH.jpg",
+          "alt": "Homemade cheesecake on a plate"
+        }
+      ]
+    },
+    {
+      "slug": "chicken-adobo",
+      "title": "Chicken Adobo",
+      "tag": "Dinner",
+      "caption": "Chicken adobo, and also my attempt at being accepted by my girlfriend's family.",
+      "recipe_url": "https://www.youtube.com/watch?v=ZdxSPFt4oxk",
+      "images": [
+        {
+          "src": "https://i.imgur.com/nup64lW.jpg",
+          "alt": "Chicken adobo served with rice"
+        }
+      ]
+    },
+    {
+      "slug": "chicken-and-broccoli",
+      "title": "Chicken and Broccoli",
+      "tag": "Takeout fix",
+      "caption": "Couldn't find good Chinese takeout in Texas, so I made my own.",
+      "recipe_url": "https://www.youtube.com/watch?v=zEJC1HvWuhE",
+      "images": [
+        {
+          "src": "https://i.imgur.com/yU9EGoQ.jpg",
+          "alt": "Chicken and broccoli served in a bowl"
+        }
+      ]
+    },
+    {
+      "slug": "french-onion-soup",
+      "title": "French Onion Soup",
+      "tag": "Cold weather",
+      "caption": "French onion soup, for when it's cold out.",
+      "recipe_url": "https://www.tiktok.com/t/ZT8MWJH5o/",
+      "images": [
+        {
+          "src": "https://i.imgur.com/tuwL3Nb.jpg",
+          "alt": "French onion soup with toasted bread and cheese"
+        }
+      ]
+    },
+    {
+      "slug": "detroit-style-pizza",
+      "title": "Detroit-Style Pizza",
+      "tag": "Repeat winner",
+      "caption": "A classic of mine now, because the crispy edges are worth it every time.",
+      "recipe_url": "https://www.ethanchlebowski.com/cooking-techniques-recipes/my-favorite-pizza-style-detroit?rq=pizza",
+      "images": [
+        {
+          "src": "https://i.imgur.com/FDQvwj8.jpg",
+          "alt": "Detroit-style pizza with browned cheese edges"
+        }
+      ]
+    },
+    {
+      "slug": "peposo-stew",
+      "title": "Peposo Stew",
+      "tag": "Comfort food",
+      "caption": "An Italian-American peppery beef stew with serious cold-night value.",
+      "recipe_url": "https://www.youtube.com/watch?v=P5cnh1xIxHo",
+      "images": [
+        {
+          "src": "https://i.imgur.com/qXY3jhv.jpg",
+          "alt": "Peposo stew in a bowl"
+        }
+      ]
+    },
+    {
+      "slug": "irish-soda-bread",
+      "title": "Irish Soda Bread",
+      "tag": "Family nod",
+      "caption": "Missed my mom's last St. Patrick's Day, so I made my own.",
+      "recipe_url": "https://www.youtube.com/watch?v=p450gWjSKTc",
+      "images": [
+        {
+          "src": "https://i.imgur.com/guGj62L.jpg",
+          "alt": "Irish soda bread sliced on a cutting board"
+        }
+      ]
+    },
+    {
+      "slug": "ground-turkey-taco",
+      "title": "Ground Turkey Taco",
+      "tag": "Original",
+      "caption": "A low-calorie ground turkey taco I came up with on my own.",
+      "recipe_url": "",
+      "images": [
+        {
+          "src": "https://i.imgur.com/m0tspnj.jpg",
+          "alt": "Ground turkey taco plated with toppings"
+        }
+      ]
+    },
+    {
+      "slug": "wonton-soup",
+      "title": "Wonton Soup",
+      "tag": "Soup night",
+      "caption": "Wonton soup, plus a cameo from the chicken and broccoli if you look closely.",
+      "recipe_url": "https://www.youtube.com/watch?v=d0OJSFXgNps",
+      "images": [
+        {
+          "src": "https://i.imgur.com/TtFvZyI.jpg",
+          "alt": "Wonton soup in a large bowl"
+        },
+        {
+          "src": "https://i.imgur.com/yU9EGoQ.jpg",
+          "alt": "Chicken and broccoli that showed up in the same dinner"
+        }
+      ]
+    },
+    {
+      "slug": "poached-eggs",
+      "title": "Poached Eggs",
+      "tag": "Breakfast",
+      "caption": "You may not like it, but this is the superior way to eat eggs.",
+      "recipe_url": "",
+      "images": [
+        {
+          "src": "https://i.imgur.com/iadD15X.jpg",
+          "alt": "Poached eggs on an English muffin"
+        }
+      ]
+    },
+    {
+      "slug": "philly-cheesesteak-taco",
+      "title": "Philly Cheesesteak Taco",
+      "tag": "Mashup",
+      "caption": "Wanted a philly cheesesteak, but without all the bread.",
+      "recipe_url": "https://www.youtube.com/watch?v=GoFIBYoOdyI",
+      "images": [
+        {
+          "src": "https://i.imgur.com/jJ7taWS.jpg",
+          "alt": "Philly cheesesteak taco filling in a tortilla"
+        }
+      ]
+    },
+    {
+      "slug": "chicken-marsala",
+      "title": "Chicken Marsala",
+      "tag": "Classic",
+      "caption": "A classic my mom makes. Mine is definitely not as good as hers.",
+      "recipe_url": "https://www.youtube.com/watch?v=_Nw3bDUpb7Q",
+      "images": [
+        {
+          "src": "https://i.imgur.com/PH2hStI.jpg",
+          "alt": "Chicken marsala plated with sauce"
+        }
+      ]
+    }
+  ]
+}

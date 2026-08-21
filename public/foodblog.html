@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="title" property="og:title" content="Dan's Delicious Dinners &amp; Dishes" />
   <meta property="og:type" content="website" />
-  <meta name="image" property="og:image" content="https://i.imgur.com/nnL2mPH.jpg" />
+  <meta name="image" property="og:image" content="https://i.imgur.com/FDQvwj8.jpg" />
   <meta
     name="description"
     property="og:description"
-    content="Dan Duggan's food blog: a gallery of homemade dinners, soups, pizza nights, and comfort-food experiments with recipe links."
+    content="I cook, I take a picture, sometimes I remember the recipe."
   />
   <meta name="author" content="Dan Duggan" />
 
@@ -59,7 +59,11 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+      overflow-x: hidden;
+    }
 
     body {
       min-height: 100vh;
@@ -71,7 +75,6 @@
         radial-gradient(circle at 85% 12%, rgba(191, 79, 31, 0.22), transparent 22%),
         linear-gradient(180deg, #1d120c 0%, var(--bg) 22%, #0d0907 100%);
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
 
     body.light-mode {
@@ -135,7 +138,7 @@
 
     .nav-links a {
       display: block; padding: 0.4rem 0.85rem;
-      border-radius: var(--r-sm);
+      border-radius: 6px;
       font-size: 0.875rem; font-weight: 500;
       color: var(--text-2);
       transition: color var(--t), background var(--t);
@@ -157,15 +160,15 @@
     }
 
     .theme-btn,
-    .hero-action,
-    .feature-link,
-    .gallery-link {
+    .hero-card,
+    .lb-btn,
+    .lb-close {
       font-family: inherit;
     }
 
     .theme-btn {
       background: var(--surface-2); border: 1px solid var(--border);
-      color: var(--text-2); border-radius: var(--r-sm);
+      color: var(--text-2); border-radius: 6px;
       padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 500;
       cursor: pointer; transition: all var(--t);
       white-space: nowrap;
@@ -178,7 +181,7 @@
     .hamburger {
       display: none; background: none;
       border: 1px solid var(--border); color: var(--text-2);
-      border-radius: var(--r-sm); padding: 0.35rem 0.6rem;
+      border-radius: 6px; padding: 0.35rem 0.6rem;
       cursor: pointer; font-size: 1.1rem; line-height: 1;
     }
 
@@ -200,7 +203,7 @@
       display: block; text-align: center;
       padding: 0.55rem 0.5rem;
       background: var(--surface-2); border: 1px solid rgba(255, 202, 152, 0.12);
-      border-radius: var(--r-sm); font-size: 0.82rem; font-weight: 500;
+      border-radius: 6px; font-size: 0.82rem; font-weight: 500;
       color: var(--text-2); transition: all var(--t);
     }
 
@@ -211,7 +214,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 5rem 2rem 4rem;
+      padding: 5rem 2rem 3.2rem;
     }
 
     .hero::before {
@@ -240,22 +243,6 @@
       animation: riseIn 0.8s ease both;
     }
 
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      margin-bottom: 1rem;
-      padding: 0.45rem 0.85rem;
-      border-radius: 999px;
-      background: rgba(255, 190, 100, 0.12);
-      border: 1px solid rgba(255, 190, 100, 0.22);
-      color: var(--accent-2);
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
     .hero h1 {
       max-width: 10ch;
       font-family: 'Fraunces', serif;
@@ -266,60 +253,21 @@
     }
 
     .hero-lead {
-      max-width: 44rem;
+      max-width: 28rem;
       color: var(--text-2);
-      font-size: 1.08rem;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
+      font-size: 1.15rem;
+      line-height: 1.55;
+      margin-bottom: 0.85rem;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-action {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 170px;
-      padding: 0.95rem 1.2rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      font-size: 0.92rem;
-      font-weight: 700;
-      transition: transform var(--t), border-color var(--t), background var(--t);
-    }
-
-    .hero-action.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #1a0f08;
-      border-color: transparent;
-      box-shadow: 0 16px 36px rgba(255, 138, 61, 0.28);
-    }
-
-    .hero-action.secondary {
-      background: var(--surface);
-      color: var(--text);
-    }
-
-    .hero-action:hover {
-      transform: translateY(-2px);
-      border-color: var(--border-strong);
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.85rem;
+    .hero-count {
       color: var(--text-3);
       font-size: 0.88rem;
     }
 
     .hero-card {
       position: relative;
+      width: 100%;
       border-radius: 32px;
       padding: 1.2rem;
       background:
@@ -328,6 +276,10 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
       animation: riseIn 1s ease 0.1s both;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      font: inherit;
     }
 
     .hero-card-image {
@@ -357,226 +309,53 @@
     .hero-card-overlay h2 {
       font-family: 'Fraunces', serif;
       font-size: 1.45rem;
-      margin-bottom: 0.45rem;
     }
 
-    .hero-card-overlay p {
-      color: #f0d8c6;
-      line-height: 1.6;
-      font-size: 0.92rem;
-    }
-
-    .section-shell {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .stats {
-      margin-top: -1rem;
-      margin-bottom: 3.5rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .stat-card,
-    .feature-card,
-    .gallery-card,
-    .closing-card {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .stat-card {
-      border-radius: 22px;
-      padding: 1.2rem 1.15rem;
-    }
-
-    .stat-value {
-      display: block;
-      font-family: 'Fraunces', serif;
-      font-size: 2rem;
-      line-height: 1;
-      margin-bottom: 0.45rem;
-      color: var(--text);
-    }
-
-    .stat-label {
-      color: var(--text-2);
-      font-size: 0.92rem;
-      line-height: 1.5;
-    }
-
-    .section-intro {
-      margin-bottom: 1.5rem;
-    }
-
-    .section-intro h2,
-    .feature-copy h3,
-    .closing-card h2 {
-      font-family: 'Fraunces', serif;
-      letter-spacing: -0.03em;
-    }
-
-    .section-intro h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 0.6rem;
-    }
-
-    .section-intro p {
-      max-width: 46rem;
-      color: var(--text-2);
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-
-    .feature {
-      padding-bottom: 2rem;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
-      gap: 1.25rem;
-      align-items: stretch;
-    }
-
-    .feature-card {
-      border-radius: 28px;
-      overflow: hidden;
-      min-height: 540px;
-      position: relative;
-    }
-
-    .feature-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .feature-copy {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 2rem;
-      border-radius: 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0)), var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-    }
-
-    .feature-label {
-      display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.75rem;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent-2);
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .feature-copy h3 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1;
-    }
-
-    .feature-copy p {
-      color: var(--text-2);
-      line-height: 1.8;
-      font-size: 1rem;
-    }
-
-    .feature-points {
-      display: grid;
-      gap: 0.85rem;
-      list-style: none;
-      margin: 0.3rem 0 0.4rem;
-    }
-
-    .feature-points li {
-      padding: 0.9rem 1rem;
-      border-radius: 18px;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      color: var(--text-2);
-      line-height: 1.6;
-    }
-
-    .feature-points strong {
-      color: var(--text);
-      display: block;
-      margin-bottom: 0.2rem;
-    }
-
-    .feature-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      padding: 0.9rem 1.15rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #1a0f08;
-      font-weight: 800;
-      box-shadow: 0 16px 34px rgba(255, 138, 61, 0.24);
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .gallery {
-      padding: 2.25rem 0 5rem;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.5rem 2rem 4.5rem;
     }
 
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.1rem;
+      gap: 0.9rem;
     }
 
     .gallery-card {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      border-radius: 26px;
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 18px;
       overflow: hidden;
+      cursor: pointer;
+      text-align: left;
+      color: inherit;
+      box-shadow: var(--shadow);
       transition: transform var(--t), border-color var(--t), box-shadow var(--t);
-      animation: riseIn 0.8s ease both;
     }
 
-    .gallery-card:nth-child(2) { animation-delay: 0.05s; }
-    .gallery-card:nth-child(3) { animation-delay: 0.1s; }
-    .gallery-card:nth-child(4) { animation-delay: 0.15s; }
-    .gallery-card:nth-child(5) { animation-delay: 0.2s; }
-    .gallery-card:nth-child(6) { animation-delay: 0.25s; }
-    .gallery-card:nth-child(7) { animation-delay: 0.3s; }
-    .gallery-card:nth-child(8) { animation-delay: 0.35s; }
-    .gallery-card:nth-child(9) { animation-delay: 0.4s; }
-    .gallery-card:nth-child(10) { animation-delay: 0.45s; }
-    .gallery-card:nth-child(11) { animation-delay: 0.5s; }
-    .gallery-card:nth-child(12) { animation-delay: 0.55s; }
-
-    .gallery-card:hover {
-      transform: translateY(-6px);
+    .gallery-card:hover,
+    .gallery-card:focus-visible {
+      transform: translateY(-4px);
       border-color: var(--border-strong);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.28);
+      outline: none;
     }
 
     .gallery-media {
-      aspect-ratio: 4 / 4.7;
+      position: relative;
+      aspect-ratio: 4 / 5;
       overflow: hidden;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.08)), #24160f;
-      padding: 0.9rem 0.9rem 0 0.9rem;
+      background: #24160f;
     }
 
     .gallery-media img {
@@ -584,110 +363,175 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
-      border-radius: 18px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+      transition: transform 0.45s ease;
     }
 
     .gallery-card:hover .gallery-media img {
       transform: scale(1.04);
     }
 
-    .gallery-body {
-      display: grid;
-      gap: 0.7rem;
-      padding: 1rem 1rem 1.1rem;
+    .gallery-overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 2.4rem 0.9rem 0.85rem;
+      background: linear-gradient(180deg, transparent, rgba(18, 12, 8, 0.88));
+      color: #fff4e8;
     }
 
-    .gallery-head {
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      gap: 0.8rem;
+    .gallery-tag {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      padding: 0.22rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(255, 138, 61, 0.22);
+      color: #ffbe64;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .gallery-title {
       font-family: 'Fraunces', serif;
-      font-size: 1.25rem;
-      line-height: 1.1;
-      color: var(--text);
+      font-size: 1.2rem;
+      line-height: 1.15;
     }
 
-    .gallery-tag {
-      flex-shrink: 0;
-      padding: 0.32rem 0.55rem;
+    .photo-count {
+      position: absolute;
+      top: 0.7rem;
+      right: 0.7rem;
+      z-index: 1;
+      padding: 0.28rem 0.5rem;
       border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent-2);
+      background: rgba(18, 12, 8, 0.72);
+      color: #fff4e8;
       font-size: 0.72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      font-weight: 700;
     }
 
-    .gallery-caption {
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background: rgba(8, 5, 3, 0.84);
+    }
+
+    .lightbox.open { display: flex !important; }
+
+    .lightbox-inner {
+      width: min(980px, 100%);
+      max-height: calc(100vh - 2.5rem);
+      overflow: auto;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .lightbox-stage {
+      position: relative;
+      background: #140d09;
+    }
+
+    .lightbox-stage img {
+      display: block;
+      width: 100%;
+      max-height: 68vh;
+      object-fit: contain;
+      background: #140d09;
+    }
+
+    .lb-btn,
+    .lb-close {
+      border: 1px solid var(--border);
+      background: rgba(18, 12, 8, 0.72);
+      color: #fff4e8;
+      cursor: pointer;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 2;
+      border-radius: 6px;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 999px;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .lb-prev { left: 0.75rem; }
+    .lb-next { right: 0.75rem; }
+
+    .lb-btn[hidden],
+    .photo-count[hidden] { display: none; }
+
+    .lightbox-copy {
+      padding: 1rem 1.15rem 1.2rem;
+    }
+
+    .lightbox-copy h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.55rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .lightbox-copy p {
       color: var(--text-2);
       line-height: 1.65;
-      font-size: 0.95rem;
+      margin-bottom: 0.85rem;
     }
 
-    .gallery-link {
+    .lightbox-copy a {
       display: inline-flex;
-      width: fit-content;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.78rem 0.95rem;
-      border-radius: 999px;
+      padding: 0.55rem 0.8rem;
+      border-radius: 6px;
       border: 1px solid var(--border);
       background: var(--surface-2);
-      color: var(--text);
       font-size: 0.88rem;
       font-weight: 700;
-      transition: all var(--t);
     }
 
-    .gallery-link:hover {
-      border-color: var(--border-strong);
+    .lightbox-copy a:hover {
+      border-color: var(--accent);
       background: var(--accent-soft);
     }
 
-    .gallery-link.disabled {
-      opacity: 0.7;
-      cursor: default;
-    }
-
-    .closing {
-      padding: 0 2rem 5rem;
-    }
-
-    .closing-card {
-      max-width: 1280px;
-      margin: 0 auto;
-      border-radius: 30px;
-      padding: 2rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .closing-card h2 {
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      margin-bottom: 0.55rem;
-    }
-
-    .closing-card p {
-      color: var(--text-2);
-      line-height: 1.8;
-      max-width: 50rem;
-    }
-
-    .closing-actions {
+    .lb-dots {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      justify-content: flex-end;
+      gap: 0.4rem;
+      margin-top: 0.9rem;
     }
+
+    .lb-dots button {
+      width: 0.55rem;
+      height: 0.55rem;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: var(--text-3);
+      cursor: pointer;
+    }
+
+    .lb-dots button.active { background: var(--accent); }
 
     .footer {
       padding: 0 2rem 2.2rem;
@@ -696,33 +540,14 @@
       font-size: 0.85rem;
     }
 
-    @keyframes riseIn {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @media (max-width: 1100px) {
-      .hero-inner,
-      .feature-grid,
-      .closing-card {
+      .hero-inner {
         grid-template-columns: 1fr;
       }
 
-      .hero h1 {
-        max-width: 100%;
-      }
+      .hero h1 { max-width: 100%; }
+      .hero-card-image { min-height: 360px; }
 
-      .hero-card-image {
-        min-height: 360px;
-      }
-
-      .stats-grid,
       .gallery-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -730,54 +555,24 @@
 
     @media (max-width: 900px) {
       .nav-links { display: none; }
-
-      .hamburger {
-        display: block;
-      }
-
+      .hamburger { display: block; }
       .navbar-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
     }
 
     @media (max-width: 720px) {
-      .section-shell,
-      .closing,
-      .footer,
-      .hero {
+      .hero,
+      .gallery,
+      .footer {
         padding-left: 1rem;
         padding-right: 1rem;
       }
 
-      .hero {
-        padding-top: 4.2rem;
-      }
+      .hero { padding-top: 4.2rem; }
+      .hero-card { padding: 0.8rem; }
+      .hero-card-overlay { inset: auto 0.75rem 0.75rem 0.75rem; }
 
-      .hero-actions,
-      .closing-actions {
-        flex-direction: column;
-      }
-
-      .hero-action,
-      .feature-link,
-      .gallery-link {
-        width: 100%;
-      }
-
-      .stats-grid,
       .gallery-grid {
         grid-template-columns: 1fr;
-      }
-
-      .feature-copy,
-      .closing-card {
-        padding: 1.35rem;
-      }
-
-      .hero-card {
-        padding: 0.8rem;
-      }
-
-      .hero-card-overlay {
-        inset: auto 0.75rem 0.75rem 0.75rem;
       }
 
       .mobile-nav-grid { grid-template-columns: repeat(2,1fr); }
@@ -788,7 +583,7 @@
 <body>
   <nav class="navbar">
     <div class="navbar-inner">
-      <a class="nav-brand" href="/">
+      <a href="/" class="nav-brand">
         <div class="nav-brand-icon">DC</div>
         <span class="nav-brand-text">Duggan <span>Chow</span> Ops</span>
       </a>
@@ -804,8 +599,8 @@
       </ul>
 
       <div class="nav-right">
-        <button class="theme-btn" id="theme-btn" type="button" onclick="toggleTheme()">☀ Light</button>
-        <button class="hamburger" id="hamburger-btn" type="button" aria-label="Menu">☰</button>
+        <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀ Light</button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Menu">☰</button>
       </div>
     </div>
   </nav>
@@ -827,310 +622,231 @@
     <section class="hero">
       <div class="hero-inner">
         <div class="hero-copy">
-          <div class="hero-kicker">Kitchen archive since the early site days</div>
           <h1>Dan's Delicious Dinners &amp; Dishes</h1>
-          <p class="hero-lead">
-            This page is the original root system of the whole site: phone-shot dinners, comfort food experiments,
-            and recipe rabbit holes that slowly turned a hosting project into an actual personal corner of the internet.
-          </p>
-
-          <div class="hero-actions">
-            <a class="hero-action primary" href="#gallery">Browse the gallery</a>
-            <a class="hero-action secondary" href="#feature">Read the story</a>
-          </div>
-
-          <div class="hero-meta">
-            <span>12 dishes</span>
-            <span>Homemade comfort food</span>
-            <span>Recipe links where they exist</span>
-          </div>
+          <p class="hero-lead">I cook, I take a picture, sometimes I remember the recipe.</p>
+          <p class="hero-count" id="dish-count">Kitchen archive</p>
         </div>
 
-        <div class="hero-card">
+        <button class="hero-card" id="hero-dish" type="button" aria-label="Open Detroit-style pizza">
           <div class="hero-card-image">
-            <img src="https://i.imgur.com/FDQvwj8.jpg" alt="Detroit-style pizza fresh from the oven" />
-            <div class="hero-card-overlay">
-              <h2>Detroit-style pizza night</h2>
-              <p>
-                Crispy edges, thick crust, and enough payoff to justify turning one successful recipe into a permanent repeat.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="stats section-shell">
-      <div class="stats-grid">
-        <article class="stat-card">
-          <span class="stat-value">12</span>
-          <p class="stat-label">Documented dishes from the original food-blog phase of the site.</p>
-        </article>
-        <article class="stat-card">
-          <span class="stat-value">2</span>
-          <p class="stat-label">Original improvised recipes that still need a proper write-up someday.</p>
-        </article>
-        <article class="stat-card">
-          <span class="stat-value">100%</span>
-          <p class="stat-label">Home-kitchen energy: weeknight experiments, comfort food, and family references.</p>
-        </article>
-        <article class="stat-card">
-          <span class="stat-value">1</span>
-          <p class="stat-label">Proof that a personal website can start with dinner photos and still become something bigger.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="feature section-shell" id="feature">
-      <div class="section-intro">
-        <h2>Where the site started</h2>
-        <p>
-          Before the homepage redesigns and consulting pages, this was the part of the site that actually felt alive.
-          It was simple: cook something, take a picture, save the link, and leave a note with a little personality instead
-          of pretending the internet always needs to be polished.
-        </p>
-      </div>
-
-      <div class="feature-grid">
-        <article class="feature-card">
-          <img src="https://i.imgur.com/nup64lW.jpg" alt="Chicken adobo plated on a dinner plate" />
-        </article>
-
-        <article class="feature-copy">
-          <div class="feature-label">Featured memory</div>
-          <h3>Chicken adobo and a little diplomacy</h3>
-          <p>
-            Some of these meals are just dinners. Some of them come with context. The adobo entry is both a recipe test
-            and a social bet: if you are cooking for your girlfriend's family, maybe start with sincerity and garlic.
-          </p>
-
-          <ul class="feature-points">
-            <li>
-              <strong>The rules here are loose.</strong>
-              Sometimes there is a polished recipe link. Sometimes the note is the whole point.
-            </li>
-            <li>
-              <strong>The tone stays personal.</strong>
-              This page works better as a journal with appetite than as a perfect recipe database.
-            </li>
-            <li>
-              <strong>The photos stay real.</strong>
-              These are phone shots, not food-styling exercises, which is exactly why the page has any charm.
-            </li>
-          </ul>
-
-          <a class="feature-link" href="https://www.youtube.com/watch?v=ZdxSPFt4oxk" target="_blank" rel="noopener noreferrer">
-            Open the adobo recipe
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <section class="gallery section-shell" id="gallery">
-      <div class="section-intro">
-        <h2>The gallery</h2>
-        <p>
-          Every card links out to the recipe that inspired it when there is one. The few that do not are the ones that
-          came together on instinct, which is usually how the best weeknight food starts anyway.
-        </p>
-      </div>
-
-      <div class="gallery-grid">
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/nnL2mPH.jpg" alt="Homemade cheesecake on a plate" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Cheesecake</h3>
-              <span class="gallery-tag">Dessert</span>
-            </div>
-            <p class="gallery-caption">That's a cheesecake baby, hell yeah.</p>
-            <a class="gallery-link" href="https://www.youtube.com/watch?v=tspdJ6hxqnc" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/nup64lW.jpg" alt="Chicken adobo served with rice" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Chicken Adobo</h3>
-              <span class="gallery-tag">Dinner</span>
-            </div>
-            <p class="gallery-caption">Chicken adobo, and also my attempt at being accepted by my girlfriend's family.</p>
-            <a class="gallery-link" href="https://www.youtube.com/watch?v=ZdxSPFt4oxk" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/yU9EGoQ.jpg" alt="Chicken and broccoli served in a bowl" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Chicken and Broccoli</h3>
-              <span class="gallery-tag">Takeout fix</span>
-            </div>
-            <p class="gallery-caption">Couldn't find good Chinese takeout in Texas, so I made my own.</p>
-            <a class="gallery-link" href="https://www.youtube.com/watch?v=zEJC1HvWuhE" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/tuwL3Nb.jpg" alt="French onion soup with toasted bread and cheese" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">French Onion Soup</h3>
-              <span class="gallery-tag">Cold weather</span>
-            </div>
-            <p class="gallery-caption">French onion soup, for when it's cold out.</p>
-            <a class="gallery-link" href="https://www.tiktok.com/t/ZT8MWJH5o/" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
             <img src="https://i.imgur.com/FDQvwj8.jpg" alt="Detroit-style pizza with browned cheese edges" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Detroit-Style Pizza</h3>
-              <span class="gallery-tag">Repeat winner</span>
+            <div class="hero-card-overlay">
+              <h2>Detroit-style pizza</h2>
             </div>
-            <p class="gallery-caption">A classic of mine now, because the crispy edges are worth it every time.</p>
-            <a class="gallery-link" href="https://www.ethanchlebowski.com/cooking-techniques-recipes/my-favorite-pizza-style-detroit?rq=pizza" target="_blank" rel="noopener noreferrer">Open recipe</a>
           </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/qXY3jhv.jpg" alt="Peposo stew in a bowl" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Peposo Stew</h3>
-              <span class="gallery-tag">Comfort food</span>
-            </div>
-            <p class="gallery-caption">An Italian-American peppery beef stew with serious cold-night value.</p>
-            <a class="gallery-link" href="https://www.youtube.com/watch?v=P5cnh1xIxHo&pp=ygULcGVwb3NvIHN0ZXc%3D" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/guGj62L.jpg" alt="Irish soda bread sliced on a cutting board" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Irish Soda Bread</h3>
-              <span class="gallery-tag">Family nod</span>
-            </div>
-            <p class="gallery-caption">Missed my mom's last St. Patrick's Day, so I made my own.</p>
-            <a class="gallery-link" href="https://www.youtube.com/watch?v=p450gWjSKTc" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/m0tspnj.jpg" alt="Ground turkey taco plated with toppings" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Ground Turkey Taco</h3>
-              <span class="gallery-tag">Original</span>
-            </div>
-            <p class="gallery-caption">A low-calorie ground turkey taco I came up with on my own.</p>
-            <span class="gallery-link disabled">Original recipe, no link yet</span>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/TtFvZyI.jpg" alt="Wonton soup in a large bowl" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Wonton Soup</h3>
-              <span class="gallery-tag">Soup night</span>
-            </div>
-            <p class="gallery-caption">Wonton soup, plus a cameo from the chicken and broccoli if you look closely.</p>
-            <a class="gallery-link" href="https://www.youtube.com/watch?v=d0OJSFXgNps" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/iadD15X.jpg" alt="Poached eggs on an English muffin" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Poached Eggs</h3>
-              <span class="gallery-tag">Breakfast</span>
-            </div>
-            <p class="gallery-caption">You may not like it, but this is the superior way to eat eggs.</p>
-            <span class="gallery-link disabled">House style, no recipe link</span>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/jJ7taWS.jpg" alt="Philly cheesesteak taco filling in a tortilla" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Philly Cheesesteak Taco</h3>
-              <span class="gallery-tag">Mashup</span>
-            </div>
-            <p class="gallery-caption">Wanted a philly cheesesteak, but without all the bread.</p>
-            <a class="gallery-link" href="https://www.youtube.com/watch?v=GoFIBYoOdyI" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
-
-        <article class="gallery-card">
-          <div class="gallery-media">
-            <img src="https://i.imgur.com/PH2hStI.jpg" alt="Chicken marsala plated with sauce" />
-          </div>
-          <div class="gallery-body">
-            <div class="gallery-head">
-              <h3 class="gallery-title">Chicken Marsala</h3>
-              <span class="gallery-tag">Classic</span>
-            </div>
-            <p class="gallery-caption">A classic my mom makes. Mine is definitely not as good as hers.</p>
-            <a class="gallery-link" href="https://www.youtube.com/watch?v=_Nw3bDUpb7Q" target="_blank" rel="noopener noreferrer">Open recipe</a>
-          </div>
-        </article>
+        </button>
       </div>
     </section>
 
-    <section class="closing">
-      <div class="closing-card">
-        <div>
-          <h2>Still the most personal page on the site</h2>
-          <p>
-            For all the infrastructure work and portfolio polish elsewhere, this page still does something useful:
-            it makes the site feel like it belongs to a real person. That is worth keeping.
-          </p>
-        </div>
-
-        <div class="closing-actions">
-          <a class="hero-action secondary" href="https://dugganco.com">Back to homepage</a>
-          <a class="hero-action primary" href="https://dugganco.com/consulting.html">See consulting page</a>
-        </div>
-      </div>
+    <section class="gallery" id="gallery" aria-label="Dishes">
+      <div class="gallery-grid" id="gallery-grid"></div>
     </section>
   </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="lightbox-inner">
+      <div class="lightbox-stage">
+        <button class="lb-close" id="lb-close" type="button">Close</button>
+        <button class="lb-btn lb-prev" id="lb-prev" type="button" aria-label="Previous photo">‹</button>
+        <img id="lb-image" alt="" />
+        <button class="lb-btn lb-next" id="lb-next" type="button" aria-label="Next photo">›</button>
+      </div>
+      <div class="lightbox-copy">
+        <h2 id="lb-title"></h2>
+        <p id="lb-caption"></p>
+        <a id="lb-recipe" href="#" target="_blank" rel="noopener noreferrer">Open recipe</a>
+        <div class="lb-dots" id="lb-dots"></div>
+      </div>
+    </div>
+  </div>
 
   <footer class="footer">
     <small>&copy; <script>document.write(new Date().getFullYear())</script> Dugganco.com. All Rights Reserved.</small>
   </footer>
 
   <script>
+    const EMBEDDED_POSTS = {
+  "generated_at": "2026-08-20T21:30:00-04:00",
+  "posts": [
+    {
+      "slug": "cheesecake",
+      "title": "Cheesecake",
+      "tag": "Dessert",
+      "caption": "That's a cheesecake baby, hell yeah.",
+      "recipe_url": "https://www.youtube.com/watch?v=tspdJ6hxqnc",
+      "images": [
+        {
+          "src": "https://i.imgur.com/nnL2mPH.jpg",
+          "alt": "Homemade cheesecake on a plate"
+        }
+      ]
+    },
+    {
+      "slug": "chicken-adobo",
+      "title": "Chicken Adobo",
+      "tag": "Dinner",
+      "caption": "Chicken adobo, and also my attempt at being accepted by my girlfriend's family.",
+      "recipe_url": "https://www.youtube.com/watch?v=ZdxSPFt4oxk",
+      "images": [
+        {
+          "src": "https://i.imgur.com/nup64lW.jpg",
+          "alt": "Chicken adobo served with rice"
+        }
+      ]
+    },
+    {
+      "slug": "chicken-and-broccoli",
+      "title": "Chicken and Broccoli",
+      "tag": "Takeout fix",
+      "caption": "Couldn't find good Chinese takeout in Texas, so I made my own.",
+      "recipe_url": "https://www.youtube.com/watch?v=zEJC1HvWuhE",
+      "images": [
+        {
+          "src": "https://i.imgur.com/yU9EGoQ.jpg",
+          "alt": "Chicken and broccoli served in a bowl"
+        }
+      ]
+    },
+    {
+      "slug": "french-onion-soup",
+      "title": "French Onion Soup",
+      "tag": "Cold weather",
+      "caption": "French onion soup, for when it's cold out.",
+      "recipe_url": "https://www.tiktok.com/t/ZT8MWJH5o/",
+      "images": [
+        {
+          "src": "https://i.imgur.com/tuwL3Nb.jpg",
+          "alt": "French onion soup with toasted bread and cheese"
+        }
+      ]
+    },
+    {
+      "slug": "detroit-style-pizza",
+      "title": "Detroit-Style Pizza",
+      "tag": "Repeat winner",
+      "caption": "A classic of mine now, because the crispy edges are worth it every time.",
+      "recipe_url": "https://www.ethanchlebowski.com/cooking-techniques-recipes/my-favorite-pizza-style-detroit?rq=pizza",
+      "images": [
+        {
+          "src": "https://i.imgur.com/FDQvwj8.jpg",
+          "alt": "Detroit-style pizza with browned cheese edges"
+        }
+      ]
+    },
+    {
+      "slug": "peposo-stew",
+      "title": "Peposo Stew",
+      "tag": "Comfort food",
+      "caption": "An Italian-American peppery beef stew with serious cold-night value.",
+      "recipe_url": "https://www.youtube.com/watch?v=P5cnh1xIxHo",
+      "images": [
+        {
+          "src": "https://i.imgur.com/qXY3jhv.jpg",
+          "alt": "Peposo stew in a bowl"
+        }
+      ]
+    },
+    {
+      "slug": "irish-soda-bread",
+      "title": "Irish Soda Bread",
+      "tag": "Family nod",
+      "caption": "Missed my mom's last St. Patrick's Day, so I made my own.",
+      "recipe_url": "https://www.youtube.com/watch?v=p450gWjSKTc",
+      "images": [
+        {
+          "src": "https://i.imgur.com/guGj62L.jpg",
+          "alt": "Irish soda bread sliced on a cutting board"
+        }
+      ]
+    },
+    {
+      "slug": "ground-turkey-taco",
+      "title": "Ground Turkey Taco",
+      "tag": "Original",
+      "caption": "A low-calorie ground turkey taco I came up with on my own.",
+      "recipe_url": "",
+      "images": [
+        {
+          "src": "https://i.imgur.com/m0tspnj.jpg",
+          "alt": "Ground turkey taco plated with toppings"
+        }
+      ]
+    },
+    {
+      "slug": "wonton-soup",
+      "title": "Wonton Soup",
+      "tag": "Soup night",
+      "caption": "Wonton soup, plus a cameo from the chicken and broccoli if you look closely.",
+      "recipe_url": "https://www.youtube.com/watch?v=d0OJSFXgNps",
+      "images": [
+        {
+          "src": "https://i.imgur.com/TtFvZyI.jpg",
+          "alt": "Wonton soup in a large bowl"
+        },
+        {
+          "src": "https://i.imgur.com/yU9EGoQ.jpg",
+          "alt": "Chicken and broccoli that showed up in the same dinner"
+        }
+      ]
+    },
+    {
+      "slug": "poached-eggs",
+      "title": "Poached Eggs",
+      "tag": "Breakfast",
+      "caption": "You may not like it, but this is the superior way to eat eggs.",
+      "recipe_url": "",
+      "images": [
+        {
+          "src": "https://i.imgur.com/iadD15X.jpg",
+          "alt": "Poached eggs on an English muffin"
+        }
+      ]
+    },
+    {
+      "slug": "philly-cheesesteak-taco",
+      "title": "Philly Cheesesteak Taco",
+      "tag": "Mashup",
+      "caption": "Wanted a philly cheesesteak, but without all the bread.",
+      "recipe_url": "https://www.youtube.com/watch?v=GoFIBYoOdyI",
+      "images": [
+        {
+          "src": "https://i.imgur.com/jJ7taWS.jpg",
+          "alt": "Philly cheesesteak taco filling in a tortilla"
+        }
+      ]
+    },
+    {
+      "slug": "chicken-marsala",
+      "title": "Chicken Marsala",
+      "tag": "Classic",
+      "caption": "A classic my mom makes. Mine is definitely not as good as hers.",
+      "recipe_url": "https://www.youtube.com/watch?v=_Nw3bDUpb7Q",
+      "images": [
+        {
+          "src": "https://i.imgur.com/PH2hStI.jpg",
+          "alt": "Chicken marsala plated with sauce"
+        }
+      ]
+    }
+  ]
+};
+
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileNav = document.getElementById('mobile-nav');
+    const galleryGrid = document.getElementById('gallery-grid');
+    const dishCount = document.getElementById('dish-count');
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lb-image');
+    const lbTitle = document.getElementById('lb-title');
+    const lbCaption = document.getElementById('lb-caption');
+    const lbRecipe = document.getElementById('lb-recipe');
+    const lbPrev = document.getElementById('lb-prev');
+    const lbNext = document.getElementById('lb-next');
+    const lbClose = document.getElementById('lb-close');
+    const lbDots = document.getElementById('lb-dots');
+    const themeButton = document.getElementById('theme-btn');
+
+    const state = { posts: [], activeSlug: null, imageIndex: 0 };
 
     hamburgerBtn.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -1145,11 +861,9 @@
       }
     });
 
-    const themeButton = document.getElementById('theme-btn');
-
     function applyTheme(theme) {
       document.body.classList.toggle('light-mode', theme === 'light');
-      themeButton.textContent = theme === 'light' ? '\u263e Dark' : '\u2600 Light';
+      themeButton.textContent = theme === 'light' ? '☾ Dark' : '☀ Light';
       localStorage.setItem('theme', theme);
     }
 
@@ -1162,8 +876,170 @@
       savedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
     }
     applyTheme(savedTheme);
-
     window.toggleTheme = toggleTheme;
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    async function loadPosts() {
+      try {
+        const response = await fetch("./data/food-posts.json", { cache: "no-store" });
+        if (!response.ok) throw new Error(`Food posts request failed with ${response.status}`);
+        const data = await response.json();
+        return Array.isArray(data.posts) ? data.posts : [];
+      } catch (error) {
+        return EMBEDDED_POSTS.posts;
+      }
+    }
+
+    function findPost(slug) {
+      return state.posts.find((post) => post.slug === slug) || null;
+    }
+
+    function renderGallery(posts) {
+      dishCount.textContent = `${posts.length} dishes`;
+      galleryGrid.innerHTML = "";
+      posts.forEach((post) => {
+        const images = Array.isArray(post.images) ? post.images : [];
+        const cover = images[0] || { src: "", alt: post.title };
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "gallery-card";
+        button.setAttribute("aria-label", `Open ${post.title}`);
+        button.innerHTML = `
+          ${images.length > 1 ? `<span class="photo-count">${images.length} photos</span>` : ""}
+          <div class="gallery-media">
+            <img src="${escapeHtml(cover.src)}" alt="${escapeHtml(cover.alt || post.title)}" />
+            <div class="gallery-overlay">
+              <span class="gallery-tag">${escapeHtml(post.tag || "Dish")}</span>
+              <h2 class="gallery-title">${escapeHtml(post.title)}</h2>
+            </div>
+          </div>
+        `;
+        button.addEventListener("click", () => openDish(post.slug, 0, true));
+        galleryGrid.appendChild(button);
+      });
+    }
+
+    function renderLightbox(post, imageIndex) {
+      const images = Array.isArray(post.images) ? post.images : [];
+      const image = images[imageIndex] || images[0];
+      if (!image) return;
+
+      state.activeSlug = post.slug;
+      state.imageIndex = imageIndex;
+      lbImage.src = image.src;
+      lbImage.alt = image.alt || post.title;
+      lbTitle.textContent = post.title;
+      lbCaption.textContent = post.caption || "";
+
+      if (post.recipe_url) {
+        lbRecipe.hidden = false;
+        lbRecipe.href = post.recipe_url;
+      } else {
+        lbRecipe.hidden = true;
+        lbRecipe.removeAttribute("href");
+      }
+
+      const multi = images.length > 1;
+      lbPrev.hidden = !multi;
+      lbNext.hidden = !multi;
+      lbDots.innerHTML = "";
+      if (multi) {
+        images.forEach((_, index) => {
+          const dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = index === imageIndex ? "active" : "";
+          dot.setAttribute("aria-label", `Photo ${index + 1}`);
+          dot.addEventListener("click", () => openDish(post.slug, index, true));
+          lbDots.appendChild(dot);
+        });
+      }
+
+      lightbox.hidden = false;
+      lightbox.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(updateHistory) {
+      lightbox.classList.remove("open");
+      lightbox.hidden = true;
+      document.body.style.overflow = "";
+      state.activeSlug = null;
+      state.imageIndex = 0;
+      if (updateHistory) {
+        history.pushState({}, "", "/foodblog.html");
+      }
+    }
+
+    function openDish(slug, imageIndex, updateHistory) {
+      const post = findPost(slug);
+      if (!post) return;
+      const images = Array.isArray(post.images) ? post.images : [];
+      const nextIndex = Math.max(0, Math.min(imageIndex || 0, Math.max(images.length - 1, 0)));
+      renderLightbox(post, nextIndex);
+      if (updateHistory) {
+        const params = new URLSearchParams();
+        params.set("dish", slug);
+        if (nextIndex > 0) params.set("photo", String(nextIndex + 1));
+        history.pushState({}, "", `/foodblog.html?${params.toString()}`);
+      }
+    }
+
+    function stepPhoto(delta) {
+      const post = findPost(state.activeSlug);
+      if (!post) return;
+      const images = Array.isArray(post.images) ? post.images : [];
+      if (images.length < 2) return;
+      const nextIndex = (state.imageIndex + delta + images.length) % images.length;
+      openDish(post.slug, nextIndex, true);
+    }
+
+    lbPrev.addEventListener("click", () => stepPhoto(-1));
+    lbNext.addEventListener("click", () => stepPhoto(1));
+    lbClose.addEventListener("click", () => closeLightbox(true));
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox(true);
+    });
+    document.addEventListener("keydown", (event) => {
+      if (!lightbox.classList.contains("open")) return;
+      if (event.key === "Escape") closeLightbox(true);
+      if (event.key === "ArrowLeft") stepPhoto(-1);
+      if (event.key === "ArrowRight") stepPhoto(1);
+    });
+
+    window.addEventListener("popstate", () => {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("dish");
+      if (!slug) {
+        closeLightbox(false);
+        return;
+      }
+      const photo = Number(params.get("photo") || "1") - 1;
+      openDish(slug, photo, false);
+    });
+
+    async function initFoodBlog() {
+      state.posts = await loadPosts();
+      renderGallery(state.posts);
+      const heroDish = document.getElementById("hero-dish");
+      if (heroDish) {
+        heroDish.addEventListener("click", () => openDish("detroit-style-pizza", 0, true));
+      }
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("dish");
+      if (slug) {
+        const photo = Number(params.get("photo") || "1") - 1;
+        openDish(slug, photo, false);
+      }
+    }
+
+    initFoodBlog();
   </script>
 </body>
 </html>
