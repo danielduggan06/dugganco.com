@@ -17,36 +17,38 @@
   <style>
     :root {
       --bg: #050d1a;
-      --surface: rgba(10, 24, 40, 0.92);
-      --surface-2: rgba(15, 32, 53, 0.95);
+      --surface: #0a1828;
+      --surface-2: #0f2035;
       --border: #1a3354;
+      --border-subtle: #0f2035;
       --border-soft: rgba(96, 165, 250, 0.18);
       --accent: #3b82f6;
       --accent-2: #60a5fa;
       --accent-dim: rgba(59,130,246,0.12);
       --accent-soft: rgba(59, 130, 246, 0.14);
       --text: #e2eaf5;
-      --text-2: #88a2c1;
+      --text-2: #7a97b8;
       --text-3: #557290;
       --shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
       --navbar-h: 64px;
       --r: 10px;
       --r-sm: 6px;
-      --t: 0.22s ease;
+      --t: 0.2s ease;
     }
 
     body.light-mode {
       --bg: #eef3fc;
-      --surface: rgba(255, 255, 255, 0.96);
-      --surface-2: rgba(229, 237, 249, 0.98);
-      --border: #c2d4ef;
+      --surface: #ffffff;
+      --surface-2: #e4ecf8;
+      --border: #bdd0ec;
+      --border-subtle: #d8e4f4;
       --border-soft: rgba(29, 78, 216, 0.14);
       --accent: #1d4ed8;
       --accent-2: #2563eb;
       --accent-dim: rgba(29,78,216,0.09);
       --accent-soft: rgba(29, 78, 216, 0.08);
       --text: #0a1628;
-      --text-2: #426383;
+      --text-2: #3a5a80;
       --text-3: #7c98bb;
       --shadow: 0 8px 24px rgba(33, 63, 110, 0.1);
     }
@@ -103,49 +105,125 @@
       gap: 2rem;
     }
 
-    .nav-brand { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+
     .nav-brand-icon {
-      width: 32px; height: 32px; border-radius: 7px; background: var(--accent);
-      display: flex; align-items: center; justify-content: center; color: #fff;
-      font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #fff;
+      flex-shrink: 0;
     }
-    .nav-brand-text { font-size: 1rem; font-weight: 700; color: var(--text); white-space: nowrap; }
-    .nav-brand-text span { color: var(--accent); }
-    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
-    .nav-links a {
-      display: block; padding: 0.4rem 0.85rem; border-radius: var(--r-sm);
-      font-size: 0.875rem; font-weight: 500; color: var(--text-2);
-      transition: color var(--t), background var(--t); white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
-    .nav-links a.active { color: var(--accent); background: var(--accent-dim); }
-    .nav-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
-    .theme-btn, .filter-chip {
-      font-family: inherit; cursor: pointer; transition: all var(--t);
-      border-radius: var(--r-sm); border: 1px solid var(--border);
-    }
-    .theme-btn {
-      background: var(--surface-2); color: var(--text-2); padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 500;
+
+    .nav-brand-text {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
       white-space: nowrap;
     }
-    .theme-btn:hover { color: var(--text); border-color: var(--accent); background: var(--accent-dim); }
-    .hamburger {
-      display: none; background: none; border: 1px solid var(--border); color: var(--text-2);
-      border-radius: var(--r-sm); padding: 0.35rem 0.6rem; cursor: pointer; font-size: 1.1rem; line-height: 1;
+
+    .nav-brand-text span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
     }
+
+    .nav-links a {
+      display: block;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--r-sm);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: color var(--t), background var(--t);
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+    .nav-links a.active { color: var(--accent); background: var(--accent-dim); }
+
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+
+    .theme-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      border-radius: var(--r-sm);
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--t);
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .theme-btn:hover { color: var(--text); border-color: var(--accent); background: var(--accent-dim); }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      border-radius: var(--r-sm);
+      padding: 0.35rem 0.6rem;
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
     .mobile-nav {
-      display: none; position: fixed; top: var(--navbar-h); left: 0; right: 0; z-index: 999;
-      background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem 1.25rem;
+      display: none;
+      position: fixed;
+      top: var(--navbar-h);
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem 1.25rem;
+      z-index: 999;
       box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
+
     .mobile-nav.open { display: block; }
-    .mobile-nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-    .mobile-nav-grid a {
-      display: block; text-align: center; padding: 0.55rem 0.5rem; border-radius: var(--r-sm);
-      background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); font-size: 0.82rem; font-weight: 500;
+
+    .mobile-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 0.5rem;
     }
+
+    .mobile-nav-grid a {
+      display: block;
+      text-align: center;
+      padding: 0.55rem 0.5rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--r-sm);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-2);
+      transition: all var(--t);
+    }
+
     .mobile-nav-grid a:hover {
-      background: var(--accent-dim); border-color: var(--accent); color: var(--accent);
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .masthead {
@@ -217,7 +295,16 @@
     .search-shell input::placeholder { color: var(--text-3); }
     .filter-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .filter-chip {
-      background: var(--surface-2); color: var(--text-2); padding: 0.35rem 0.7rem; font-size: 0.8rem; font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all var(--t);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-2);
+      padding: 0.35rem 0.7rem;
+      font-size: 0.8rem;
+      font-weight: 500;
     }
     .filter-chip:hover, .filter-chip.active { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
     .results-meta {
@@ -287,10 +374,10 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: block; }
+      .navbar-inner { padding-left: 1.25rem; padding-right: 1.25rem; }
     }
 
     @media (max-width: 860px) {
-      .mobile-nav-grid { grid-template-columns: repeat(2, 1fr); }
       .masthead-row { flex-wrap: wrap; gap: 0.25rem 0.85rem; }
       .masthead h1 { font-size: 1.4rem; }
       .toolbar-top { justify-content: stretch; }
@@ -303,6 +390,10 @@
       .article-shell { padding: 1.2rem; }
       .article-title { font-size: 1.55rem; }
       .article-content { font-size: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .mobile-nav-grid { grid-template-columns: repeat(2,1fr); }
     }
   </style>
 </head>
@@ -331,7 +422,7 @@
     </div>
   </nav>
 
-  <div id="mobile-nav" class="mobile-nav">
+  <div class="mobile-nav" id="mobile-nav">
     <div class="mobile-nav-grid">
       <a href="/">Home</a>
       <a href="/consulting.html">Consulting</a>
