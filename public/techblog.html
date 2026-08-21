@@ -23,6 +23,7 @@
       --border-soft: rgba(96, 165, 250, 0.18);
       --accent: #3b82f6;
       --accent-2: #60a5fa;
+      --accent-dim: rgba(59,130,246,0.12);
       --accent-soft: rgba(59, 130, 246, 0.14);
       --text: #e2eaf5;
       --text-2: #88a2c1;
@@ -42,6 +43,7 @@
       --border-soft: rgba(29, 78, 216, 0.14);
       --accent: #1d4ed8;
       --accent-2: #2563eb;
+      --accent-dim: rgba(29,78,216,0.09);
       --accent-soft: rgba(29, 78, 216, 0.08);
       --text: #0a1628;
       --text-2: #426383;
@@ -72,7 +74,7 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--navbar-h);
-      background: rgba(5, 13, 26, 0.82);
+      background: rgba(5,13,26,0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
@@ -81,9 +83,8 @@
       align-items: center;
     }
 
-    body.light-mode .navbar { background: rgba(238, 243, 252, 0.9); }
+    body.light-mode .navbar { background: rgba(238,243,252,0.88); }
 
-    .navbar-inner,
     .masthead-inner,
     .shell {
       max-width: 1280px;
@@ -92,7 +93,10 @@
     }
 
     .navbar-inner {
+      max-width: 1280px;
       width: 100%;
+      margin: 0 auto;
+      padding: 0 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -102,39 +106,46 @@
     .nav-brand { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
     .nav-brand-icon {
       width: 32px; height: 32px; border-radius: 7px; background: var(--accent);
-      display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.85rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; color: #fff;
+      font-size: 0.85rem; font-weight: 700; flex-shrink: 0;
     }
     .nav-brand-text { font-size: 1rem; font-weight: 700; color: var(--text); white-space: nowrap; }
     .nav-brand-text span { color: var(--accent); }
     .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
     .nav-links a {
       display: block; padding: 0.4rem 0.85rem; border-radius: var(--r-sm);
-      font-size: 0.875rem; font-weight: 500; color: var(--text-2); transition: color var(--t), background var(--t);
+      font-size: 0.875rem; font-weight: 500; color: var(--text-2);
+      transition: color var(--t), background var(--t); white-space: nowrap;
     }
     .nav-links a:hover { color: var(--text); background: var(--surface-2); }
-    .nav-links a.active { color: var(--accent); background: var(--accent-soft); }
-    .nav-right { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-links a.active { color: var(--accent); background: var(--accent-dim); }
+    .nav-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
     .theme-btn, .filter-chip {
       font-family: inherit; cursor: pointer; transition: all var(--t);
       border-radius: var(--r-sm); border: 1px solid var(--border);
     }
     .theme-btn {
       background: var(--surface-2); color: var(--text-2); padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 500;
+      white-space: nowrap;
     }
-    .theme-btn:hover { color: var(--text); border-color: var(--accent); background: var(--accent-soft); }
+    .theme-btn:hover { color: var(--text); border-color: var(--accent); background: var(--accent-dim); }
     .hamburger {
       display: none; background: none; border: 1px solid var(--border); color: var(--text-2);
-      border-radius: var(--r-sm); padding: 0.35rem 0.6rem; cursor: pointer; font-size: 1.1rem;
+      border-radius: var(--r-sm); padding: 0.35rem 0.6rem; cursor: pointer; font-size: 1.1rem; line-height: 1;
     }
     .mobile-nav {
       display: none; position: fixed; top: var(--navbar-h); left: 0; right: 0; z-index: 999;
-      background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem 1.25rem; box-shadow: var(--shadow);
+      background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 2rem 1.25rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
     .mobile-nav.open { display: block; }
     .mobile-nav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
     .mobile-nav-grid a {
       display: block; text-align: center; padding: 0.55rem 0.5rem; border-radius: var(--r-sm);
-      background: var(--surface-2); border: 1px solid var(--border-soft); color: var(--text-2); font-size: 0.82rem; font-weight: 500;
+      background: var(--surface-2); border: 1px solid var(--border); color: var(--text-2); font-size: 0.82rem; font-weight: 500;
+    }
+    .mobile-nav-grid a:hover {
+      background: var(--accent-dim); border-color: var(--accent); color: var(--accent);
     }
 
     .masthead {
@@ -273,9 +284,12 @@
       .post-card { grid-column: span 12; }
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       .nav-links { display: none; }
-      .hamburger { display: inline-flex; }
+      .hamburger { display: block; }
+    }
+
+    @media (max-width: 860px) {
       .mobile-nav-grid { grid-template-columns: repeat(2, 1fr); }
       .masthead-row { flex-wrap: wrap; gap: 0.25rem 0.85rem; }
       .masthead h1 { font-size: 1.4rem; }
@@ -295,7 +309,7 @@
 <body>
   <nav class="navbar">
     <div class="navbar-inner">
-      <a class="nav-brand" href="/" aria-label="Duggan Cyber Ops home">
+      <a href="/" class="nav-brand">
         <div class="nav-brand-icon">DC</div>
         <span class="nav-brand-text">Duggan <span>Cyber</span> Ops</span>
       </a>
@@ -311,8 +325,8 @@
       </ul>
 
       <div class="nav-right">
-        <button id="theme-btn" class="theme-btn" type="button" onclick="toggleTheme()">Light</button>
-        <button id="hamburger-btn" class="hamburger" type="button" aria-label="Open navigation menu">☰</button>
+        <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀ Light</button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Menu">☰</button>
       </div>
     </div>
   </nav>
@@ -383,33 +397,33 @@
 
   <script>
     const EMBEDDED_MANIFEST = {
-      generated_at: "2026-04-06T00:00:00-04:00",
+      generated_at: "2026-04-07T16:40:41.019929-04:00",
       posts: [
         {
-          title: "Welcome To The Tech Blog",
-          slug: "welcome-to-the-tech-blog",
-          excerpt: "Why this blog exists and what will show up here across security, AI, cloud infrastructure, and homelabbing.",
-          category: "infrastructure",
-          tags: ["security", "ai", "cloud", "homelab"],
-          published_at: "2026-04-06T00:00:00-04:00",
-          updated_at: "2026-04-06T00:00:00-04:00",
-          reading_time: 3
+          title: "Beginning of Dan Duggan's Tech Blog",
+          slug: "beginning-of-dan-duggan-s-tech-blog",
+          excerpt: "Starting a blog never ranked high on my skill list. I'm not a writer and barely a reader, but after years in infrastructure and security I have more stories than excuses to stay quiet.",
+          category: "Commentary",
+          tags: ["introduction", "cybersecurity", "infrastructure", "information-technology", "artificial-intelligence"],
+          published_at: "2026-04-07T20:40:35.811Z",
+          updated_at: "2026-04-07T20:40:35.811Z",
+          reading_time: 1
         }
       ]
     };
 
     const EMBEDDED_POSTS = {
-      "welcome-to-the-tech-blog": {
-        title: "Welcome To The Tech Blog",
-        slug: "welcome-to-the-tech-blog",
-        excerpt: "Why this blog exists and what will show up here across security, AI, cloud infrastructure, and homelabbing.",
-        category: "infrastructure",
-        tags: ["security", "ai", "cloud", "homelab"],
-        published_at: "2026-04-06T00:00:00-04:00",
-        updated_at: "2026-04-06T00:00:00-04:00",
-        reading_time: 3,
-        meta_description: "An introduction to Dan Duggan's tech blog covering security, AI, cloud infrastructure, and homelabbing.",
-        body_markdown: "# Welcome To The Tech Blog\n\nThis page exists because the site needed a place for technical writing that sits between live notes and polished portfolio material.\n\n## What To Expect\n\n- Security operations notes after they have been cleaned up and reviewed\n- AI workflow experiments that are useful in real work, not just demos\n- Cloud and homelab architecture writeups with tradeoff-focused commentary\n- Publishing and automation patterns built around static infrastructure\n\n## Why The Workflow Matters\n\nPosts begin as rough markdown inside Nextcloud. Moving a note into the `Review` folder triggers n8n, which sends the piece through an AI drafting pass and writes the improved version back for human review. Only after a second deliberate move into `Publish` does the article become public.\n\nThat keeps the website fast and static while still making the writing process mobile-friendly.\n"
+      "beginning-of-dan-duggan-s-tech-blog": {
+        title: "Beginning of Dan Duggan's Tech Blog",
+        slug: "beginning-of-dan-duggan-s-tech-blog",
+        excerpt: "Starting a blog never ranked high on my skill list. I'm not a writer and barely a reader, but after years in infrastructure and security I have more stories than excuses to stay quiet.",
+        category: "Commentary",
+        tags: ["introduction", "cybersecurity", "infrastructure", "information-technology", "artificial-intelligence"],
+        published_at: "2026-04-07T20:40:35.811Z",
+        updated_at: "2026-04-07T20:40:35.811Z",
+        reading_time: 1,
+        meta_description: "Dan Duggan kicks off his tech blog with a blunt overview of the IT, security, infrastructure, AI, and geopolitical topics he plans to cover—and why his anti-war stance will stay visible.",
+        body_markdown: "To be brief, I'm not a writer and I’m barely a reader, but after years in IT and cybersecurity, it’s time to start sharing thoughts on both.\n\nExpect posts about information technology operations, defensive security, infrastructure engineering, artificial intelligence, Big Tech's habits, and the nitty gritty cybersecurity mess of the M&A space.\n\nBecause geopolitics in the modern age affects cybersecurity, we’ll likely get into that as well. Conflicts create the messes we later get paid to secure, and governments are constantly conjuring new ways to attack each other. As you can imagine, the United States’ recent hostilities with Russia and Iran have exacerbated cyber attacks between the opposing sides, and that affects my business.\n\nCheers to the start."
       }
     };
 
@@ -447,7 +461,7 @@
 
     function applyTheme(theme) {
       document.body.classList.toggle("light-mode", theme === "light");
-      themeButton.textContent = theme === "light" ? "\u263e Dark" : "\u2600 Light";
+      themeButton.textContent = theme === "light" ? "☾ Dark" : "☀ Light";
       localStorage.setItem("theme", theme);
     }
 
